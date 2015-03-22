@@ -1,0 +1,25 @@
+
+
+
+
+- Create a profile page
+
+
+
+- Create a user model
+
+
+
+- Create development database
+
+- Create video list
+
+- Find some videos and add them to list
+
+- Create a user class and add hehly523 as a login-able user
+
+- Find pic of Hank to put on profile
+
+- Create login page
+
+- Create user/authentication functionality 
