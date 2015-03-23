@@ -3,13 +3,15 @@ class UsersController < ApplicationController
   end
 
   def create
-  	@user = User.new(user_params)
-  	if @user save
-  		flash[:notice] = "User: '#{@user.username}' created successfully"
-  		redirect_to(:controller => 'user_pages', :action => 'index')
-  	else
-  		render('add')
-  	end
+    @user = User.new(user_params)
+    if @user.save
+      flash[:notice] = "User created successfully"
+      session[:user_id] = @user.id
+      session[:username] = @user.username
+      redirect_to(:controller => 'user_pages', :action => 'index')
+    else
+      redirect_to(:controller => 'access', :action => 'sign_up')
+    end
   end
 
   def show

@@ -38,4 +38,9 @@
 	  </div>
   	<button type="submit" class="btn btn-primary" disabled="disabled">Update</button>
 	</form>
+	<hr>
+	<div class="delete_account">
+		<p>Unhappy?</p>
+		<%= link_to "Delete account", :controller => "users", :action => "delete" %>
+	</div>
 </div> <!-- info_column col-sm-7 -->
