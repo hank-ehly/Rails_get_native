@@ -1,2 +1,89 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="users_edit container">
+
+	<div class="row">
+
+		<div class="col-sm-9">
+
+			<h1>Edit User: <%= @user.username %></h1>
+			
+			<%= form_for :user, :url => {:controller => 'users', :action => 'update', :id => @user.id} do |f| %>
+
+				<%= error_messages_for(@user) %>
+			
+				<div class="form-group">
+					<%= f.label :first_name, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+					</div>
+				</div>
+			
+				<div class="form-group">
+					<%= f.label :last_name, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+					</div>
+				</div>
+			
+				<div class="form-group">
+					<%= f.label :username, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :username, placeholder: "Username", class: "form-control" %>
+					</div>
+				</div>
+			
+				<div class="form-group">
+					<%= f.label :email, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :email_confirmation, class: "control-label" %>
+					<div class="controls">
+						<%= f.text_field :email_confirmation, placeholder: "Email Confirmation", class: "form-control" %>
+					</div>
+				</div>
+			
+				<div class="form-group">
+					<%= f.label :password, class: "control-label" %>
+					<div class="controls">
+						<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<%= f.label :password_confirmation, class: "control-label" %>
+					<div class="controls">
+						<%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "form-control" %>
+					</div>
+				</div>
+
+				<div class="checkbox">
+			    <label>
+			      <input type="checkbox"> Remember me
+			    </label>
+			  </div>
+			
+				<div class="form-group">
+					<%= submit_tag "Update", class: "btn btn-primary" %>
+				</div>
+
+				<%= link_to "Cancel", :controller => "user_pages", :action => 'index' %>
+				
+			<% end %>
+
+			</div> <!-- col-sm-6 -->
+
+			<div class="quote_column col-sm-3">
+
+				<h3>Improve your foreign language today!</h3>
+
+				<blockquote>dolor sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a?</blockquote>
+				<blockquote>sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a?</blockquote>
+				
+			</div> <!-- col-sm-6 -->
+
+		</div> <!-- row -->
+	  
+</div> <!-- users_add sign_up container -->

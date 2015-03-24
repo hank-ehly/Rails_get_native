@@ -1,7 +1,8 @@
 class VideosController < ApplicationController
 
+	before_action :confirm_logged_in
+
 	def index
-		@user = User.find(1)
 	end
 
 end

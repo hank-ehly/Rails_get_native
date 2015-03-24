@@ -1,2 +1,35 @@
-<h1>Users#delete</h1>
-<p>Find me in app/views/users/delete.html.erb</p>
+<div class="users_delete container">
+
+	<div class="row">
+
+		<div class="col-sm-12">
+
+			<h1>Delete Account</h1>
+			
+			<%= form_for :user, :url => {:controller => "users", :action => "destroy"} do |f| %>
+
+				<%= error_messages_for(@user) %>
+
+				<div class="form-group">
+					<label for="users_delete_textarea"><h3>Let us know why you're leaving (optional)</h3></label>
+					<textarea name="" class="form-control" id="users_delete_textarea" cols="30" rows="3" placeholder="I'm leaving because..."></textarea>
+				</div>
+
+				<div class="form-group">
+					<label for="users_delete_password">Password</label>
+					<%= f.text_field :password, placeholder: "Password", id: "users_delete_password", class: "form-control" %>
+				</div>
+
+				<div class="form-group">
+					<%= f.submit "Delete", class: "btn btn-primary", :disable_with => 'Deleting...', data: { confirm: "Are you sure you want to delete #{@user.username}'s account?" } %>
+				</div>
+			  
+				<p>Change of heart? <%= link_to "Return to profile", :controller => "user_pages", :action => "index" %></p>
+				
+			<% end %>
+
+			</div> <!-- col-sm-6 -->
+
+		</div> <!-- row -->
+	  
+</div> <!-- users_add sign_up container -->
