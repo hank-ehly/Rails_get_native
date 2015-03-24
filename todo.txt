@@ -1,16 +1,12 @@
-
-
-
-
 - Create a profile page
 
-
+-- but NOT ------- this!
 
 - Create a user model
 
-
-
 - Create development database
+
+- And this
 
 - Create video list
 
@@ -24,5 +20,4 @@
 
 - Create user/authentication functionality 
 
-
-THIS IS ADDED TEXT
+- You do this
