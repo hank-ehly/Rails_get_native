@@ -1,16 +1,14 @@
 class UsersController < ApplicationController
 
+  before_action :confirm_logged_in, :except => [:add, :create]
+
   def add
   end
 
   def create
-    # if params[:sign_up] == 'sign_up'
-    #   session[:user_id] = nil
-    #   session[:username] = nil
-    # end
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "User created successfully"
+      flash[:notice] = "Account successfully created!"
       session[:user_id] = @user.id
       session[:username] = @user.username
       redirect_to(:controller => 'user_pages', :action => 'index')
@@ -37,23 +35,16 @@ class UsersController < ApplicationController
   end
 
   def delete
-    confirm_logged_in
     @user = User.find(session[:user_id])
-    # @user = User.find(session[:user_id]) if session[:user_id]
   end
 
   def destroy
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-      # if params[:password].present?
-      #   if params[:password] == @user.password
-      @user.destroy
-      session[:user_id] = nil
-      session[:username] = nil
-      flash[:notice] = "#{@user.username}'s account has been successfully deleted."
-      redirect_to(:controller => 'access', :action => 'login')
-      #   end
-    end
+    user = User.find(session[:user_id])
+    user.destroy
+    flash[:notice] = "#{user.username}'s account has been successfully deleted."
+    session[:user_id] = nil
+    session[:username] = nil
+    redirect_to(:controller => 'access', :action => 'login')
   end
 
   def user_params

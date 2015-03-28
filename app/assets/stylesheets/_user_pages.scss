@@ -1,47 +1,14 @@
 // Place all the styles related to the UserPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import url(http://fonts.googleapis.com/css?family=Quicksand:400,700|Merriweather:400,300|Open+Sans:700,300,800,400|Roboto:500,100,300,700,400);
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "compass";
-
-/* Config */
-
-$default-border-radius: 5px;
-ul li { list-style-type: none; }
-
-/* Body */
-
-body {
-	font-style: "Open Sans", sans-serif;
-	font-weight: 300;
-	background: lighten(#eee, 2);
-	padding-bottom: 70px;
-}
-
-/* Header */
-
-header .navbar-brand  {
-	font-family: "Quicksand", sans-serif;
-	font-weight: 700;
-	font-size: 1.5em;
-}
-
-/* Headings */
-
-#{headings()} {
-	font-family: "Roboto", sans-serif;
-	font-weight: 300;
-}
 
 /* User Page */
 
 .user_pages {
-	margin-top: -20px;
 	.header.container {
 		.row {
 			.col-sm-12 {
+				padding-bottom: 20px;
 			}
 		}
 	}
@@ -56,19 +23,23 @@ header .navbar-brand  {
 			border: 1px solid #ddd;
 			@include border-radius();
 			.button_container {
-				// border: 1px solid green;
 				margin-bottom: -1px;
 				ul.nav.nav-tabs {
 					// border-bottom: none;
 					li {
 						display: inline-block;
 						a {
-							&:hover {
+							&.active {
 								background: #fff;
 								border: 1px solid #ddd;
 								border-bottom-color: transparent;
 							}
-						}
+							&:hover {
+								background: #fff;
+								border: 1px solid #ddd;
+								border-bottom-color: transparent;
+							} // a:hover
+						} // a
 					} // li
 				} // ul.nav.nav-tabs
 			} // .button_container
@@ -82,14 +53,14 @@ header .navbar-brand  {
 					background:#eee;
 					text-align: center;
 					@include border-radius();
-				}
+				} // .photo_box
 			} // .photo_column
 			.info_column {
 				margin-bottom: 20px;
 				h2 {
 					// text-align: center;
 					font-weight: 700;
-				}
+				} // h2
 			} // .info_column
 			.actions_column {
 				.actions_box {
@@ -102,13 +73,13 @@ header .navbar-brand  {
 						font-weight: 700;
 						border-bottom: 1px solid #d5d5d5;
 						padding-bottom: 10px;
-					}
+					} // h2
 					ul {
 						padding: 0;
 						li {
 							padding: 3px 0;
-						}
-					}
+						} // li
+					} // ul
 				} // .actions_box
 			} // actions_column
 		} // .main_content.row

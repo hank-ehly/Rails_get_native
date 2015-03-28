@@ -42,7 +42,7 @@
 	      	<% if session[:user_id] %>
 		        <li>
 			        <%= link_to :controller => 'user_pages', :action => 'index' do %>
-							<span class="glyphicon glyphicon-user"></span><%= User.find(session[:user_id]).username %></a>
+							<span class="glyphicon glyphicon-user"></span> <%= User.find(session[:user_id]).username %></a>
 							<% end %>
 						</li>
 		        <li>
@@ -50,11 +50,11 @@
 		        </li>
 	        <% else %>
 		        <li><%= link_to "Login", :controller => "access", :action => "login" %></li>
-		        <li><%= link_to "Sign Up", :controller => "access", :action => "sign_up" %></li>
+		        <li><%= link_to "Sign Up", :controller => "users", :action => "add" %></li>
 	        <% end %>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
+	      </ul> <!-- navbar-right -->
+	    </div><!-- .navbar-collapse -->
+	  </div><!-- .container-fluid -->
 	</nav>
 </header>
 
@@ -71,13 +71,17 @@
 
 <%= yield %>
 <footer>
-	<nav class="navbar navbar-default navbar-fixed-bottom">
-	  <div class="container">
-	    <ul class="nav navbar-nav navbar-right">
-	    	<li><a href="">I'm 1</a></li>
-	    </ul>
-	  </div>
-	</nav>
+	<div class="container">
+		<p>&copy; Get_Native.com <% time = Time.new %><%= time.year %></p>
+		<ul class="horizontal_list">
+			<li><a href="#">Company Information</a></li>
+			<li><a href="#">Contact Us</a></li>
+			<li><a href="#">FAQs</a></li>
+			<li><a href="#">Testimonials</a></li>
+			<li><a href="#">Feedback</a></li>
+			<li><a href="#">Privacy Policy</a></li>
+		</ul>
+	</div>
 </footer>
 </body>
 </html>

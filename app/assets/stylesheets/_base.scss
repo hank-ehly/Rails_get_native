@@ -1,0 +1,69 @@
+/* Config */
+
+$default-border-radius: 5px;
+ul li { list-style-type: none; }
+$default-border-color: #e7e7e7;
+$default-background-color: #f8f8f8;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+
+/* Headings */
+
+#{headings()} {
+	font-family: "Roboto", sans-serif;
+	font-weight: 300;
+}
+
+/* Body */
+
+* {
+	font-style: "Open Sans", sans-serif;
+	font-weight: 300;
+}
+
+body {
+	background: lighten(#eee, 2);
+}
+
+/* Header */
+
+header .navbar-brand  {
+	font-family: "Quicksand", sans-serif;
+	font-weight: 700;
+	font-size: 1.5em;
+}
+
+footer {
+	line-height: 30px;
+	margin-top: 20px;
+	width: 100%;
+	float: none;
+	position: relative;
+	background: $default-background-color;
+	border-top: 1px solid $default-border-color;
+	@include susy-breakpoint($sm) {
+		position: fixed;
+		height: 30px;
+		bottom: 0;
+	}
+	p {
+		margin: 0;
+		padding: 0;
+		@include susy-breakpoint($sm) {
+			float: left;
+			display: inline-block;
+		}
+	}
+	ul {
+		padding: 0;
+		@include susy-breakpoint($sm) {
+			display: inline-block;
+			float: right;
+			li {
+				display: inline-block;
+				padding: 0 5px;
+			}
+		}
+	}
+}

@@ -1,4 +1,4 @@
-<div class="users_add sign_up container">
+<div class="users_login container">
 
 	<div class="row">
 
@@ -32,7 +32,7 @@
 					<%= submit_tag "Login", class: "btn btn-primary" %>
 				</div>
 
-				<p>Don't have an account? <%= link_to "Sign Up", :controller => "access", :action => "sign_up" %></p>
+				<p>Don't have an account? <%= link_to "Sign Up", :controller => "users", :action => "add" %></p>
 				
 			<% end %>
 

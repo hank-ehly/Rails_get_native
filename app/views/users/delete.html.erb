@@ -16,15 +16,15 @@
 				</div>
 
 				<div class="form-group">
-					<label for="users_delete_password">Password</label>
-					<%= f.text_field :password, placeholder: "Password", id: "users_delete_password", class: "form-control" %>
+					<%= f.label :password %>
+					<%= f.password_field :password, class: "form-control", placeholder: "Password" %>
 				</div>
 
 				<div class="form-group">
-					<%= f.submit "Delete", class: "btn btn-primary", :disable_with => 'Deleting...', data: { confirm: "Are you sure you want to delete #{@user.username}'s account?" } %>
+					<%= f.submit "Delete Account", class: "btn btn-primary", :disable_with => 'Deleting...', data: { confirm: "Are you sure you want to completely delete #{@user.username}'s account?" } %>
 				</div>
 			  
-				<p>Change of heart? <%= link_to "Return to profile", :controller => "user_pages", :action => "index" %></p>
+				<p>Change your mind? <%= link_to "Return to profile", :controller => "user_pages", :action => "index" %></p>
 				
 			<% end %>
 
