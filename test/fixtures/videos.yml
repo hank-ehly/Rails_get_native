@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  duration: 1
+  speaker_name: MyString
+  description: MyText
+  views_count: 1
+  speaker_id: 1
+  language: MyString
+
+two:
+  title: MyString
+  duration: 1
+  speaker_name: MyString
+  description: MyText
+  views_count: 1
+  speaker_id: 1
+  language: MyString

@@ -25,7 +25,11 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
+	      	<% if session[:user_id] %>
 	        <li class=""><a href="#">Inbox <span class="badge">2</span></a></li>
+	        <% else %>
+	        <li class=""><a href="#">Try Demo</a></li>
+	        <% end %>
 	        <li><%= link_to "Videos", :controller => "videos", :action => "index" %></li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">

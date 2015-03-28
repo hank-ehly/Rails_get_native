@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326014808) do
+ActiveRecord::Schema.define(version: 20150328233528) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -36,5 +36,22 @@ ActiveRecord::Schema.define(version: 20150326014808) do
   end
 
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "title",              limit: 255
+    t.integer  "duration",           limit: 4
+    t.string   "speaker_name",       limit: 255
+    t.text     "description",        limit: 65535
+    t.integer  "views_count",        limit: 4
+    t.integer  "speaker_id",         limit: 4
+    t.string   "language",           limit: 255
+    t.text     "script",             limit: 65535
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "video_filename",     limit: 255
+    t.string   "thumbnail_filename", limit: 255
+  end
+
+  add_index "videos", ["speaker_id"], name: "index_videos_on_speaker_id", using: :btree
 
 end

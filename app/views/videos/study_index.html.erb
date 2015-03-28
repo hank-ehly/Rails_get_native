@@ -1,0 +1,30 @@
+<div class="videos_study_index container">
+	
+	<h1>Study Index</h1>
+
+	<%= form_for :video, :url => {:controller => "videos", :action => "init_study_session"} do |f| %>
+			
+	<%= f.label :study_time %><br />
+	<%= f.text_field :study_time %>
+
+<br>
+	<!-- for each videos as video -->
+	<% @videos.each do |video| %>
+	<div style="border:1px solid black;">
+		<%= image_tag("kao.png") %>
+		<p>Duration: <%= format_seconds(video.duration) %> <!-- helper to format correctly --></p>
+		<p>Speaker: <%= video.speaker_name %></p>
+		<p>Created: <%= video.created_at.strftime("%d %b. %Y") %></p>
+		<!-- sessions completed -->
+		<!-- last viewed -->
+	</div>
+	<!-- end -->
+	<% end %>
+
+  <%= f.submit %>
+	
+	<% end %>
+	  
+
+
+</div>

@@ -8,7 +8,12 @@
 				Edit Profile
 				<% end %>
 			</li>
-			<li><a href="#"><span class="glyphicon glyphicon-apple"></span> Study Now</a></li>
+			<li>
+				<%= link_to :controller => "videos", :action => 'study_index' do %>
+				<span class="glyphicon glyphicon-apple"></span>
+				Study Now
+				<% end %>
+			</li>
 		</ul>
 	</div>
 </div>
