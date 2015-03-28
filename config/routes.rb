@@ -5,8 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  root 'user_pages#index'
-  get 'admin', :to => 'admins#index'
+  root 'users#show'
 
   match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post]
 

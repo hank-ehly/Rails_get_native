@@ -18,6 +18,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @view = params[:view]
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+    end
+    if @view.blank?
+      @view = 'account_info'
+    end
   end
 
   def edit
