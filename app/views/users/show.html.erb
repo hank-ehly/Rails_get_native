@@ -1,21 +1,21 @@
 <div class="users_show">
 	
-	<%= render "application/header_container", foo: @foo %>
+	<%= render "application/header_container" %>
 
 	<div class="content container">
 
 	<!-- TABS START -->
 
-		<%= render "application/profile_navigation", foo: @foo %>
+		<%= render "application/profile_navigation" %>
 
 		<div class="main_content row">
 
-			<%= render "application/profile_photo_section", foo: @foo %>
+			<%= render "application/profile_photo_section" %>
 
 			<!-- render different view based on URL param 'view' -->
-			<%= render "application/profile_#{@view}", foo: @foo %>
+			<%= render "application/profile_#{@view}" %>
 
-			<%= render "application/profile_actions", foo: @foo %>
+			<%= render "application/profile_actions" %>
 
 		</div> <!-- main_content row -->
 		

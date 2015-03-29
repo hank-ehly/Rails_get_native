@@ -1,17 +1,21 @@
 <div class="videos_study_index container">
 	
-	<h1>Study Index</h1>
+	<h1>Study Options</h1>
 
 	<%= form_for :video, :url => {:controller => "videos", :action => "init_study_session"} do |f| %>
 			
 	<%= f.label :study_time %><br />
 	<%= f.text_field :study_time %>
 
+	<p>
+		<i>Remember: only put time you know you can complete</i>
+	</p>
+
 <br>
 	<!-- for each videos as video -->
 	<% @videos.each do |video| %>
-	<div style="border:1px solid black;">
-		<%= image_tag("kao.png") %>
+	<div>
+		<%= image_tag('speaker_thumbnails/'+video.thumbnail_filename, :size => '50x60') %>
 		<p>Duration: <%= format_seconds(video.duration) %> <!-- helper to format correctly --></p>
 		<p>Speaker: <%= video.speaker_name %></p>
 		<p>Created: <%= video.created_at.strftime("%d %b. %Y") %></p>
@@ -21,7 +25,7 @@
 	<!-- end -->
 	<% end %>
 
-  <%= f.submit %>
+  <%= submit_tag "Get_Native", class: "btn btn-primary" %>
 	
 	<% end %>
 	  
