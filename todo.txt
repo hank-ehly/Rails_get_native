@@ -15,3 +15,134 @@
 - Create login page
 
 - Create user/authentication functionality 
+
+
+
+
+
+
+
+// GOTTA INDEX BY LANGUAGE TOO!
+
+
+
+
+*** Indexing of Videos ***
+
+CLICK VIDEO INDEX
+
+	# list all topics
+
+	<% @topics.each do |topic| %>
+	Topic name 				<%= topic.menu_name %>
+	Number of videos 	<%= topic.videos.count %>
+
+CLICK TOPIC >>
+	
+	sends clicked topic.id >>
+	
+	# list videos of clicked topic
+
+	<% @topic.videos.each do |video| %>
+	Video Speaker 				<%= video.speaker %>
+	Video Length  				<%= video.length %>
+	Video script snippet  <%= video.script.(format for snippet with '...' at certain breakpoint) %>
+
+CLICK SPEAKER >>
+
+	sends video.speaker.id >>
+
+	Speaker name: 		<%= @speaker.full_name %>
+	Number of Videos: <%= @speaker.videos.count %>
+	
+	# Speaker videos by topic.alphabetically
+
+	@speaker.videos.order("videos.topic_name ASC").each do |video|
+
+	video.thumbnail
+	video.topic_name
+	video.view_count
+
+CLICK VIDEO >>
+
+	sends video.id
+
+	# show video
+
+	<video src="<%= @video.path %>"></video>
+	Length: 	<%= @video.duration %>
+	Topic:		<%= @video.topic_name %>
+	Speaker: 	<%= @video.speaker %>
+
+Video
+
+	belongs_to :speaker
+	belongs_to :topic
+
+Speaker
+
+	has_many :videos
+	has_and_belongs_to_many :topics
+
+Topic
+
+	has_many :videos
+	has_and_belongs_to_many :speakers
+
+
+
+
+
+/* videos table schema */	
+
+'id' 						INT PRIMARY KEY
+'speaker_id'		INT FOREIGN KEY
+'topic_id'			INT FOREIGN KEY
+'duration'			INT
+'description'		TEXT
+'views_count'		INT
+
+####
+
+video_filepath?
+video_thumbnail_filepath?
+video_script?
+	- how multiple languages?
+
+####
+
+'timestamps'
+
+/* speakers table schema */	
+
+'id' 						INT PRIMARY KEY
+'first_name'		VARCHAR(255)
+'last_name'			VARCHAR(255)
+'timestamps'
+
+/* topics table schema */	
+
+'id' 						INT PRIMARY KEY
+'menu_name'			VARCHAR(255)
+'timestamps'
+
+/* speakers_topics table schema */	
+
+'speaker_id'		INT FOREIGN KEY
+'topic_id'			INT FOREIGN KEY
+
+
+
+
+
+/* Join Migration */
+
+Join table name: "speakers_topics"
+
+rails generate migration CreateSpeakersTopicsJoin
+
+create_table :speakers_topics, :id => false do |t|
+	t.integer "speaker_id"
+	t.integer "topic_id"
+end
+add_index :speakers_topics, ["speaker_id", "topic_id"]
