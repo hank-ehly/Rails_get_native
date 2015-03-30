@@ -13,3 +13,4 @@ Rails.application.config.assets.version = '1.0'
 
 # add videos folder to asset pipeline
 Rails.application.config.assets.paths << "#{Rails.root}/app/assets/videos"
+Rails.application.config.assets.paths << "#{Rails.root}/app/assets/images/thumbnails"
