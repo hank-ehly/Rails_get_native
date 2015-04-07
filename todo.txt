@@ -93,7 +93,7 @@ Topic
 
 
 
-/* videos table schema */	
+/* videos table schema */	 DONE
 
 'id' 						INT PRIMARY KEY
 'speaker_id'		INT FOREIGN KEY

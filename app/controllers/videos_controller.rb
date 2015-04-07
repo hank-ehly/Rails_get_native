@@ -1,7 +1,7 @@
 class VideosController < ApplicationController
 
   before_action :confirm_logged_in
-  before_action :current_user
+  before_action :current_user_or_admin
 
   def index
 

@@ -1,7 +1,14 @@
 <div class="header container">
 	<div class="row">
 		<div class="col-sm-12">
-			<h1><%= @user.first_name + " " + @user.last_name %>: Profile</h1>
+			<h1>
+				<% if @current_user %>
+					<%= @current_user.first_name + " " + @current_user.last_name + ": User " %>
+				<% elsif @current_admin %>
+					<%= @current_admin.first_name + " " + @current_admin.last_name + ": Admin " %>
+				<% end %>
+				Profile
+			</h1>
 			<p>Currently studying: </p>
 			<div class="dropdown">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">

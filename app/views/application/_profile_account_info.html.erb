@@ -1,23 +1,27 @@
 <div class="info_column col-md-6 col-sm-7">
 	<h2>Account</h2>
 	<hr>
-
+	<% if @current_user %>
+		<% user_admin = @current_user %>
+	<% elsif @current_admin %>
+		<% user_admin = @current_admin %>
+	<% end %>
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>First Name</th>
-				<td><%= @user.first_name %></td>
+				<td><%= user_admin.first_name %></td>
 			</tr>
 			<tr>
 				<th>Last Name</th>
-				<td><%= @user.last_name %></td>
+				<td><%= user_admin.last_name %></td>
 			</tr>
 			<tr>
 				<th>Username</th>
-				<td><%= @user.username %></td>
+				<td><%= user_admin.username %></td>
 			</tr>
 			<tr>
 				<th>Email</th>
-				<td><%= @user.email %></td>
+				<td><%= user_admin.email %></td>
 			</tr>
 			<tr>
 				<th>Password</th>
@@ -25,7 +29,7 @@
 			</tr>
 		</table>
 
-		<%= link_to :controller => 'users', :action => 'edit', :id => @user.id do %>
+		<%= link_to :controller => 'users', :action => 'edit', :id => user_admin.id do %>
 			<button class="btn btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></button>
 		<% end %>
 

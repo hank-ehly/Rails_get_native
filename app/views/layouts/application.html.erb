@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RailsGetNative</title>
+  <title>Get_Native.com <%= 'Admin' if @current_admin %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
+	<% if @current_user %>
+		<% user_admin = @current_user %>
+	<% elsif @current_admin %>
+		<% user_admin = @current_admin %>
+	<% end %>
 <header>
 	<nav class="navbar navbar-default">
 	  <div class="container">
@@ -25,12 +30,12 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	      	<% if @current_user %>
-	        <li class=""><a href="#">Inbox <span class="badge">2</span></a></li>
+	      	<% if user_admin %>
+	        	<li class=""><a href="#">Inbox <span class="badge">2</span></a></li>
 	        <% else %>
-	        <li class=""><a href="#">Try Demo</a></li>
+	        	<li class=""><a href="#">Try Demo</a></li>
 	        <% end %>
-	        <li><%= link_to "Videos", :controller => "videos", :action => "index" %></li>
+	        	<li><%= link_to "Videos", :controller => "videos", :action => "index" %></li>
 	      </ul>
 	      <form class="navbar-form navbar-left" role="search">
 	        <div class="form-group">
@@ -43,10 +48,10 @@
 	        </div>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<% if @current_user %>
+	      	<% if user_admin %>
 		        <li>
 			        <%= link_to :controller => 'users', :action => 'show' do %>
-							<span class="glyphicon glyphicon-user"></span> <%= @current_user.username %></a>
+							<span class="glyphicon glyphicon-user"></span> <%= user_admin.email %></a>
 							<% end %>
 						</li>
 		        <li>
@@ -74,6 +79,8 @@
 <% end %>
 
 <%= yield %>
+
+
 <footer>
 	<div class="container">
 		<p>&copy; Get_Native.com <% time = Time.new %><%= time.year %></p>

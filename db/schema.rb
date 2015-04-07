@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406234154) do
+ActiveRecord::Schema.define(version: 20150407031914) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -24,6 +24,25 @@ ActiveRecord::Schema.define(version: 20150406234154) do
   end
 
   add_index "admins", ["username"], name: "index_admins_on_username", using: :btree
+
+  create_table "speakers", force: :cascade do |t|
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "language",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "speakers_topics_joins", force: :cascade do |t|
+    t.integer "speaker_id", limit: 4
+    t.integer "topic_id",   limit: 4
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",      limit: 255,              null: false
@@ -52,8 +71,10 @@ ActiveRecord::Schema.define(version: 20150406234154) do
     t.datetime "updated_at",                       null: false
     t.string   "video_filename",     limit: 255
     t.string   "thumbnail_filename", limit: 255
+    t.integer  "topic_id",           limit: 4
   end
 
   add_index "videos", ["speaker_id"], name: "index_videos_on_speaker_id", using: :btree
+  add_index "videos", ["topic_id"], name: "index_videos_on_topic_id", using: :btree
 
 end
