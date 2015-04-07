@@ -25,7 +25,7 @@
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
-	      	<% if session[:user_id] %>
+	      	<% if cookies[:auth_token] %>
 	        <li class=""><a href="#">Inbox <span class="badge">2</span></a></li>
 	        <% else %>
 	        <li class=""><a href="#">Try Demo</a></li>
@@ -43,7 +43,7 @@
 	        </div>
 	      </form>
 	      <ul class="nav navbar-nav navbar-right">
-	      	<% if session[:user_id] %>
+	      	<% if cookies[:auth_token] %>
 		        <li>
 			        <%= link_to :controller => 'users', :action => 'show' do %>
 							<span class="glyphicon glyphicon-user"></span> <%= User.find(session[:user_id]).username %></a>
