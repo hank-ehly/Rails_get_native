@@ -1,18 +1,18 @@
 <div class="users_show">
 	
-	<%= render "application/header_container" %>
+	<%= render "shared/header_container" %>
 
 	<div class="content container">
 
-		<%= render "application/profile_navigation" %>
+		<%= render "shared/profile_navigation" %>
 
 		<div class="main_content row">
 
-			<%= render "application/profile_photo_section" %>
+			<%= render "shared/profile_photo_section" %>
 
-			<%= render "application/profile_#{@view}" %>
+			<%= render "shared/profile_#{@view}" %>
 
-			<%= render "application/profile_actions" %>
+			<%= render "shared/profile_actions" %>
 
 		</div> <!-- main_content row -->
 		

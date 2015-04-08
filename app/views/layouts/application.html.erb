@@ -17,13 +17,13 @@
 </head>
 <body>
 
-<%= render 'application/header', current_user_admin: @current_user_admin %>
+<%= render 'shared/header', current_user_admin: @current_user_admin %>
 
-<%= render 'application/flash_display' %>
+<%= render 'shared/flash_display' %>
 
 <%= yield %>
 
-<%= render 'application/footer' %>
+<%= render 'shared/footer' %>
 
 </body>
 </html>

@@ -1,0 +1,73 @@
+<div class="topics index container">
+	
+<h1>All Topics</h1>
+
+	<div id="searcharea">
+    <input type="search" name="search" id="search" class="form-control" placeholder="Name or Company...">
+  </div>
+  <div id="update"></div>
+
+<table class="table">
+	<tr>
+		<% @abc.each do |letter| %>
+			<th><a href="#<%= letter %>"><%= letter %></a></th>
+		<% end %>
+	</tr>
+</table>
+
+
+<table class="table table-hover">
+
+
+	<tr>
+		<th>Letter Index</th>
+		<th># of Videos</th>
+		<th># of Speakers</th>
+		<% if @layout_style == 'Admin' %>
+		<th>Actions</th>
+		<% end %>
+	</tr>
+	
+	<% @abc.each do |letter| %>
+
+	<tr>
+		<th><a href="#<%= letter %>" id="<%= letter %>"><strong><%= letter %></strong></a></th>
+		<th><a href="#">( <%= rand(99) %> )</a></th>
+		<th><a href="#">( <%= rand(99) %> )</a></th>
+		<% if @layout_style == 'Admin' %>
+		<th></th>
+		<% end %>
+	</tr>
+
+		<% @topics.each do |topic| %>
+			<tr>
+				<% if topic.name[0] == letter %>
+				<td>
+					<%= link_to "#{topic.name}" %>
+				</td>
+				<td><a href="#">( <%= rand(1..9) %> )</a></td>
+				<td><a href="#">( <%= rand(1..9) %> )</a></td>
+				<% if @layout_style == 'Admin' %>
+				<td>
+					<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>
+					<%= link_to "Delete", controller: 'topics', action: 'delete', id: topic.id %>
+				</td>
+				<% end %>
+				<% end %>
+			</tr>
+		<% end %>
+
+	<% end %>
+
+
+</table>
+
+<table class="table">
+	<tr>
+		<% @abc.each do |letter| %>
+			<th><a href="#<%= letter %>"><%= letter %></a></th>
+		<% end %>
+	</tr>
+</table>
+
+</div>
