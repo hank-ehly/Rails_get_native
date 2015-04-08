@@ -3,7 +3,8 @@ class VideosController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
 
-  def index
+  def add
+    @topic = Topic.find(params[:topic_id]) if params[:topic_id]
   end
 
   def create
@@ -15,28 +16,20 @@ class VideosController < ApplicationController
     @videos = Video.alphabetically_by_title
   end
 
-  def shadowing
-
-  end
-
-  def speaking
-
-  end
-
-  def listening
-
-  end
-
-  def writing
-
-  end
-
-  def init_study_session
-    
-  end
-
   def video_params
-    params.require(:video).permit(:title, :duration, :speaker_name, :description, :language, :script, :path)
+    params.require(:video).permit(
+    :title, 
+    :duration, 
+    :speaker_name, 
+    :description, 
+    :views_count, 
+    :speaker_id, 
+    :language, 
+    :script, 
+    :video_filename, 
+    :thumbnail_filename, 
+    :topic_id
+    )
   end
 
 end

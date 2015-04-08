@@ -1,6 +1,6 @@
 <div class="topics show main">
 	<div class="container">
-		<h1>Show Topic</h1>
+		<h1>Show Topic: <i><%= @topic.name if @topic %></i></h1>
 		<%= link_to "Cancel", controller: 'users', action: 'profile', view: 'topics' %>
 		<table class="table">
 			<tr>
@@ -21,6 +21,16 @@
 				<td><%= @topic.updated_at %></td>
 			</tr>
 			<% end %>
+		</table>
+		<h2>Videos for <i><%= @topic.name if @topic %></i></h2>
+		<%= link_to "+ Add a video for this topic", controller: 'videos', action: 'add', topic_id: @topic.id %>
+		<table class="table">
+			<tr>
+				<th>Title</th>
+				<th>Speaker</th>
+				<th>Duration</th>
+			</tr>
+			<!-- loop through videos table -->
 		</table>
 	</div>
 </div>

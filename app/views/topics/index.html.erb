@@ -43,7 +43,7 @@
 			<tr>
 				<% if topic.name[0] == letter %>
 				<td>
-					<%= link_to "#{topic.name}" %>
+					<%= link_to topic.name, controller: 'topics', action: 'show', id: topic.id %>
 				</td>
 				<td><a href="#">( <%= rand(1..9) %> )</a></td>
 				<td><a href="#">( <%= rand(1..9) %> )</a></td>
