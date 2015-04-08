@@ -1,10 +1,11 @@
 class VideosController < ApplicationController
 
   before_action :confirm_logged_in
-  before_action :current_user_or_admin
+  before_action :current_user_admin
 
   def index
-
+    @abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    @topics = Topic.order("topics.name ASC")
   end
 
   def create

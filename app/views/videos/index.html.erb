@@ -1,207 +1,74 @@
 <div class="videos container">
 	
-<h1>All Subjects</h1>
+<h1>All Topics</h1>
 
-<%= render "application/video_index_table" %>
-
-<!-- 	<div id="searcharea">
-    <label for="search">Live Search</label>
-    <p>Enter the name or info about a speaker</p>
+	<div id="searcharea">
+<!--     <label for="search">Live Search</label>
+    <p>Enter the name or info about a speaker</p> -->
     <input type="search" name="search" id="search" class="form-control" placeholder="Name or Company...">
   </div>
-  <div id="update"></div> -->
+  <div id="update"></div>
+
+<table class="table">
+	<tr>
+		<% @abc.each do |letter| %>
+			<th><a href="#<%= letter %>"><%= letter %></a></th>
+		<% end %>
+	</tr>
+</table>
+
 
 <table class="table table-hover">
-	<tr>
-		<th><a href="#A" id="A">A</a></th>
-		<th><a href="#">Videos</a></th>
-	</tr>
-	<tr>
-		<td><a href="#">About Dogs</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
 
 
 	<tr>
-		<th><a href="#B" id="B">B</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Breaking News</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-	<tr>
-		<th><a href="#C" id="C">C</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-
-
-
-	<tr>
-		<th><a href="#D" id="D">D</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td>
-			<div>
-				<a href="#">Degrees and Diplomas</a>
-			</div>
-		</td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-
-	<tr>
-		<th><a href="#E" id="E">E</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Everyday conversation</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-
-	<tr>
-		<th><a href="#F" id="F">F</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Faking sick</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-	<tr>
-		<th><a href="#G" id="G">G</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-
-
-	<tr>
-		<th><a href="#H" id="H">H</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Homesickness</a></td>
-		<td><a href="#">(17)</a></td>
+		<th>Letter Index</th>
+		<th># of Videos</th>
+		<th># of Speakers</th>
+		<% if @layout_style == 'Admin' %>
+		<th>Actions</th>
+		<% end %>
 	</tr>
 	
-
-
-
-	<tr>
-		<th><a href="#I" id="I">I</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Internet Usage</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-	
-
-
+	<% @abc.each do |letter| %>
 
 	<tr>
-		<th><a href="#J" id="J">J</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td><a href="#">Japanese Food</a></td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-	<tr>
-		<th><a href="#K" id="K">K</a></th>
-		<th><a href="#"></a></th>
+		<th><a href="#<%= letter %>" id="<%= letter %>"><%= letter %></a></th>
+		<th><a href="#">( <%= rand(99) %> )</a></th>
+		<th><a href="#">( <%= rand(99) %> )</a></th>
+		<% if @layout_style == 'Admin' %>
+		<th></th>
+		<% end %>
 	</tr>
 
-	
+	<% @topics.each do |topic| %>
+		<tr>
+			<% if topic.name[0] == letter %>
+			<td><%= topic.name %></td>
+			<td><a href="#">( <%= rand(1..9) %> )</a></td>
+			<td><a href="#">( <%= rand(1..9) %> )</a></td>
+			<% if @layout_style == 'Admin' %>
+			<td>
+				<%= link_to "View", controller: 'topics', action: 'view', id: topic.id %>
+				<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>
+				<%= link_to "Delete", controller: 'topics', action: 'delete', id: topic.id %>
+			</td>
+			<% end %>
+			<% end %>
+		</tr>
+	<% end %>
 
-
-	<tr>
-		<th><a href="#L" id="L">L</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#M" id="M">M</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#N" id="N">N</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#O" id="O">O</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#P" id="P">P</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#Q" id="Q">Q</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#R" id="R">R</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#S" id="S">S</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#T" id="T">T</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#U" id="U">U</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#V" id="V">V</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	
-	<tr>
-		<th><a href="#W" id="W">W</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<td>
-			<a href="#">Win Win Negotiations</a>
-		</td>
-		<td><a href="#">(17)</a></td>
-	</tr>
-
-
-
-
-
-	<tr>
-		<th><a href="#X" id="X">X</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#Y" id="Y">Y</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-	<tr>
-		<th><a href="#Z" id="Z">Z</a></th>
-		<th><a href="#"></a></th>
-	</tr>
-
-	
+	<% end %>
 
 
 </table>
 
-<%= render "application/video_index_table" %>
-
+<table class="table">
+	<tr>
+		<% @abc.each do |letter| %>
+			<th><a href="<%= letter %>"><%= letter %></a></th>
+		<% end %>
+	</tr>
+</table>
 
 </div>

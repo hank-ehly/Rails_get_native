@@ -1,0 +1,20 @@
+<div class="topics add main">
+	<div class="container">
+		<h1>+ Add Topic</h1>
+		<%= link_to "Cancel", controller: 'users', action: 'profile', view: 'topics' %>
+		<%= form_for :topic, url: { controller: 'topics', action: 'create' } do |f| %>
+
+			<%= error_messages_for(@topic) %>
+
+			<div class="form-group">
+				<%= f.label :name %>
+				<%= f.text_field :name, placeholder: 'Topic name...', tabindex: 1, class: 'form-control' %>
+			</div>
+
+			<div class="form-group">
+				<%= f.submit "Submit", :disable_with => 'Submiting...', tabindex: 2, class: 'btn btn-primary' %>
+			</div>
+			
+		<% end %>
+	</div>
+</div>

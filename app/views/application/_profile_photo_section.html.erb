@@ -1,11 +1,7 @@
 <div class="photo_column col-md-3 hidden-xs hidden-sm">
 	<div class="photo_box">
-		<% if @user %>
-			<% if @user.first_name == 'Hank' %>
-				<%= image_tag('mug_shot.jpg', :size => '180x190') %>
-			<% else %>
-				<img src="http://placekitten.com/180/190" alt="">
-			<% end %>
+		<% if @current_user_admin %>
+			<img src="http://placekitten.com/180/190" alt="place-kitten">
 		<% end %>
 		
 	</div>

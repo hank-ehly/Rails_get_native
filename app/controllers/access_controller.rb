@@ -16,16 +16,16 @@ class AccessController < ApplicationController
       # mark user as logged in
       session[:user_id] = authorized_user.id
       session[:email] = authorized_user.email
-      flash[:notice] = "You are now logged in."
-      redirect_to(:controller => 'users', :action => 'show')
+      flash[:success] = "You are now logged in."
+      redirect_to(:controller => 'users', :action => 'profile')
     elsif authorized_admin
       # mark admin as logged in
       session[:admin_id] = authorized_admin.id
       session[:email] = authorized_admin.email
-      flash[:notice] = "You are now logged in."
-      redirect_to(:controller => 'users', :action => 'show')
+      flash[:success] = "You are now logged in."
+      redirect_to(:controller => 'users', :action => 'profile')
     else
-      flash[:notice] = "Invalid email/password combination."
+      flash[:danger] = "Invalid email/password combination."
       redirect_to(:action => 'login')
     end
   end
@@ -34,7 +34,7 @@ class AccessController < ApplicationController
     session[:user_id] = nil
     session[:admin_id] = nil
     session[:email] = nil
-    flash[:notice] = "You have been logged out."
+    flash[:success] = "You have been logged out."
     redirect_to(:action => 'login')
   end
 

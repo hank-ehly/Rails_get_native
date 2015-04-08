@@ -1,98 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Get_Native.com <%= 'Admin' if @current_admin %></title>
+  <title>Get_Native.com:
+  <% if @layout_style == 'User' %>
+  	User
+  <% elsif @layout_style == 'Admin' %>
+  	Admin
+	<% else %>
+		Public
+  <% end %>
+  </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 </head>
 <body>
-	<% if @current_user %>
-		<% user_admin = @current_user %>
-	<% elsif @current_admin %>
-		<% user_admin = @current_admin %>
-	<% end %>
-<header>
-	<nav class="navbar navbar-default">
-	  <div class="container">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <%= link_to "Get_Native", {:controller => 'users', :action => 'show'}, :class => "navbar-brand" %>
-	    </div>
 
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	      	<% if user_admin %>
-	        	<li class=""><a href="#">Inbox <span class="badge">2</span></a></li>
-	        <% else %>
-	        	<li class=""><a href="#">Try Demo</a></li>
-	        <% end %>
-	        	<li><%= link_to "Videos", :controller => "videos", :action => "index" %></li>
-	      </ul>
-	      <form class="navbar-form navbar-left" role="search">
-	        <div class="form-group">
-	          <div class="input-group">
-	          	<input type="text" class="form-control" placeholder="Search for...">
-				      <span class="input-group-btn">
-				        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-				      </span>
-	          </div>
-	        </div>
-	      </form>
-	      <ul class="nav navbar-nav navbar-right">
-	      	<% if user_admin %>
-		        <li>
-			        <%= link_to :controller => 'users', :action => 'show' do %>
-							<span class="glyphicon glyphicon-user"></span> <%= user_admin.email %></a>
-							<% end %>
-						</li>
-		        <li>
-		        	<%= link_to "Logout", :controller => "access", :action => "logout" %>
-		        </li>
-	        <% else %>
-		        <li><%= link_to "Login", :controller => "access", :action => "login" %></li>
-		        <li><%= link_to "Sign Up", :controller => "users", :action => "add" %></li>
-	        <% end %>
-	      </ul> <!-- navbar-right -->
-	    </div><!-- .navbar-collapse -->
-	  </div><!-- .container-fluid -->
-	</nav>
-</header>
+<%= render 'application/header', current_user_admin: @current_user_admin %>
 
-<% unless flash[:notice].blank? %>
-
-	<div class="container">
-		<div class="alert alert-success alert-dismissible fade in" role="alert">
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-			<%= flash[:notice] %>
-		</div>
-	</div>
-	
-<% end %>
+<%= render 'application/flash_display' %>
 
 <%= yield %>
 
+<%= render 'application/footer' %>
 
-<footer>
-	<div class="container">
-		<p>&copy; Get_Native.com <% time = Time.new %><%= time.year %></p>
-		<ul class="horizontal_list">
-			<li><a href="#">Company Information</a></li>
-			<li><a href="#">Contact Us</a></li>
-			<li><a href="#">FAQs</a></li>
-			<li><a href="#">Testimonials</a></li>
-			<li><a href="#">Feedback</a></li>
-			<li><a href="#">Privacy Policy</a></li>
-		</ul>
-	</div>
-</footer>
 </body>
 </html>

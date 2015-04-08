@@ -1,0 +1,21 @@
+<div class="users_show">
+	
+	<%= render "application/header_container" %>
+
+	<div class="content container">
+
+		<%= render "application/profile_navigation" %>
+
+		<div class="main_content row">
+
+			<%= render "application/profile_photo_section" %>
+
+			<%= render "application/profile_#{@view}" %>
+
+			<%= render "application/profile_actions" %>
+
+		</div> <!-- main_content row -->
+		
+	</div> <!-- content container -->
+
+</div> <!-- .user_pages -->

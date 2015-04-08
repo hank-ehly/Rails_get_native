@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :confirm_logged_in, :except => [:add, :create]
-  before_action :current_user_or_admin
+  before_action :current_user_admin
 
   def add
   end
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "Account successfully created!"
+      flash[:success] = "Account successfully created!"
       session[:user_id] = @user.id
       session[:email] = @user.email
       redirect_to(:controller => 'user_pages', :action => 'index')
@@ -18,16 +18,15 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
+  def profile
     if session[:user_id]
       @user = User.find(session[:user_id])
     end
     @view = params[:view]
-    if @view.blank?
-      @view = 'account_info'
-    end
+    @view.blank? ? @view = 'account_info' : nil
     @actives = {@view => "active"}
     # @active  = {"account_info" => "active"}
+    @topics = Topic.order("topics.name ASC")
   end
 
   def edit
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:notice] = "#{@user.email}'s information updated successfully"
+      flash[:success] = "#{@user.email}'s information updated successfully"
       redirect_to(:controller => 'user_pages', :action => 'index')
     else
       render('edit')
@@ -51,7 +50,7 @@ class UsersController < ApplicationController
   def destroy
     user = User.find(session[:user_id])
     user.destroy
-    flash[:notice] = "#{user.email}'s account has been successfully deleted."
+    flash[:success] = "#{user.email}'s account has been successfully deleted."
     session[:user_id] = nil
     session[:email] = nil
     redirect_to(:controller => 'access', :action => 'login')
