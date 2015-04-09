@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   before_action :confirm_logged_in, :except => [:add, :create]
   before_action :current_user_admin
+  before_action :initialize_params
 
   def add
   end
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account successfully created!"
       session[:user_id] = @user.id
       session[:email] = @user.email
-      redirect_to(:controller => 'user_pages', :action => 'index')
+      redirect_to(:controller => 'users', :action => 'profile')
     else
       render('add')
     end
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
     @actives = {@view => "active"}
     # @active  = {"account_info" => "active"}
     @topics = Topic.order("topics.name ASC")
+    @speakers = Speaker.order("speakers.first_name ASC")
   end
 
   def edit
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "#{@user.email}'s information updated successfully"
-      redirect_to(:controller => 'user_pages', :action => 'index')
+      redirect_to(:controller => 'users', :action => 'profile')
     else
       render('edit')
     end
@@ -56,8 +58,6 @@ class UsersController < ApplicationController
     redirect_to(:controller => 'access', :action => 'login')
   end
 
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :email_confirmation)
-  end
+
 
 end

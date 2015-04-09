@@ -2,6 +2,7 @@ class TopicsController < ApplicationController
 
   before_action :confirm_logged_in
   before_action :current_user_admin
+  before_action :initialize_params
 
   def index
     @abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
@@ -57,8 +58,6 @@ class TopicsController < ApplicationController
 
   private
 
-  def topic_params
-    params.require(:topic).permit(:name)
-  end
+
 
 end

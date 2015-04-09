@@ -1,5 +1,9 @@
 class AdminsController < ApplicationController
 
+	before_action :confirm_logged_in
+  before_action :current_user_admin
+  before_action :initialize_params
+
 	def add
 	end
 
@@ -14,7 +18,4 @@ class AdminsController < ApplicationController
 		end
 	end
 
-	def admin_params
-		params.require(:admin).permit(:first_name, :last_name, :username, :email, :email_confirmation, :password, :password_confirmation)
-	end
 end

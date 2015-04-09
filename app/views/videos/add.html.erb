@@ -1,5 +1,29 @@
 <div class="videos add main">
 	<div class="container">
 		<h1>+ Add Video <%= "to topic: " + @topic.name if @topic %></h1>
+
+		<%= form_for :video, url: { controller: 'videos', action: 'create' } do |f| %>
+
+		<div class="form-group">
+			<%= f.label :video %><br />
+			<%= f.text_field :video, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :speaker %>
+			<%= f.text_field :speaker, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :description %>
+			<%= f.text_area :description, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-primary' %>
+		</div>
+		
+		<% end %>
+		  
 	</div>
 </div>

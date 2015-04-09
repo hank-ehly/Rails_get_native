@@ -1,0 +1,51 @@
+<div class="speakers add main">
+	<div class="container">
+		<h1>+ Add Speaker</h1>
+		<%= form_for :speaker, url: { controller: 'speakers', action: 'create' } do |f| %>
+
+			<div class="form-group">
+				<%= f.label :first_name %>
+				<%= f.text_field :first_name, class: 'form-control' %>
+			</div>
+
+			<div class="form-group">
+				<%= f.label :last_name %>
+				<%= f.text_field :last_name, class: 'form-control' %>
+			</div>
+
+			<div class="form-group">
+				
+			</div>
+
+			<div class="form-group">
+				<%= radio_button_tag :gender, "male", selected: true %>
+				<%= label_tag :gender_male, "Male" %>
+				<br>
+				<%= radio_button_tag :gender, "female" %>
+				<%= label_tag :gender_female, "Female" %>
+			</div>
+
+			<div class="form-group">
+				<h3>Age Range</h3>
+				<%= radio_button_tag :age, "child" %>
+				<%= label_tag :age_child, "0~19" %>
+				<br>
+				<%= radio_button_tag :age, "twenties", selected: true %>
+				<%= label_tag :age_twenties, "20~29" %>
+				<br>
+				<%= radio_button_tag :age, "thirties" %>
+				<%= label_tag :age_thirties, "30~39" %>
+				<br>
+				<%= radio_button_tag :age, "fourties" %>
+				<%= label_tag :age_fourties, "40~49" %>
+				<br>
+				<%= radio_button_tag :age, "fifties" %>
+				<%= label_tag :age_fifties, "50~64" %>
+				<br>
+				<%= radio_button_tag :age, "senior" %>
+				<%= label_tag :age_senior, "65+" %>
+			</div>
+			
+		<% end %>
+	</div>
+</div>

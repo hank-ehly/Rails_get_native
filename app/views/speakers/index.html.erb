@@ -1,0 +1,74 @@
+<div class="speakers index main">
+	<div class="container">
+		
+	<h1>All Speakers</h1>
+
+		<div id="searcharea">
+	    <input type="search" name="search" id="search" class="form-control" placeholder="Speaker name...">
+	  </div>
+	  <div id="update"></div>
+
+	<table class="table">
+		<tr>
+			<% @abc.each do |letter| %>
+				<th><a href="#<%= letter %>"><%= letter %></a></th>
+			<% end %>
+		</tr>
+	</table>
+
+
+	<table class="table table-hover">
+
+
+		<tr>
+			<th>First Name A~Z</th>
+			<th>Speaker Name</th>
+			<th># of Videos</th>
+			<% if @layout_style == 'Admin' %>
+			<th>Actions</th>
+			<% end %>
+		</tr>
+		
+		<% @abc.each do |letter| %>
+
+		<tr>
+			<th><a href="#<%= letter %>" id="<%= letter %>"><strong><%= letter %></strong></a></th>
+			<th><a href="#">( <%= rand(99) %> )</a></th>
+			<th><a href="#">( <%= rand(99) %> )</a></th>
+			<% if @layout_style == 'Admin' %>
+			<th></th>
+			<% end %>
+		</tr>
+
+			<% @speakers.each do |speaker| %>
+				<tr>
+					<% if speaker.first_name[0] == letter %>
+					<td>
+						<%= link_to speaker.first_name + " " + speaker.last_name, controller: 'speakers', action: 'show', speaker_id: speaker.id %>
+					</td>
+					<td><a href="#">( <%= rand(1..9) %> )</a></td>
+					<td><a href="#">( <%= rand(1..9) %> )</a></td>
+					<% if @layout_style == 'Admin' %>
+					<td>
+						<%= link_to "Edit", controller: 'speakers', action: 'edit', speaker_id: speaker.id %>
+						<%= link_to "Delete", controller: 'speakers', action: 'delete', speaker_id: speaker.id %>
+					</td>
+					<% end %>
+					<% end %>
+				</tr>
+			<% end %>
+
+		<% end %>
+
+
+	</table>
+
+	<table class="table">
+		<tr>
+			<% @abc.each do |letter| %>
+				<th><a href="#<%= letter %>"><%= letter %></a></th>
+			<% end %>
+		</tr>
+	</table>
+	</div>
+</div>

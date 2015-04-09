@@ -12,3 +12,10 @@
 .topics.index.container {
 	background: #fff;
 }
+
+.topics.show.main {
+	.container {
+		@include border-radius;
+		background: #fff;
+	}
+}

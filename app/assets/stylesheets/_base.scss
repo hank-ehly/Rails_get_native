@@ -12,6 +12,11 @@ th {
 	font-weight: bold;
 }
 
+label,
+input[type=radio] {
+	cursor: pointer;
+}
+
 /* Headings */
 
 #{headings()} {
