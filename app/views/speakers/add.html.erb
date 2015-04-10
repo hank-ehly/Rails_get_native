@@ -1,7 +1,12 @@
 <div class="speakers add main">
 	<div class="container">
-		<h1>+ Add Speaker</h1>
-
+		<h1>Add Speaker</h1>
+		<p>
+			<%= link_to controller: 'speakers', action: 'index' do %>
+				<span class="glyphicon glyphicon-backward"></span>
+				All Speakers
+			<% end %>
+		</p>
 		<%= form_for :speaker, url: { controller: 'speakers', action: 'create' } do |f| %>
 
 			<div class="form-group">
@@ -16,7 +21,7 @@
 
 			<div class="form-group">
 				<%= f.label :language_id, "Native Language" %>
-				<%= f.select :language_id, Language.order("languages.language ASC").map { |language| language.name }, { include_blank: '- Select a language -' }, { class: 'form-control' } %>
+				<%= collection_select(:speaker, :language_id, Language.order("languages.name ASC"), :id, :name, {}, { class: 'form-control' }) %>
 			</div>
 
 			<div class="form-group">
@@ -47,6 +52,10 @@
 				<br>
 				<%= radio_button_tag :age, "senior" %>
 				<%= label_tag :age_senior, "65+" %>
+			</div>
+
+			<div class="form-group">
+				<%= f.submit "Submit", :disable_with => 'Submitting...', class: 'btn btn-primary' %>
 			</div>
 
 			

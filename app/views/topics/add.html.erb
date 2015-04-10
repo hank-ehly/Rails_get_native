@@ -1,7 +1,12 @@
 <div class="topics add main">
 	<div class="container">
-		<h1>+ Add Topic</h1>
-		<%= link_to "Cancel", controller: 'users', action: 'profile', view: 'topics' %>
+		<h1>Add Topic</h1>
+		<p>
+		<%= link_to controller: 'topics', action: 'index' do %>
+		<span class="glyphicon glyphicon-backward"></span>
+		All Topics
+		<% end %>
+		</p>
 		<%= form_for :topic, url: { controller: 'topics', action: 'create' } do |f| %>
 
 			<%= error_messages_for(@topic) %>

@@ -1,12 +1,15 @@
-<div class="languages show main">
+<div class="languages edit main">
 	<div class="container">
-		<h1>Show Language: <%= @language.name %></h1>
+
+		<h1>Edit Language: <%= @language.name %></h1>
+
 		<p>
 			<%= link_to controller: 'languages', action: 'index' do %>
 				<span class="glyphicon glyphicon-backward"></span>
 				All Languages
 			<% end %>
 		</p>
+
 		<table class="table">
 			<tr>
 				<th>Name</th>
@@ -29,10 +32,24 @@
 				<td><%= @language.created_at %></td>
 				<td><%= @language.updated_at %></td>
 				<td>
-					<%= link_to "Edit", controller: 'languages', action: 'edit', id: @language.id %>
+					<%= link_to "View", controller: 'languages', action: 'show', id: @language.id %>
 					<%= link_to "Delete", controller: 'languages', action: 'delete', id: @language.id %>
 				</td>
 			</tr>
 		</table>
+
+		<%= form_for :language, url: { controller: 'languages', action: 'update', id: @language.id } do |f| %>
+
+			<div class="form-group">
+				<%= f.label :name %>
+				<%= f.text_field :name, placeholder: 'Topic name...', class: 'form-control' %>
+			</div>
+
+			<div class="form-group">
+				<%= f.submit "Update", :disable_with => 'Updating...', class: 'btn btn-primary' %>
+			</div>
+
+		<% end %>  
+
 	</div>
 </div>

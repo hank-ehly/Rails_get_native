@@ -1,6 +1,9 @@
 <div class="languages index main">
 	<div class="container">
 		<h1>All Languages</h1>
+		<% if @layout_style == 'Admin' %>
+			<p><%= link_to "+ Add Language", controller: 'languages', action: 'add' %></p>
+		<% end %>
 		<table class="table">
 			<tr>
 				<th>Languages A~Z</th>

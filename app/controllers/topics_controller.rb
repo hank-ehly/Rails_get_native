@@ -37,7 +37,7 @@ class TopicsController < ApplicationController
     if @topic.update_attributes(topic_params)
       # success
       flash[:success] = "You successfully updated the topic \'#{@topic.name}\'"
-      redirect_to(controller: 'users', action: 'profile', view: 'topics')
+      redirect_to(controller: 'topics', action: 'show', id: @topic.id)
     else
       # failure
       flash[:danger] = 'Unable to update topic.'

@@ -17,6 +17,11 @@ input[type=radio] {
 	cursor: pointer;
 }
 
+.main .container {
+	@include border-radius;
+	background: #fff;
+}
+
 /* Headings */
 
 #{headings()} {

@@ -3,13 +3,13 @@
 <h1>All Topics</h1>
 
 	<% if @layout_style == 'Admin' %>
-		<%= link_to "+ Add topic", controller: 'topics', action: 'add' %>
+		<p><%= link_to "+ Add topic", controller: 'topics', action: 'add' %></p>
 	<% end %>
 
-	<div id="searcharea">
+	<!-- <div id="searcharea">
     <input type="search" name="search" id="search" class="form-control" placeholder="Name or Company...">
   </div>
-  <div id="update"></div>
+  <div id="update"></div> -->
 
 <table class="table">
 	<tr>
@@ -36,8 +36,8 @@
 
 	<tr>
 		<th><a href="#<%= letter %>" id="<%= letter %>"><strong><%= letter %></strong></a></th>
-		<th><a href="#">( <%= rand(99) %> )</a></th>
-		<th><a href="#">( <%= rand(99) %> )</a></th>
+		<th></th>
+		<th></th>
 		<% if @layout_style == 'Admin' %>
 		<th></th>
 		<% end %>
@@ -46,13 +46,12 @@
 		<% @topics.each do |topic| %>
 			<tr>
 				<% if topic.name[0] == letter %>
-				<td>
-					<%= link_to topic.name, controller: 'topics', action: 'show', id: topic.id %>
-				</td>
-				<td><a href="#">( <%= rand(1..9) %> )</a></td>
-				<td><a href="#">( <%= rand(1..9) %> )</a></td>
+				<td><%= topic.name %></td>
+				<td><%= "topic.videos.count" %></td>
+				<td><%= "topic.speaker.count" %></td>
 				<% if @layout_style == 'Admin' %>
 				<td>
+					<%= link_to "View", controller: 'topics', action: 'show', id: topic.id %>
 					<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>
 					<%= link_to "Delete", controller: 'topics', action: 'delete', id: topic.id %>
 				</td>

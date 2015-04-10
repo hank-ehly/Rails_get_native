@@ -1,7 +1,12 @@
 <div class="topics show main">
 	<div class="container">
 		<h1>Show Topic: <%= @topic.name if @topic %></h1>
-		<%= link_to "Cancel", controller: 'users', action: 'profile', view: 'topics' %>
+		<p>
+		<%= link_to controller: 'topics', action: 'index' do %>
+		<span class="glyphicon glyphicon-backward"></span>
+		All Topics
+		<% end %>
+		</p>
 		<table class="table">
 			<tr>
 				<th>ID</th>
@@ -10,15 +15,20 @@
 				<th># of Speakers</th>
 				<th>Created at</th>
 				<th>Updated at</th>
+				<th>Actions</th>
 			</tr>
 			<% if @topic %>
 			<tr>
 				<td><%= @topic.id %></td>
 				<td><%= @topic.name %></td>
-				<td><%= rand(99) %></td>
-				<td><%= @topic.speakers.size %></td>
+				<td><%= "@topic.videos.count" %></td>
+				<td><%= @topic.speakers.count %></td>
 				<td><%= @topic.created_at %></td>
 				<td><%= @topic.updated_at %></td>
+				<td>
+					<%= link_to "Edit", controller: 'topics', action: 'edit', id: @topic.id %>
+					<%= link_to "Delete", controller: 'topics', action: 'delete', id: @topic.id %>
+				</td>
 			</tr>
 			<% end %>
 		</table>

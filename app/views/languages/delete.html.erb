@@ -1,12 +1,15 @@
-<div class="languages show main">
+<div class="languages delete main">
 	<div class="container">
-		<h1>Show Language: <%= @language.name %></h1>
+
+		<h1>Delete Language: <%= @language.name %></h1>
+
 		<p>
 			<%= link_to controller: 'languages', action: 'index' do %>
 				<span class="glyphicon glyphicon-backward"></span>
 				All Languages
 			<% end %>
 		</p>
+
 		<table class="table">
 			<tr>
 				<th>Name</th>
@@ -29,10 +32,19 @@
 				<td><%= @language.created_at %></td>
 				<td><%= @language.updated_at %></td>
 				<td>
+					<%= link_to "View", controller: 'languages', action: 'show', id: @language.id %>
 					<%= link_to "Edit", controller: 'languages', action: 'edit', id: @language.id %>
-					<%= link_to "Delete", controller: 'languages', action: 'delete', id: @language.id %>
 				</td>
 			</tr>
 		</table>
+
+		<%= form_for :language, url: { controller: 'languages', action: 'destroy', id: @language.id } do |f| %>
+
+			<div class="form-group">
+				<%= f.submit "Delete", :disable_with => 'Deleting...', data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+			</div>
+
+		<% end %>  
+
 	</div>
 </div>
