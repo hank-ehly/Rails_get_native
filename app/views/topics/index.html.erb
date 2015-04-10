@@ -2,6 +2,10 @@
 	
 <h1>All Topics</h1>
 
+	<% if @layout_style == 'Admin' %>
+		<%= link_to "+ Add topic", controller: 'topics', action: 'add' %>
+	<% end %>
+
 	<div id="searcharea">
     <input type="search" name="search" id="search" class="form-control" placeholder="Name or Company...">
   </div>

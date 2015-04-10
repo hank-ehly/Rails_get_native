@@ -1,5 +1,5 @@
 <div class="shared profile speakers col-md-6 col-sm-7">
-	<h1>Topics</h1>
+	<h2>Speakers</h2>
 	<%= link_to "+ Add Speaker", controller: 'speakers', action: 'add' %>
 	<div id="searcharea">
     <input type="search" name="search" id="search" class="form-control" placeholder="Search speakers by name...">
@@ -10,7 +10,7 @@
 		<!-- depending on how speakers are sorted, add 'caret' class to spans // default is 'name' -->
 			<th class="topic_sorter">Name <span class="caret"></span></th>
 			<th class="topic_sorter"># of Videos <span class=""></span></th>
-			<th class="topic_sorter"># of Speakers <span class=""></span></th>
+			<th class="topic_sorter">Native Language <span class=""></span></th>
 			<th>Actions</th>
 		</tr>
 		<% if @speakers %>
@@ -18,7 +18,13 @@
 		<tr>
 			<td><%= speaker.first_name %></td>
 			<td>(<%= rand(1..99) %>)</td>
-			<td>(<%= rand(1..9) %>)</td>
+			<td>
+			<% @languages.each do |language| %>
+			<% if language.id == speaker.language_id %>
+				<%= language.name %>
+			<% end %>
+			<% end %>
+			</td>
 			<td>
 				<%= link_to "View", controller: 'speakers', action: 'show', speaker_id: speaker.id %>
 				<%= link_to "Edit", controller: 'speakers', action: 'edit', speaker_id: speaker.id %>

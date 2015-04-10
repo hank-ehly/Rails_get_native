@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     # @active  = {"account_info" => "active"}
     @topics = Topic.order("topics.name ASC")
     @speakers = Speaker.order("speakers.first_name ASC")
+    @languages = Language.order("languages.name ASC")
   end
 
   def edit

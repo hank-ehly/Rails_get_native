@@ -30,17 +30,20 @@ class ApplicationController < ActionController::Base
     def admin_params
       params.require(:admin).permit(:first_name, :last_name, :username, :email, :email_confirmation, :password, :password_confirmation)
     end
+    def language_params
+      params.require(:language).permit(:language, :name)
+    end
     def speaker_params
       params.require(:speaker).permit(:first_name, :last_name, :native_language, :gender, :age)
     end
-    def video_params
-      params.require(:video).permit(:title, :duration, :speaker_name, :description, :views_count, :speaker_id, :language, :script, :video_filename, :thumbnail_filename, :topic_id, :video)
+    def topic_params
+      params.require(:topic).permit(:name)
     end
     def user_params
       params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :email_confirmation)
     end
-    def topic_params
-      params.require(:topic).permit(:name)
+    def video_params
+      params.require(:video).permit(:title, :duration, :speaker_name, :description, :views_count, :speaker_id, :language, :script, :video_filename, :thumbnail_filename, :topic_id, :video)
     end
   end
 

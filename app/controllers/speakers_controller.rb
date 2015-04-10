@@ -14,16 +14,20 @@ class SpeakersController < ApplicationController
   def show
     @speaker = Speaker.find(params[:speaker_id])
     age_of(@speaker)
+    @native_language = Language.where(id: @speaker.language_id)
   end
 
   def add
-    @topic = Topic.find(params[:topic_id])
-    # @languages = Language.order("languages.language ASC")
   end
 
   def create
     @speaker = Speaker.new(speaker_params)
-    @speaker.save
+    if @speaker.save
+      flash[:success] = "Speaker successfully created."
+      render('add')
+    else
+      render('add')
+    end
   end
 
   private

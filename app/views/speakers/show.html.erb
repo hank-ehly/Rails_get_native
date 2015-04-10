@@ -6,7 +6,9 @@
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
+				<th>Native Language</th>
 				<th># of Videos</th>
+				<th># of Topics</th>
 				<th>Gender</th>
 				<th>Age</th>
 				<th>Created at</th>
@@ -16,7 +18,9 @@
 			<tr>
 				<td><%= @speaker.id %></td>
 				<td><%= @speaker.first_name + " " + @speaker.last_name %></td>
+				<td><%= @native_language.name if @native_language %></td>
 				<td><%= rand(1..10) %></td>
+				<td><%= @speaker.topics.size %></td>
 				<td><%= @speaker.gender ? 'Male' : 'Female' %></td>
 				<td><%= @speaker_age if @speaker_age %></td>
 				<td><%= @speaker.created_at %></td>
@@ -24,6 +28,12 @@
 			</tr>
 			<% end %>
 		</table>
+		<hr>
+		<h3>About <%= @speaker.first_name + " " + @speaker.last_name %></h3>
+		<div class="about_speaker row">
+			<%= image_tag "http://placehold.it/60x60", class: 'col-sm-2' %>
+			<p class="col-sm-10" style="float:right;"><%= @speaker.about %></p>
+		</div>
 		<h2>Videos for <%= @speaker.first_name + " " + @speaker.last_name if @speaker %></h2>
 		<%= link_to "+ Add a video for this speaker", controller: 'videos', action: 'add', speaker_id: @speaker.id %>
 		<table class="table">

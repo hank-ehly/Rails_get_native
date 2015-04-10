@@ -1,0 +1,29 @@
+<div class="languages index main">
+	<div class="container">
+		<h1>All Languages</h1>
+		<table class="table">
+			<tr>
+				<th>Languages A~Z</th>
+				<th># of Speakers</th>
+				<th># of Videos</th>
+				<th># of Topics</th>
+				<% if @layout_style == 'Admin' %>
+				<th>Actions</th>	
+				<% end %>
+			</tr>
+			<% @languages.each do |language| %>
+				<tr>
+					<td><%= language.name %></td>
+					<td><%= language.speakers.count %></td>
+					<td><%= "language.videos.count" %></td>
+					<td><%= "language.topics.count" %></td>
+					<td>
+						<%= link_to "View", controller: 'languages', action: 'show', id: language.id %>
+						<%= link_to "Edit", controller: 'languages', action: 'edit', id: language.id %>
+						<%= link_to "Delete", controller: 'languages', action: 'delete', id: language.id %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

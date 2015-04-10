@@ -9,7 +9,8 @@
 		  <% if @layout_style == 'Admin' %>
 		  <li role="presentation"><%= link_to "Topics", {:action => 'profile', :view => 'topics'}, class: @actives["topics"] %></li>
 		  <li role="presentation"><%= link_to "Speakers", {:action => 'profile', :view => 'speakers'}, class: @actives["speakers"] %></li>
-			<li role="presentation"><%= link_to "Videos", {:action => 'profile', :view => 'videos'}, class: @actives["videos"] %></li>		  	
+			<li role="presentation"><%= link_to "Videos", {:action => 'profile', :view => 'videos'}, class: @actives["videos"] %></li>
+			<li role="presentation"><%= link_to "Languages", {:action => 'profile', :view => 'languages'}, class: @actives["languages"] %></li>		  	
 		  <% end %>
 		</ul> <!-- nav nav-pills -->
 	</div> <!-- button_container col-sm-12 -->

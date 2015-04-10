@@ -16,7 +16,7 @@
 				<td><%= @topic.id %></td>
 				<td><%= @topic.name %></td>
 				<td><%= rand(99) %></td>
-				<td><%= rand(99) %></td>
+				<td><%= @topic.speakers.size %></td>
 				<td><%= @topic.created_at %></td>
 				<td><%= @topic.updated_at %></td>
 			</tr>

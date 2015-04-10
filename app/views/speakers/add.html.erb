@@ -1,23 +1,26 @@
 <div class="speakers add main">
 	<div class="container">
 		<h1>+ Add Speaker</h1>
+
 		<%= form_for :speaker, url: { controller: 'speakers', action: 'create' } do |f| %>
 
 			<div class="form-group">
 				<%= f.label :first_name %>
-				<%= f.text_field :first_name, class: 'form-control' %>
+				<%= f.text_field :first_name, class: 'form-control', placeholder: 'First Name' %>
 			</div>
 
 			<div class="form-group">
 				<%= f.label :last_name %>
-				<%= f.text_field :last_name, class: 'form-control' %>
+				<%= f.text_field :last_name, class: 'form-control', placeholder: 'Last Name' %>
 			</div>
 
 			<div class="form-group">
-				
+				<%= f.label :language_id, "Native Language" %>
+				<%= f.select :language_id, Language.order("languages.language ASC").map { |language| language.name }, { include_blank: '- Select a language -' }, { class: 'form-control' } %>
 			</div>
 
 			<div class="form-group">
+				<h3>Gender</h3>
 				<%= radio_button_tag :gender, "male", selected: true %>
 				<%= label_tag :gender_male, "Male" %>
 				<br>
@@ -45,6 +48,7 @@
 				<%= radio_button_tag :age, "senior" %>
 				<%= label_tag :age_senior, "65+" %>
 			</div>
+
 			
 		<% end %>
 	</div>
