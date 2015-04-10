@@ -16,7 +16,7 @@
 		<% if @speakers %>
 		<% @speakers.each do |speaker| %>
 		<tr>
-			<td><%= speaker.first_name %></td>
+			<td><%= full_name_of(speaker) %></td>
 			<td>(<%= rand(1..99) %>)</td>
 			<td>
 			<% @languages.each do |language| %>
@@ -26,9 +26,9 @@
 			<% end %>
 			</td>
 			<td>
-				<%= link_to "View", controller: 'speakers', action: 'show', speaker_id: speaker.id %>
-				<%= link_to "Edit", controller: 'speakers', action: 'edit', speaker_id: speaker.id %>
-				<%= link_to "Delete", controller: 'speakers', action: 'delete', speaker_id: speaker.id %>
+				<%= link_to "View", controller: 'speakers', action: 'show', id: speaker.id %>
+				<%= link_to "Edit", controller: 'speakers', action: 'edit', id: speaker.id %>
+				<%= link_to "Delete", controller: 'speakers', action: 'delete', id: speaker.id %>
 			</td>
 		</tr>
 		<% end %>

@@ -12,9 +12,7 @@ class SpeakersController < ApplicationController
   end
 
   def show
-    @speaker = Speaker.find(params[:speaker_id])
-    age_of(@speaker)
-    @native_language = Language.where(id: @speaker.language_id)
+    @speaker = Speaker.find(params[:id])
   end
 
   def add
@@ -30,27 +28,32 @@ class SpeakersController < ApplicationController
     end
   end
 
-  private
+  def edit
+    @speaker = Speaker.find(params[:id])
+  end
 
-  def age_of(speaker)
-    case speaker.age
-    when 0
-      @speaker_age = "0~19"
-    when 1
-      @speaker_age = "20~29"
-    when 2
-      @speaker_age = "30~39"
-    when 3
-      @speaker_age = "40~49"
-    when 4
-      @speaker_age = "50~64"
-    when 5
-      @speaker_age = "65+"
+  def update
+    @speaker = Speaker.find(params[:id])
+    if @speaker.update_attributes(speaker_params)
+      flash[:success] = "#{@speaker.first_name} #{@speaker.last_name}'s information was successfully updated."
+      redirect_to(action: 'show', id: @speaker.id)
     else
-      nil
+      render('edit')
     end
   end
 
-  # native language '0' => English, '1' => Japanese
+  def delete
+    @speaker = Speaker.find(params[:id])
+  end
+
+  def destroy
+    @speaker = Speaker.find(params[:id])
+    if @speaker.destroy
+      flash[:success] = "#{@speaker.first_name} #{@speaker.last_name} was successfully destroyed."
+      redirect_to(action: 'index')
+    else
+      render('delete')
+    end
+  end
 
 end

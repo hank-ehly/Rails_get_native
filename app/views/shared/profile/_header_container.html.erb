@@ -10,16 +10,17 @@
 			<p>Currently studying: </p>
 			<div class="dropdown">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			    <!-- current language text -->
 			    Japanese
 			    <span class="caret"></span>
 			  </button>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-				  <li role="presentation" class="disabled"><a role="menuitem" tabindex="-1" href="#">Japanese</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Spanish</a></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Chinese</a></li>
+					<% Language.order("languages.name ASC").each do |language| %>
+					<li role="presentation"><a role="menuitem" href="#"><%= language.name %></a></li>	<!-- can add class 'disabled' -->
+					<% end %>
 			    <li role="presentation" class="divider"></li>
-			    <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span class="glyphicon glyphicon-plus"></span> Add Language</a></li>
-			  </ul>
+			    <li role="presentation"><a role="menuitem" href="#"><span class="glyphicon glyphicon-plus"></span> Add Language</a></li>
+			  </ul> <!-- .dropdown-menu -->
 			</div> <!-- .dropdown -->
 		</div> <!-- .col-sm-12 -->
 	</div> <!-- .row -->

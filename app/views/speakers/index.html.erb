@@ -49,9 +49,7 @@
 			<% @speakers.each do |speaker| %>
 				<tr>
 					<% if speaker.first_name[0] == letter %>
-					<td>
-						<%= link_to speaker.first_name + " " + speaker.last_name, controller: 'speakers', action: 'show', speaker_id: speaker.id %>
-					</td>
+					<td><%= full_name_of(speaker) %></td>
 					<td><a href="#">
 						<% Language.all.each do |language| %>
 							<% if speaker.language_id == language.id %>
@@ -62,8 +60,9 @@
 					<td><a href="#">( <%= rand(1..9) %> )</a></td>
 					<% if @layout_style == 'Admin' %>
 					<td>
-						<%= link_to "Edit", controller: 'speakers', action: 'edit', speaker_id: speaker.id %>
-						<%= link_to "Delete", controller: 'speakers', action: 'delete', speaker_id: speaker.id %>
+						<%= link_to "View", controller: 'speakers', action: 'show', id: speaker.id %>
+						<%= link_to "Edit", controller: 'speakers', action: 'edit', id: speaker.id %>
+						<%= link_to "Delete", controller: 'speakers', action: 'delete', id: speaker.id %>
 					</td>
 					<% end %>
 					<% end %>

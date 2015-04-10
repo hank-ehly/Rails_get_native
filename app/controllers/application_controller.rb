@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
       params.require(:language).permit(:language, :name)
     end
     def speaker_params
-      params.require(:speaker).permit(:first_name, :last_name, :native_language, :gender, :age)
+      params.require(:speaker).permit(:first_name, :last_name, :language_id, :gender, :age)
     end
     def topic_params
       params.require(:topic).permit(:name)
