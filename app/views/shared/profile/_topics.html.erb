@@ -17,8 +17,8 @@
 		<% @topics.each do |topic| %>
 		<tr>
 			<td><%= topic.name %></td>
-			<td>(<%= rand(1..99) %>)</td>
-			<td>(<%= rand(1..9) %>)</td>
+			<td><%= "topic.videos.count" %></td>
+			<td><%= topic.speakers.count %></td>
 			<td>
 				<%= link_to "View", controller: 'topics', action: 'show', id: topic.id %>
 				<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>

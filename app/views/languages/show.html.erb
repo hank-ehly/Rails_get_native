@@ -1,6 +1,6 @@
 <div class="languages show main">
 	<div class="container">
-		<h1>Show Language: <%= @language.name %></h1>
+		<h1><%= @language.name %></h1>
 		<p>
 			<%= link_to controller: 'languages', action: 'index' do %>
 				<span class="glyphicon glyphicon-backward"></span>
@@ -10,11 +10,10 @@
 		<table class="table">
 			<tr>
 				<th>Name</th>
-				<th>Id</th>
 				<th># of Videos</th>
 				<th># of Speakers</th>
-				<th># of Topics</th>
 				<% if @layout_style == 'Admin' %>
+				<th>Id</th>
 				<th>Created At</th>
 				<th>Updated At</th>
 				<th>Actions</th>
@@ -22,17 +21,45 @@
 			</tr>
 			<tr>
 				<td><%= @language.name %></td>
-				<td><%= @language.id %></td>
-				<td><%= "@language.videos.count" %></td>
+				<td><%= @language.videos.count %></td>
 				<td><%= @language.speakers.count %></td>
-				<td><%= "@language.topics.count" %></td>
+				<% if @layout_style == 'Admin' %>
+				<td><%= @language.id %></td>
 				<td><%= @language.created_at %></td>
 				<td><%= @language.updated_at %></td>
 				<td>
 					<%= link_to "Edit", controller: 'languages', action: 'edit', id: @language.id %>
 					<%= link_to "Delete", controller: 'languages', action: 'delete', id: @language.id %>
 				</td>
+				<% end %>
 			</tr>
+		</table>
+		<h3>Videos</h3>
+		<table class="table">
+			<tr>
+				<th>Thumbnail</th>
+				<th>Topic</th>
+				<th>Speaker</th>
+			</tr>
+			<% @language.videos.each do |video| %>
+				<tr>
+					<td>
+						<%= link_to controller: 'videos', action: 'show', id: video.id do %>
+							<img src="http://placehold.it/64x36" alt="">
+						<% end %>
+					</td>
+					<td>
+						<%= link_to controller: 'topics', action: 'show', id: video.topic.id do %>
+							<%= video.topic.name %>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to controller: 'speakers', action: 'show', id: video.speaker.id do %>
+							<%= full_name_of(video.speaker) %>
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
 		</table>
 	</div>
 </div>

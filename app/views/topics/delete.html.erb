@@ -9,26 +9,28 @@
 		</p>
 		<table class="table">
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
 				<th># of Videos</th>
-				<th># of Speakers</th>
+				<% if @layout_style == 'Admin' %>
+				<th>ID</th>
 				<th>Created at</th>
 				<th>Updated at</th>
 				<th>Actions</th>
+				<% end %>
 			</tr>
 			<% if @topic %>
 			<tr>
-				<td><%= @topic.id %></td>
 				<td><%= @topic.name %></td>
-				<td><%= "@topic.videos.count" %></td>
-				<td><%= @topic.speakers.count %></td>
+				<td><%= @topic.videos.count %></td>
+				<% if @layout_style == 'Admin' %>
+				<td><%= @topic.id %></td>
 				<td><%= @topic.created_at %></td>
 				<td><%= @topic.updated_at %></td>
 				<td>
 					<%= link_to "View", controller: 'topics', action: 'show', id: @topic.id %>
 					<%= link_to "Edit", controller: 'topics', action: 'edit', id: @topic.id %>
 				</td>
+				<% end %>
 			</tr>
 			<% end %>
 			</table>

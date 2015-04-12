@@ -1,7 +1,7 @@
 <div class="languages delete main">
 	<div class="container">
 
-		<h1>Delete Language: <%= @language.name %></h1>
+		<h1><%= @language.name %></h1>
 
 		<p>
 			<%= link_to controller: 'languages', action: 'index' do %>
@@ -13,11 +13,10 @@
 		<table class="table">
 			<tr>
 				<th>Name</th>
-				<th>Id</th>
 				<th># of Videos</th>
 				<th># of Speakers</th>
-				<th># of Topics</th>
 				<% if @layout_style == 'Admin' %>
+				<th>Id</th>
 				<th>Created At</th>
 				<th>Updated At</th>
 				<th>Actions</th>
@@ -25,10 +24,9 @@
 			</tr>
 			<tr>
 				<td><%= @language.name %></td>
-				<td><%= @language.id %></td>
-				<td><%= "@language.videos.count" %></td>
+				<td><%= @language.videos.count %></td>
 				<td><%= @language.speakers.count %></td>
-				<td><%= "@language.topics.count" %></td>
+				<td><%= @language.id %></td>
 				<td><%= @language.created_at %></td>
 				<td><%= @language.updated_at %></td>
 				<td>

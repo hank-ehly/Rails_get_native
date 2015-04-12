@@ -7,12 +7,12 @@ class SpeakersController < ApplicationController
 
 
   def index
-    @abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     @speakers = Speaker.order("speakers.first_name ASC")
   end
 
   def show
     @speaker = Speaker.find(params[:id])
+    @videos = Video.all
   end
 
   def add
@@ -22,9 +22,9 @@ class SpeakersController < ApplicationController
     @speaker = Speaker.new(speaker_params)
     if @speaker.save
       flash[:success] = "Speaker successfully created."
-      render('add')
+      redirect_to action: 'index'
     else
-      render('add')
+      render :add
     end
   end
 

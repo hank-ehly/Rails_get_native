@@ -1,14 +1,15 @@
-<div class="users_edit container">
+<div class="admins edit main">
+<div class="container">
 
 	<div class="row">
 
 		<div class="col-sm-6">
 
-			<h1>Edit User: <%= @user.email %></h1>
+			<h1>Edit Admin: <%= @admin.email %></h1>
 			
-			<%= form_for :user, :url => {:controller => 'users', :action => 'update', :id => @user.id} do |f| %>
+			<%= form_for :admin, url: { controller: 'admins', action: 'update', id: @admin.id } do |f| %>
 
-				<%= error_messages_for(@user) %>
+				<%= error_messages_for(@admin) %>
 			
 				<div class="form-group">
 					<%= f.label :first_name, class: "control-label" %>
@@ -62,7 +63,7 @@
 					<%= submit_tag "Update", class: "btn btn-primary" %>
 				</div>
 
-				<%= link_to "Cancel", :controller => "user_pages", :action => 'index' %>
+				<%= link_to "Cancel", :controller => "admin_pages", :action => 'index' %>
 				
 			<% end %>
 
@@ -78,5 +79,6 @@
 			</div> <!-- col-sm-6 -->
 
 		</div> <!-- row -->
-	  
-</div> <!-- users_add sign_up container -->
+
+</div> <!-- container -->
+</div> <!-- admins edit main -->

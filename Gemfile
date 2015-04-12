@@ -21,6 +21,9 @@ gem 'compass-rails'
 # Use susy framework
 gem 'susy'
 
+# parse video urls
+gem 'domainator'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

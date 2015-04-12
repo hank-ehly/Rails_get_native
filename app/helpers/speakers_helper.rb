@@ -6,17 +6,17 @@ module SpeakersHelper
     end
   end
 
-  def age_of(speaker)
+  def age_range_of(speaker)
     case speaker.age
-    when 0..19
+    when 0
       "0~19"
-    when 20..29
+    when 1
       "20~29"
-    when 30..39
+    when 2
       "30~39"
-    when 40..49
+    when 3
       "40~49"
-    when 50..64
+    when 4
       "50~64"
     else
       "65+"

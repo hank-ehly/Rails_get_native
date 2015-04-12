@@ -21,7 +21,7 @@
 				</div>
 
 				<div class="form-group">
-					<%= f.submit "Delete Account", class: "btn btn-primary", :disable_with => 'Deleting...', data: { confirm: "Are you sure you want to completely delete #{@user.username}'s account?" } %>
+					<%= f.submit "Delete Account", class: "btn btn-danger", :disable_with => 'Deleting...', data: { confirm: "Are you sure you want to completely delete #{@user.email}'s account?" } %>
 				</div>
 			  
 				<p>Change your mind? <%= link_to "Return to profile", :controller => "user_pages", :action => "index" %></p>

@@ -13,7 +13,6 @@
 				<th>Name</th>
 				<th>Native Language</th>
 				<th># of Videos</th>
-				<th># of Topics</th>
 				<th>Gender</th>
 				<th>Age</th>
 				<th>Created at</th>
@@ -23,7 +22,7 @@
 			<% if @speaker %>
 			<tr>
 				<td><%= @speaker.id %></td>
-				<td><%= @speaker.first_name + " " + @speaker.last_name %></td>
+				<td><%= full_name_of(@speaker) %></td>
 				<td>
 					<% Language.all.each do |language| %>
 						<% if @speaker.language_id == language.id %>
@@ -32,10 +31,9 @@
 						<% end %>
 					<% end %>
 				</td>
-				<td><%= "@speaker.videos.count" %></td>
-				<td><%= @speaker.topics.count %></td>
+				<td><%= @speaker.videos.count %></td>
 				<td><%= @speaker.gender ? 'Male' : 'Female' %></td>
-				<td><%= age_of(@speaker) %></td>
+				<td><%= age_range_of(@speaker) %></td>
 				<td><%= @speaker.created_at %></td>
 				<td><%= @speaker.updated_at %></td>
 				<td>
@@ -73,8 +71,12 @@
 			</div>
 
 			<div class="form-group">
-				<%= f.label :age, "Age" %>
-				<%= f.select :age, 0..100, {}, class: 'form-control' %>
+				<%= f.label :age, "Age Range" %>
+				<%= f.select :age, html: { class: 'form-control' } do %>
+				  <% @age_ranges.each do |val| -%>
+				    <%= content_tag :option, val, value: @age_ranges.index(val) %>
+				  <% end %>
+				<% end %>
 			</div>
 
 			<div class="form-group">

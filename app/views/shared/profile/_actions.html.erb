@@ -3,13 +3,20 @@
 		<h2>Actions</h2>
 		<ul>
 			<li>
-				<%= link_to :controller => 'users', :action => 'edit', :id => @current_user_admin.id do %>
-				<span class="glyphicon glyphicon-edit"></span>
-				Edit Profile
+				<% if @layout_style == 'Admin' %>
+					<%= link_to controller: 'admins', action: 'edit', id: @current_user_admin.id do %>
+					<span class="glyphicon glyphicon-edit"></span>
+					Edit Profile
+					<% end %>
+				<% else %>
+					<%= link_to controller: 'users', action: 'edit', id: @current_user_admin.id do %>
+					<span class="glyphicon glyphicon-edit"></span>
+					Edit Profile
+					<% end %>
 				<% end %>
 			</li>
 			<li>
-				<%= link_to :controller => 'videos', :action => 'study_index' do %>
+				<%= link_to controller: 'videos', action: 'study_index' do %>
 				<span class="glyphicon glyphicon-apple"></span>
 				Study Now
 				<% end %>

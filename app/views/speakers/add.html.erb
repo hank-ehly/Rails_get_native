@@ -26,32 +26,32 @@
 
 			<div class="form-group">
 				<h3>Gender</h3>
-				<%= radio_button_tag :gender, "male", selected: true %>
-				<%= label_tag :gender_male, "Male" %>
+				<%= f.radio_button :gender, 1, checked: true %>
+				<%= f.label :gender_1, "Male" %>
 				<br>
-				<%= radio_button_tag :gender, "female" %>
-				<%= label_tag :gender_female, "Female" %>
+				<%= f.radio_button :gender, 0 %>
+				<%= f.label :gender_0, "Female" %>
 			</div>
 
 			<div class="form-group">
 				<h3>Age Range</h3>
-				<%= radio_button_tag :age, "child" %>
-				<%= label_tag :age_child, "0~19" %>
+				<%= f.radio_button :age, 0 %>
+				<%= f.label :age_0, "0~19" %>
 				<br>
-				<%= radio_button_tag :age, "twenties", selected: true %>
-				<%= label_tag :age_twenties, "20~29" %>
+				<%= f.radio_button :age, 1, checked: true %>
+				<%= f.label :age_1, "20~29" %>
 				<br>
-				<%= radio_button_tag :age, "thirties" %>
-				<%= label_tag :age_thirties, "30~39" %>
+				<%= f.radio_button :age, 2 %>
+				<%= f.label :age_2, "30~39" %>
 				<br>
-				<%= radio_button_tag :age, "fourties" %>
-				<%= label_tag :age_fourties, "40~49" %>
+				<%= f.radio_button :age, 3 %>
+				<%= f.label :age_3, "40~49" %>
 				<br>
-				<%= radio_button_tag :age, "fifties" %>
-				<%= label_tag :age_fifties, "50~64" %>
+				<%= f.radio_button :age, 4 %>
+				<%= f.label :age_4, "50~64" %>
 				<br>
-				<%= radio_button_tag :age, "senior" %>
-				<%= label_tag :age_senior, "65+" %>
+				<%= f.radio_button :age, 5 %>
+				<%= f.label :age_5, "65+" %>
 			</div>
 
 			<div class="form-group">

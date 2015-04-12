@@ -19,9 +19,6 @@
 
 
 
-
-
-
 // GOTTA INDEX BY LANGUAGE TOO!
 
 
@@ -223,4 +220,25 @@ irb(main):011:0> topic.speakers
 => #<ActiveRecord::Associations::CollectionProxy [#<Speaker id: 1, first_name: "Nicholson", last_name: "Mcdowell", native_language: 0, created_at: "2015-04-09 00:55:07", updated_at: "2015-04-09 01:14:45", gender: true, age: 1, about: nil>]>
 irb(main):012:0> topic.speakers.length
 => 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+videos index
+
+
 

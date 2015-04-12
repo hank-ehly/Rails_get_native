@@ -1,7 +1,8 @@
 <div class="speakers index main">
-	<div class="container">
+<div class="container">
 		
-	<h1>All Speakers</h1>
+	<h1>Speakers</h1>
+	<h4><%= pluralize(@speakers.size, "speaker") %></h4>
 
 		<% if @layout_style == 'Admin' %>
 			<p><%= link_to "+ Add speaker", controller: 'speakers', action: 'add' %></p>
@@ -12,13 +13,15 @@
 	  </div>
 	  <div id="update"></div> -->
 
-	<table class="table">
-		<tr>
-			<% @abc.each do |letter| %>
-				<th><a href="#<%= letter %>"><%= letter %></a></th>
-			<% end %>
-		</tr>
-	</table>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<% @abc.each do |letter| %>
+					<th><a href="#<%= letter %>"><%= letter %></a></th>
+				<% end %>
+			</tr>
+		</table>
+	</div>
 
 
 	<table class="table table-hover">
@@ -49,7 +52,7 @@
 			<% @speakers.each do |speaker| %>
 				<tr>
 					<% if speaker.first_name[0] == letter %>
-					<td><%= full_name_of(speaker) %></td>
+					<td><%= link_to controller: 'speakers', action: 'show', id: speaker.id do %><%= full_name_of(speaker) %><% end %></td>
 					<td><a href="#">
 						<% Language.all.each do |language| %>
 							<% if speaker.language_id == language.id %>
@@ -57,10 +60,9 @@
 							<% end %>
 						<% end %>
 					</a></td>
-					<td><%= "speaker.videos.count" %></td>
+					<td><%= speaker.videos.count %></td>
 					<% if @layout_style == 'Admin' %>
 					<td>
-						<%= link_to "View", controller: 'speakers', action: 'show', id: speaker.id %>
 						<%= link_to "Edit", controller: 'speakers', action: 'edit', id: speaker.id %>
 						<%= link_to "Delete", controller: 'speakers', action: 'delete', id: speaker.id %>
 					</td>
@@ -74,12 +76,14 @@
 
 	</table>
 
-	<table class="table">
-		<tr>
-			<% @abc.each do |letter| %>
-				<th><a href="#<%= letter %>"><%= letter %></a></th>
-			<% end %>
-		</tr>
-	</table>
+	<div class="table-responsive">
+		<table class="table">
+			<tr>
+				<% @abc.each do |letter| %>
+					<th><a href="#<%= letter %>"><%= letter %></a></th>
+				<% end %>
+			</tr>
+		</table>
 	</div>
+</div>
 </div>

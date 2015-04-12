@@ -1,14 +1,15 @@
-<div class="users_edit container">
+<div class="admins add main">
+<div class="container">
 
 	<div class="row">
 
 		<div class="col-sm-6">
 
-			<h1>Edit User: <%= @user.email %></h1>
+			<h1>Add Admin</h1>
 			
-			<%= form_for :user, :url => {:controller => 'users', :action => 'update', :id => @user.id} do |f| %>
+			<%= form_for :admin, :url => {:controller => 'admins', :action => 'create'} do |f| %>
 
-				<%= error_messages_for(@user) %>
+				<%= error_messages_for(@admin) %>
 			
 				<div class="form-group">
 					<%= f.label :first_name, class: "control-label" %>
@@ -59,10 +60,12 @@
 			  </div>
 			
 				<div class="form-group">
-					<%= submit_tag "Update", class: "btn btn-primary" %>
+					<%= submit_tag "Submit", class: "btn btn-primary" %>
 				</div>
 
-				<%= link_to "Cancel", :controller => "user_pages", :action => 'index' %>
+				<p>Already have an account? <%= link_to "Login", controller: 'access', action: 'login' %></p>
+
+				<p><%= link_to "Cancel", controller: 'access', action: 'login' %></p>
 				
 			<% end %>
 
@@ -70,13 +73,15 @@
 
 			<div class="quote_column col-sm-6">
 
-				<h3>Improve your foreign language today!</h3>
+				<h3>In case you're still deciding, here's what our members have to say!</h3>
 
-				<blockquote>dolor sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a?</blockquote>
-				<blockquote>sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a?</blockquote>
+				<blockquote>Get_Native.com is dolor sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Jenny (23)</span></blockquote>
+				<blockquote>I used Get_Native.com to sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Paul (19)</span></blockquote>
+				<p>Still not convinced we're legit? <%= link_to "Read more reviews" %></p>
 				
 			</div> <!-- col-sm-6 -->
 
 		</div> <!-- row -->
-	  
-</div> <!-- users_add sign_up container -->
+
+</div>	  
+</div>

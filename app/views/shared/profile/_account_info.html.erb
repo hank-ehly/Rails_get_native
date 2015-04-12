@@ -20,13 +20,24 @@
 			</tr>
 		</table>
 
-		<%= link_to :controller => 'users', :action => 'edit', :id => @current_user_admin.id do %>
-			<button class="btn btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></button>
+		<% if @layout_style == 'Admin' %>
+			<%= link_to controller: 'admins', action: 'edit', id: @current_user_admin.id do %>
+				<button class="btn btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></button>
+			<% end %>
+		<% else %>
+			<%= link_to controller: 'users', action: 'edit', id: @current_user_admin.id do %>
+				<button class="btn btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></button>
+			<% end %>
 		<% end %>
+			
 
 	<hr>
 	<div class="delete_account">
 		<p>Unhappy?</p>
-		<%= link_to "Delete account", :controller => "users", :action => "delete" %>
+		<% if @layout_style == 'Admin' %>
+			<%= link_to "Delete Account", controller: "admins", action: "delete", id: @current_user_admin.id %>	
+		<% else %>
+			<%= link_to "Delete Account", controller: "users", action: "delete", id: @current_user_admin.id %>
+		<% end %>
 	</div>
 </div> <!-- info_column col-sm-7 -->

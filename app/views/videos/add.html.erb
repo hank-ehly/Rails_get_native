@@ -1,22 +1,33 @@
 <div class="videos add main">
 	<div class="container">
-		<h1>+ Add Video <%= "to topic: " + @topic.name if @topic %></h1>
+		<h1>Add Video</h1>
+		<p>
+			<%= link_to controller: 'videos', action: 'index' do %>
+				<span class="glyphicon glyphicon-backward"></span>
+				All Videos
+			<% end %>
+		</p>
 
 		<%= form_for :video, url: { controller: 'videos', action: 'create' } do |f| %>
 
 		<div class="form-group">
-			<%= f.label :video %><br />
-			<%= f.text_field :video, class: 'form-control' %>
+			<%= f.label :original_url, "Video URL" %>
+			<%= f.text_field :original_url, placeholder: 'Paste URL here...', class: 'form-control' %>
 		</div>
 
 		<div class="form-group">
-			<%= f.label :speaker %>
-			<%= f.text_field :speaker, class: 'form-control' %>
+			<%= f.label :topic_id, "Topic" %>
+			<%= collection_select :video, :topic_id, Topic.order("topics.name ASC"), :id, :name, { prompt: "- Select a topic -" }, { class: 'form-control' } %>
 		</div>
 
 		<div class="form-group">
-			<%= f.label :description %>
-			<%= f.text_area :description, class: 'form-control' %>
+			<%= f.label :language_id, "Language" %>
+			<%= collection_select :video, :language_id, Language.order("languages.name ASC"), :id, :name, { prompt: "- Select a language -" }, { class: 'form-control' } %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :speaker_id, "Speaker" %>
+			<%= collection_select :video, :speaker_id, Speaker.order("speakers.first_name ASC"), :id, :first_name, { prompt: "- Select a speaker -" }, { class: 'form-control' } %>
 		</div>
 
 		<div class="form-group">

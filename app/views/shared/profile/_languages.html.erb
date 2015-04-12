@@ -17,7 +17,7 @@
 		<% @languages.each do |language| %>
 		<tr>
 			<td><%= language.name %></td>
-			<td>(<%= rand(1..99) %>)</td>
+			<td><%= "language.videos.count" %></td>
 			<td><%= language.speakers.size %></td>
 			<td>
 				<%= link_to "View", controller: 'languages', action: 'show', id: language.id %>

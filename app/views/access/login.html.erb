@@ -11,14 +11,14 @@
 				<div class="form-group">
 					<%= label_tag (:email) %>
 					<div class="controls">
-						<%= text_field_tag :email, "", placeholder: "Email", class: "form-control" %>
+						<%= text_field_tag :email, "", placeholder: "Email", tabindex: 1, class: "form-control" %>
 					</div>
 				</div>
 			
 				<div class="form-group">
 					<%= label_tag (:password) %>
 					<div class="controls">
-						<%= password_field_tag(:password, "", placeholder: "Password", class: 'form-control') %>
+						<%= password_field_tag(:password, "", placeholder: "Password", tabindex: 2, class: 'form-control') %>
 					</div>
 					<a href="#">I forgot my password!!</a>
 				</div>
@@ -29,7 +29,7 @@
 			  </div>
 			
 				<div class="form-group">
-					<%= submit_tag "Login", class: "btn btn-primary" %>
+					<%= submit_tag "Login", tabindex: 3, class: "btn btn-primary" %>
 				</div>
 
 				<p>Don't have an account? <%= link_to "Sign Up", :controller => "users", :action => "add" %></p>

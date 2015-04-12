@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       flash[:success] = "Account successfully created!"
       session[:user_id] = @user.id
       session[:email] = @user.email
-      redirect_to(:controller => 'users', :action => 'profile')
+      redirect_to controller: 'users', action: 'profile'
     else
       render('add')
     end
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     @topics = Topic.order("topics.name ASC")
     @speakers = Speaker.order("speakers.first_name ASC")
     @languages = Language.order("languages.name ASC")
+    @admins = Admin.order("admins.first_name ASC")
   end
 
   def edit
@@ -39,10 +40,10 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.email}'s information updated successfully"
+      flash[:success] = "#{@user.email}'s information has been successfully updated."
       redirect_to(:controller => 'users', :action => 'profile')
     else
-      render('edit')
+      render :edit
     end
   end
 
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
     flash[:success] = "#{user.email}'s account has been successfully deleted."
     session[:user_id] = nil
     session[:email] = nil
-    redirect_to(:controller => 'access', :action => 'login')
+    redirect_to controller: 'access', action: 'login'
   end
 
 

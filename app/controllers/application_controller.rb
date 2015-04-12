@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def confirm_logged_in
     unless current_user_admin
-      flash[:danger] = "Please login."
+      flash[:danger] = "Please login to view this page."
       redirect_to(:controller => 'access', :action => 'login')
       return false # halts the before_action
       # stops everything from going
@@ -27,8 +27,10 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_params
+    @abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+    @age_ranges = ["0~19","20~29","30~39","40~49","50~64","65+"]
     def admin_params
-      params.require(:admin).permit(:first_name, :last_name, :username, :email, :email_confirmation, :password, :password_confirmation)
+      params.require(:admin).permit(:first_name, :last_name, :email, :email_confirmation, :password, :password_confirmation)
     end
     def language_params
       params.require(:language).permit(:name)
@@ -40,10 +42,10 @@ class ApplicationController < ActionController::Base
       params.require(:topic).permit(:name)
     end
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :username, :password, :password_confirmation, :email, :email_confirmation)
+      params.require(:user).permit(:first_name, :last_name, :password, :password_confirmation, :email, :email_confirmation)
     end
     def video_params
-      params.require(:video).permit(:title, :duration, :speaker_name, :description, :views_count, :speaker_id, :language, :script, :video_filename, :thumbnail_filename, :topic_id, :video)
+      params.require(:video).permit(:original_url, :title, :duration, :speaker_id, :description, :views_count, :language_id, :script, :video_filename, :thumbnail_filename, :topic_id, :video)
     end
   end
 

@@ -17,7 +17,7 @@
 		<% @speakers.each do |speaker| %>
 		<tr>
 			<td><%= full_name_of(speaker) %></td>
-			<td>(<%= rand(1..99) %>)</td>
+			<td><%= "speaker.videos.count" %></td>
 			<td>
 			<% @languages.each do |language| %>
 			<% if language.id == speaker.language_id %>

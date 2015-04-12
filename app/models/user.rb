@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :with => EMAIL_REGEX
 
-  # username must be present, unique, between 7..25 chars
-  validates :username, presence: true, length: {in: 7..25}
-
   # password must be present, unique, between 7..20 chars
   validates :password, presence: true, length: {in: 7..15}, confirmation: true
 

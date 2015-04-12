@@ -1,6 +1,6 @@
 <div class="speakers show main">
 	<div class="container">
-		<h1>Show Speaker: <%= full_name_of(@speaker) %></h1>
+		<h1><%= full_name_of(@speaker) %></h1>
 		<p>
 			<%= link_to controller: 'speakers', action: 'index' do %>
 				<span class="glyphicon glyphicon-backward"></span>
@@ -9,32 +9,35 @@
 		</p>
 		<table class="table">
 			<tr>
-				<th>ID</th>
 				<th>Name</th>
 				<th>Native Language</th>
 				<th># of Videos</th>
-				<th># of Topics</th>
 				<th>Gender</th>
 				<th>Age</th>
+				<% if @layout_style == 'Admin' %>
+				<th>ID</th>
 				<th>Created at</th>
 				<th>Updated at</th>
 				<th>Actions</th>
+				<% end %>
 			</tr>
 			<% if @speaker %>
 			<tr>
-				<td><%= @speaker.id %></td>
-				<td><%= @speaker.first_name + " " + @speaker.last_name %></td>
+				<td><%= full_name_of(@speaker) %></td>
 				<td>
 					<% Language.all.each do |language| %>
 						<% if @speaker.language_id == language.id %>
-							<%= language.name %>						
+							<%= link_to controller: 'languages', action: 'show', id: language.id do %>
+								<%= language.name %>
+							<% end %>
 						<% end %>
 					<% end %>
 				</td>
-				<td><%= "@speaker.videos.count" %></td>
-				<td><%= @speaker.topics.count %></td>
+				<td><%= @speaker.videos.count %></td>
 				<td><%= @speaker.gender ? 'Male' : 'Female' %></td>
-				<td><%= age_of(@speaker) %></td>
+				<td><%= age_range_of(@speaker) %></td>
+				<% if @layout_style == 'Admin' %>
+				<td><%= @speaker.id %></td>
 				<td><%= @speaker.created_at %></td>
 				<td><%= @speaker.updated_at %></td>
 				<td>
@@ -43,22 +46,31 @@
 				</td>
 			</tr>
 			<% end %>
+			<% end %>
 		</table>
 		<hr>
-		<h3>About <%= @speaker.first_name + " " + @speaker.last_name %></h3>
+		<h3>About</h3>
 		<div class="about_speaker row">
 			<%= image_tag "http://placehold.it/60x60", class: 'col-sm-2' %>
 			<p class="col-sm-10" style="float:right;"><%= @speaker.about %></p>
 		</div>
-		<h2>Videos for <%= @speaker.first_name + " " + @speaker.last_name if @speaker %></h2>
-		<%= link_to "+ Add a video for this speaker", controller: 'videos', action: 'add', speaker_id: @speaker.id %>
+		<h3>Videos</h3>
 		<table class="table">
 			<tr>
-				<th>Title</th>
-				<th>Speaker</th>
+				<th>Thumbnail</th>
+				<th>Topic</th>
 				<th>Duration</th>
 			</tr>
-			<!-- loop through videos table -->
+				<% @videos.each do |video| %>
+					<% if video.speaker_id == @speaker.id %>
+						<tr>
+							<td><%= link_to controller: 'videos', action: 'show', id: video.id do %><img src="http://placehold.it/64x36" alt=""><% end %></td>
+							<td><%= link_to controller: 'topics', action: 'show', id: video.topic.id do %><%= video.topic.name %><% end %></td>
+							<td>duration...</td>
+						</tr>
+					<% end %>
+				<% end %>
+			</table>
 		</table>
 	</div>
 </div>
