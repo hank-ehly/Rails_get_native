@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150411125926) do
+ActiveRecord::Schema.define(version: 20150412032304) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -20,12 +20,20 @@ ActiveRecord::Schema.define(version: 20150411125926) do
     t.string   "password_digest", limit: 255, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "playlist_id",     limit: 4
   end
 
   create_table "languages", force: :cascade do |t|
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "name",       limit: 255
+  end
+
+  create_table "playlists", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "admin_id",   limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "speakers", force: :cascade do |t|
@@ -65,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150411125926) do
     t.string   "password_digest", limit: 255,              null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
+    t.integer  "playlist_id",     limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

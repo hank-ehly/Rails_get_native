@@ -225,20 +225,46 @@ irb(main):012:0> topic.speakers.length
 
 
 
+this is where you manage news posts >> creat model/ save email into model every time, show it on admin screen
 
 
 
+guides.rubyonrails.org/action_mailer_basics.html
 
 
 
+published_at << publish at future time
 
 
 
+ENV vars in .rbenv << gotta install rbenv stuff
+brew install rbenv-vars (google it)
+- gotta add rbenv-vars to git ignore
 
 
 
+ask Matt:
 
-videos index
+GET NATIVE
+- rendering new view in profile (how to not make it skip back to top every time)
+- video>add (how to show speaker's full name)
+- reauthentication of password when doing destructive actions
+- how to instantiate new playlist every time you make user?
 
+KANA
+- how to set up an inquiry mailer to a specific address
+- how to set up a simple blog post functionality
+- don't allow user to make video 'not main' if no other video is 'main'
+- loading javascript is weird. Example, when you jump TO a link, the javascript doesn't work until you refresh
+
+GENERAL
+- RESTful links
+
+
+reccomend to Kazuyo:
+- take pics 横 16:9 (much better for websites)
+
+KANA bugs:
+- homepage carousel. when switching between them, the first image always pops up for a second
 
 

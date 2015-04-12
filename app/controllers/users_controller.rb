@@ -31,6 +31,7 @@ class UsersController < ApplicationController
     @speakers = Speaker.order("speakers.first_name ASC")
     @languages = Language.order("languages.name ASC")
     @admins = Admin.order("admins.first_name ASC")
+    # @playlist = Playlist.where(id: @user.playlist_id)
   end
 
   def edit

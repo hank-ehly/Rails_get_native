@@ -31,7 +31,16 @@
 		</table>
 		<% end %>
 
-		<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+		<div class="video_instance">
+			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<%= form_for :playlist, url: { controller: 'playlists', action: 'update' } do |f| %>
+
+			<p>Add this video to your playlist:</p>
+			<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+				
+			<% end %>
+			  
+		</div>
 
 	</div>
 </div>
