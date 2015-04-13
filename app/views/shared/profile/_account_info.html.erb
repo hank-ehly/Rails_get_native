@@ -1,6 +1,7 @@
 <div class="info_column col-md-6 col-sm-7">
 	<h2>Account</h2>
 	<hr>
+
 		<table class="table table-hover table-bordered">
 			<tr>
 				<th>First Name</th>
@@ -21,7 +22,7 @@
 		</table>
 
 		<% if @layout_style == 'Admin' %>
-			<%= link_to controller: 'admins', action: 'edit', id: @current_user_admin.id do %>
+			<%= link_to edit_admin_path(@current_user_admin.id) do %>
 				<button class="btn btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></button>
 			<% end %>
 		<% else %>
@@ -30,13 +31,12 @@
 			<% end %>
 		<% end %>
 			
-
 	<hr>
 	<div class="delete_account">
-		<p>Unhappy?</p>
 		<% if @layout_style == 'Admin' %>
 			<%= link_to "Delete Account", controller: "admins", action: "delete", id: @current_user_admin.id %>	
 		<% else %>
+			<p>Unhappy?</p>
 			<%= link_to "Delete Account", controller: "users", action: "delete", id: @current_user_admin.id %>
 		<% end %>
 	</div>

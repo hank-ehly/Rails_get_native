@@ -1,17 +1,13 @@
 Rails.application.routes.draw do
 
-  get 'speakers/index'
-
-  get 'speakers/add'
-
-  get 'topics/add'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
 
   root 'users#profile'
+
+  resources :admins
 
   match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post]
 

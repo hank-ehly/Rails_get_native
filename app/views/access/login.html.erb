@@ -5,8 +5,6 @@
 		<div class="col-sm-6"><h1>Login</h1>
 			
 			<%= form_tag(:controller => "access", :action => "attempt_login", :html => {class: "form"}) do %>
-
-				<%= error_messages_for(@user) %>
 			
 				<div class="form-group">
 					<%= label_tag (:email) %>

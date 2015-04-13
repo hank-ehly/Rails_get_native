@@ -20,7 +20,7 @@ class Admin < ActiveRecord::Base
   validates_format_of :email, :with => EMAIL_REGEX
 
   # password must be present, unique, between 7..20 chars
-  validates :password, presence: true, length: {in: 7..15}, confirmation: true
+  validates :password, length: {in: 7..15}
 
   # user must fill out password confirmation
   validates :password_confirmation, presence: true

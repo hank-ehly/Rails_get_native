@@ -4,7 +4,8 @@ class AdminsController < ApplicationController
   before_action :current_user_admin
   before_action :initialize_params
 
-	def add
+	def new
+		@admin = Admin.new
 	end
 
 	def create	
@@ -13,8 +14,7 @@ class AdminsController < ApplicationController
 			flash[:success] = 'You successfully created the admin whose email is: #{@admin.email}'
 			redirect_to controller: 'users', action: 'profile'
 		else
-			flash[:danger] = 'Unable to create admin'
-			render :add
+			render :new
 		end
 	end
 
