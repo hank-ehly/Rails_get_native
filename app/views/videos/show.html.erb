@@ -33,10 +33,14 @@
 
 		<div class="video_instance">
 			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
-			
-			
-			  
 		</div>
+
+		<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
+		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-large btn-primary' %>
+		<% end %>
+
+		<!-- @user.playlists.first.videos << @video -->
+
 
 	</div>
 </div>

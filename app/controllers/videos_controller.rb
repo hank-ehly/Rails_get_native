@@ -11,6 +11,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
+    @playlist = Playlist.find(User.find(session[:user_id]).playlists.first)
   end
 
   def add

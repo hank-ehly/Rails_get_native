@@ -1,21 +1,22 @@
 class UsersController < ApplicationController
 
-  before_action :confirm_logged_in, :except => [:add, :create]
+  before_action :confirm_logged_in, :except => [:new, :create]
   before_action :current_user_admin
   before_action :initialize_params
 
-  def add
+  def new
   end
 
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.playlists.create
       flash[:success] = "Account successfully created!"
       session[:user_id] = @user.id
       session[:email] = @user.email
       redirect_to controller: 'users', action: 'profile'
     else
-      render('add')
+      render :new
     end
   end
 
@@ -31,7 +32,6 @@ class UsersController < ApplicationController
     @speakers = Speaker.order("speakers.first_name ASC")
     @languages = Language.order("languages.name ASC")
     @admins = Admin.order("admins.first_name ASC")
-    # @playlist = Playlist.where(id: @user.playlist_id)
   end
 
   def edit

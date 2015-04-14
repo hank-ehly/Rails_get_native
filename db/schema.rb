@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412032304) do
+ActiveRecord::Schema.define(version: 20150413142258) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20150412032304) do
     t.string   "password_digest", limit: 255, null: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "playlist_id",     limit: 4
   end
 
   create_table "languages", force: :cascade do |t|
@@ -29,12 +28,23 @@ ActiveRecord::Schema.define(version: 20150412032304) do
     t.string   "name",       limit: 255
   end
 
+  create_table "playlist_videos", force: :cascade do |t|
+    t.integer  "playlist_id", limit: 4
+    t.integer  "video_id",    limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "playlist_videos", ["playlist_id"], name: "index_playlist_videos_on_playlist_id", using: :btree
+  add_index "playlist_videos", ["video_id"], name: "index_playlist_videos_on_video_id", using: :btree
+
   create_table "playlists", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
-    t.integer  "admin_id",   limit: 4
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "playlists", ["user_id"], name: "index_playlists_on_user_id", using: :btree
 
   create_table "speakers", force: :cascade do |t|
     t.string   "first_name",  limit: 255
@@ -73,7 +83,6 @@ ActiveRecord::Schema.define(version: 20150412032304) do
     t.string   "password_digest", limit: 255,              null: false
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.integer  "playlist_id",     limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -95,4 +104,7 @@ ActiveRecord::Schema.define(version: 20150412032304) do
   add_index "videos", ["speaker_id"], name: "index_videos_on_speaker_id", using: :btree
   add_index "videos", ["topic_id"], name: "index_videos_on_topic_id", using: :btree
 
+  add_foreign_key "playlist_videos", "playlists"
+  add_foreign_key "playlist_videos", "videos"
+  add_foreign_key "playlists", "users"
 end

@@ -9,12 +9,25 @@
 			<th>Topic</th>
 			<th>Speaker</th>
 		</tr>
-		<% if @playlist %>
-		<% @playlist.videos.each do |video| %>
+		<% if @user.playlists.first %>
+		<% my_playlist = @user.playlists.first %>
+		<% my_playlist.videos.each do |video| %>
 			<tr>
-				<td><%= link_to controller: 'videos', action: 'show', id: video.id %></td>
-				<td><%= link_to controller: 'topics', action: 'show', id: video.topic.id %></td>
-				<td><%= link_to controller: 'speakers', action: 'show', id: video.speaker.id %></td>
+				<td>
+					<%= link_to controller: 'videos', action: 'show', id: video.id do %>
+					<img src="http://placehold.it/64x36" alt="<%= video.id %>">
+					<% end %>
+				</td>
+				<td>
+					<%= link_to controller: 'topics', action: 'show', id: Video.find(video.id).topic_id do %>
+					<%= Topic.find(Video.find(video.id).topic_id).name %>
+					<% end %>
+				</td>
+				<td>
+					<%= link_to controller: 'speakers', action: 'show', id: Video.find(video.id).speaker_id do %>
+					<%= full_name_of(Speaker.find(Video.find(video.id).speaker_id)) %>
+					<% end %>
+				</td>
 			</tr>
 		<% end %>
 		<% else %>
@@ -25,9 +38,5 @@
 			</tr>
 		<% end %>
 	</table>
-
-
-
-
 
 </div> <!-- info_column col-sm-7 -->
