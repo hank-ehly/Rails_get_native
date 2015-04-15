@@ -37,13 +37,6 @@ class VideosController < ApplicationController
         render :add
       end
     end
-
   end
-
-  def study_index
-    @videos = Video.alphabetically_by_title
-  end
-
-  
 
 end

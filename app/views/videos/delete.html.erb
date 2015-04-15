@@ -1,0 +1,46 @@
+<div class="videos delete main">
+	<div class="container">
+		<h1>
+			<%= link_to speaker_path(@video.speaker.id) do %>
+				<%= full_name_of(@video.speaker) %>
+			<% end %>
+			: 
+			<%= link_to topic_path(@video.topic.id) do %>
+				<%= @video.topic.name %>
+			<% end %>
+		</h1>
+		<% if @layout_style == 'Admin' %>
+			<table class="table">
+				<tr>
+					<th>ID</th>
+					<th>Created at</th>
+					<th>Updated at</th>
+					<th>Actions</th>
+				</tr>
+				<% if @video %>
+					<tr>
+						<td><%= @video.id %></td>
+						<td><%= @video.created_at %></td>
+						<td><%= @video.updated_at %></td>
+						<td>
+							<%= link_to "Edit", edit_video(@video.id) %>
+							<%= link_to "Delete", video_path(@video.id) %>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+
+		<div class="video_instance">
+			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+		</div>
+
+		<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
+		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-large btn-primary' %>
+		<% end %>
+
+		<!-- @user.playlists.first.videos << @video -->
+
+
+	</div>
+</div>

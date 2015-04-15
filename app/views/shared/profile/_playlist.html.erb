@@ -8,25 +8,30 @@
 			<th>Video</th>
 			<th>Topic</th>
 			<th>Speaker</th>
+			<th>Actions</th>
 		</tr>
 		<% if @user.playlists.first %>
 		<% my_playlist = @user.playlists.first %>
 		<% my_playlist.videos.each do |video| %>
 			<tr>
 				<td>
-					<%= link_to controller: 'videos', action: 'show', id: video.id do %>
+					<%= link_to video_path(video.id) do %>
 					<img src="http://placehold.it/64x36" alt="<%= video.id %>">
 					<% end %>
 				</td>
 				<td>
-					<%= link_to controller: 'topics', action: 'show', id: Video.find(video.id).topic_id do %>
+					<%= link_to topic_path(Video.find(video.id).topic_id) do %>
 					<%= Topic.find(Video.find(video.id).topic_id).name %>
 					<% end %>
 				</td>
 				<td>
-					<%= link_to controller: 'speakers', action: 'show', id: Video.find(video.id).speaker_id do %>
+					<%= link_to speaker_path(Video.find(video.id).speaker_id) do %>
 					<%= full_name_of(Speaker.find(Video.find(video.id).speaker_id)) %>
 					<% end %>
+				</td>
+				<td>
+					<% playlist_video = PlaylistVideo.find_by(video_id: video.id) %>
+					<%= link_to "Remove", controller: 'playlist_videos', action: 'delete', id: playlist_video.id %>
 				</td>
 			</tr>
 		<% end %>

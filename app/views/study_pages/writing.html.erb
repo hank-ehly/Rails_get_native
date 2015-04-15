@@ -1,0 +1,12 @@
+<div class="study_pages writing main">
+	<div class="container">
+		<h1>Writing</h1>
+		<%= form_tag action: 'submit_writing' do %>
+		  <div class="form-group">
+		  	<%= label_tag :message %>
+		  	<%= text_area_tag :message, "", rows: 10, class: 'form-control' %>
+		  	<%= submit_tag "Check screen", class: "btn btn-default" %>
+		  </div>
+		<% end %>
+	</div>
+</div>

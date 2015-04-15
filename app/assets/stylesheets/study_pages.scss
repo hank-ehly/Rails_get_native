@@ -1,0 +1,16 @@
+// Place all the styles related to the StudyPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+div.study_pages.index.main {
+  div.container {
+    table.table {
+      tr.study_video_instance {
+        cursor: pointer;
+        &.selected {
+        	background: yellow;
+        	font-size: bold;
+        }
+      }
+    }
+  }
+}

@@ -47,6 +47,11 @@ class ApplicationController < ActionController::Base
     def video_params
       params.require(:video).permit(:original_url, :title, :duration, :speaker_id, :description, :views_count, :language_id, :script, :video_filename, :thumbnail_filename, :topic_id, :video)
     end
+    def full_name_of(speaker)
+      if speaker
+        speaker.first_name + " " + speaker.last_name
+      end
+    end
   end
 
 end

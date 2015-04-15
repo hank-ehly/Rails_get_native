@@ -4,21 +4,21 @@
 		<ul>
 			<li>
 				<% if @layout_style == 'Admin' %>
-					<%= link_to controller: 'admins', action: 'edit', id: @current_user_admin.id do %>
-					<span class="glyphicon glyphicon-edit"></span>
-					Edit Profile
+					<%= link_to edit_admin_path(@current_user_admin.id) do %>
+						<span class="glyphicon glyphicon-edit"></span>
+						Edit Profile
 					<% end %>
 				<% else %>
-					<%= link_to controller: 'users', action: 'edit', id: @current_user_admin.id do %>
-					<span class="glyphicon glyphicon-edit"></span>
-					Edit Profile
+					<%= link_to edit_user_path(@current_user_admin.id) do %>
+						<span class="glyphicon glyphicon-edit"></span>
+						Edit Profile
 					<% end %>
 				<% end %>
 			</li>
 			<li>
-				<%= link_to controller: 'videos', action: 'study_index' do %>
-				<span class="glyphicon glyphicon-apple"></span>
-				Study Now
+				<%= link_to study_pages_path do %>
+					<span class="glyphicon glyphicon-apple"></span>
+					Study Now
 				<% end %>
 			</li>
 		</ul>

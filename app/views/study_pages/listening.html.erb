@@ -1,0 +1,9 @@
+<div class="study_pages listening main">
+	<div class="container">
+		<h1>Listening</h1>
+		<div class="video_instance">
+			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+		</div>
+		<%= link_to "Next", action: 'writing', id: @playlist_video.id %>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+<div class="study_pages index main">
+	<div class="container">
+		<h1>Study Now</h1>
+
+		<p>Select a video from your playlist:</p>
+		<%= form_tag action: 'shadowing' do %>
+		<table class="table table-hover">
+		<% @user.playlist_videos.each do |playlist_video| %>
+			<tr class="study_video_instance">
+				<td><img src="http://placehold.it/64x36" alt=""></td>
+				<td><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
+				<td><%= Topic.find(Video.find(playlist_video.video_id).topic_id).name %></td>
+				<td><%= full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id)) %></td>
+			</tr>
+		<% end %>
+		</table>
+		<%= submit_tag "Get_Native!", class: "btn btn-lg btn-primary" %>
+		<% end %>
+	</div>
+</div>
