@@ -6,11 +6,13 @@ div.study_pages.index.main {
     table.table {
       tr.study_video_instance {
         cursor: pointer;
-        &.selected {
-        	background: yellow;
-        	font-size: bold;
-        }
-      }
-    }
-  }
+      } // tr.study_video_instance
+    } // table
+  } // div.container
+} // div.study_pages.index.main
+
+
+#foo_study_time {
+	width: auto;
+	display: inline-block;
 }

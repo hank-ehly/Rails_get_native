@@ -1,10 +1,13 @@
 <div class="study_pages index main">
 	<div class="container">
 		<h1>Study Now</h1>
-
-		<p>Select a video from your playlist:</p>
+		<hr>
 		<%= form_tag action: 'shadowing' do %>
-		<table class="table table-hover">
+		<p>How much time will you study?</p>
+		<%= select :foo, :study_time, 1..60, {}, class: 'study_time form-control' %> <span>minute(s)</span>
+		<hr>
+		<p>Select a video from your playlist:</p>
+		<table class="table">
 		<% @user.playlist_videos.each do |playlist_video| %>
 			<tr class="study_video_instance">
 				<td><img src="http://placehold.it/64x36" alt=""></td>

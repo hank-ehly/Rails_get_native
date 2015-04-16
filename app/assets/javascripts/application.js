@@ -15,3 +15,8 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+$(function() {
+	$("body div div form table tbody tr td input").on('click', function() {
+		$(this).parent().parent().addClass('active').siblings().removeClass('active');
+	});
+});

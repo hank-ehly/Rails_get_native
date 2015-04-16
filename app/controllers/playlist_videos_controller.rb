@@ -17,7 +17,7 @@ class PlaylistVideosController < ApplicationController
     video_speaker = full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id))
     if playlist_video.destroy
       flash[:success] = "#{video_speaker}'s video '#{video_topic}' was successfully deleted from your playlist."
-      redirect_to root_path, view: 'playlist'
+      redirect_to controller: 'users', action: 'profile', view: 'playlist'
     else
       render :delete
     end

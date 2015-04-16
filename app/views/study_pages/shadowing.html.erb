@@ -1,6 +1,9 @@
 <div class="study_pages shadowing main">
 	<div class="container">
 		<h1>Shadowing</h1>
+		<span class="countdown"><%= @time %></span>
+		<button class="play_pause">Play/Pause</button>
+		<span class="paused_alert">PAUSED</span>
 		<div class="video_instance">
 			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
 		</div>

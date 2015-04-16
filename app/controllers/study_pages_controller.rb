@@ -9,6 +9,7 @@ class StudyPagesController < ApplicationController
   end
 
   def shadowing
+    @time = params[:foo][:study_time]
     @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
@@ -45,4 +46,5 @@ class StudyPagesController < ApplicationController
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
   end
+
 end
