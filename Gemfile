@@ -21,6 +21,8 @@ gem 'compass-rails'
 # Use susy framework
 gem 'susy'
 
+ruby '2.2.1'
+
 # parse video urls
 gem 'domainator'
 
