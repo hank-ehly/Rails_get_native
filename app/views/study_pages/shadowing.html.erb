@@ -7,6 +7,6 @@
 		<div class="video_instance">
 			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<%= link_to "Next", action: 'speaking', id: @playlist_video.id %>
+		<%= link_to "Next", action: 'speaking', id: @playlist_video.id, time: @time %>
 	</div>
 </div>

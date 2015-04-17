@@ -3,14 +3,14 @@ $(function() {
 
 
   // declare vars
-  var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds;
+  var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state;
+
   // get the time in minutes
   time_minutes = parseInt($('.countdown').html());
   // change it into seconds
   time_seconds = (time_minutes * 60);
   // divide it by 4
   time_by_4 = (time_seconds / 4);
-
 
   // display user-selected time upon first loading of page
   // format the minutes and seconds
@@ -28,14 +28,23 @@ $(function() {
 
 
   // pause/play button functionality
+
   $('.paused_alert').hide();
-  $('button.play_pause').toggle(function() {
-    clearInterval(incrementTimeInterval);
-    $('.paused_alert').show();
-  }, function() {
-    incrementTimeInterval = setInterval(incrementTime, 1000);
-    $('.paused_alert').hide();
+
+  state = true;
+
+  $('button.play_pause').on('click', function() {
+    $('.paused_alert').toggle()
+    if (state) {
+      clearInterval(incrementTimeInterval);
+      state = false;
+    } else if (!state) {
+      incrementTimeInterval = setInterval(incrementTime, 1000);
+      state = true;
+    }
+
   });
+
 
 
   // function to increment time
@@ -51,10 +60,10 @@ $(function() {
       seconds = "0" + seconds;
     }
     $('.countdown').html(minutes + ':' + seconds);
-    console.log(time_by_4);
+    // console.log(time_by_4);
     if (time_by_4 == 0) {
       clearInterval(incrementTimeInterval);
-      console.log("time's up");
+      // console.log("time's up");
     };
   };
 

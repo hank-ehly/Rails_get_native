@@ -49,7 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: Rails_get_native_development
+  database: Rails_get_native_production
   username: Rails_get_native
-  password: secretpassword
-  # password: <%= ENV['RAILS_GET_NATIVE_DATABASE_PASSWORD'] %>
+  password: <%= ENV['RAILS_GET_NATIVE_DATABASE_PASSWORD'] %>

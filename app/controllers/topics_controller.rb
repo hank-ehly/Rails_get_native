@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
     @topics = Topic.order("topics.name ASC")
   end
 
-  def add
+  def new
   end
 
   def create
@@ -19,7 +19,7 @@ class TopicsController < ApplicationController
       redirect_to action: 'index'
     else
       # failure
-      render :add
+      render :new
     end
   end
 

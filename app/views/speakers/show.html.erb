@@ -1,12 +1,6 @@
 <div class="speakers show main">
 	<div class="container">
-		<h1><%= full_name_of(@speaker) %></h1>
-		<p>
-			<%= link_to controller: 'speakers', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Speakers
-			<% end %>
-		</p>
+		<h1><%= link_to "Speakers", speakers_path %> / <%= full_name_of(@speaker) %></h1>
 		<table class="table">
 			<tr>
 				<th>Name</th>

@@ -1,11 +1,18 @@
 <div class="topics index main">
 <div class="container">
 	
-<h1>Topics</h1>
+<h1>
+	<strong>Topics</strong>
+	|
+	<%= link_to "Speakers", speakers_path %>
+	|
+	<%= link_to "Languages", languages_path %>
+</h1>
+
 <h4><%= pluralize(@topics.size, "topic") %></h4>
 
 	<% if @layout_style == 'Admin' %>
-		<p><%= link_to "+ Add topic", controller: 'topics', action: 'add' %></p>
+		<p><%= link_to "+ Add topic", new_topic_path %></p>
 	<% end %>
 
 	<!-- <div id="searcharea">

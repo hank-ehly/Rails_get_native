@@ -9,7 +9,6 @@ class StudyPagesController < ApplicationController
   end
 
   def shadowing
-    @time = params[:foo][:study_time]
     @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
     get_video_url

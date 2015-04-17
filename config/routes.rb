@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :admins, :users, :languages, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages
 
-  match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post]
+  match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post, :patch]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

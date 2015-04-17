@@ -1,12 +1,6 @@
 <div class="languages show main">
 	<div class="container">
-		<h1><%= @language.name %></h1>
-		<p>
-			<%= link_to controller: 'languages', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Languages
-			<% end %>
-		</p>
+		<h1><%= link_to "Languages", languages_path %> / <%= @language.name %></h1>
 		<table class="table">
 			<tr>
 				<th>Name</th>

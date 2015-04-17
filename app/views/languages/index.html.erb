@@ -1,6 +1,12 @@
 <div class="languages index main">
 	<div class="container">
-		<h1>Languages</h1>
+		<h1>
+			<%= link_to "Topics", topics_path %>
+			|
+			<%= link_to "Speakers", speakers_path %>
+			|
+			<strong>Languages</strong>
+		</h1>
 		<% if @layout_style == 'Admin' %>
 			<p><%= link_to "+ Add Language", controller: 'languages', action: 'add' %></p>
 		<% end %>
