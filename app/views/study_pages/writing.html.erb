@@ -1,7 +1,10 @@
 <div class="study_pages writing main">
 	<div class="container">
 		<h1>Writing</h1>
-		<span class="countdown"><%= @time %></span>
+		<script>
+			study_time = <%= @time %>
+		</script>
+		<span class="countdown"></span>
 		<button class="play_pause">Play/Pause</button>
 		<span class="paused_alert">PAUSED</span>
 		<%= form_tag action: 'submit_writing' do %>

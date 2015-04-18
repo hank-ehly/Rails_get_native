@@ -1,12 +1,34 @@
 <div class="study_pages speaking main">
 	<div class="container">
 		<h1>Speaking</h1>
-		<span class="countdown"><%= @time %></span>
-		<button class="play_pause">Play/Pause</button>
-		<span class="paused_alert">PAUSED</span>
+
+		<button type="button" id="speakingPopover" class="btn btn-default">What do I do?</button>
+
+		<div class="main_video_content">
+		
 		<div class="video_instance">
-			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<iframe width="480" height="270" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<div class="video_info">
+				<div class="pull-left">
+					<span class="countdown"></span>
+					<button class="play_pause">Play/Pause</button>
+					<span class="paused_alert">PAUSED</span>
+				</div>
+				<%= link_to "Continue", action: 'listening', id: @playlist_video.id, t: @time %>
+			</div>
 		</div>
-		<%= link_to "Next", action: 'listening', id: @playlist_video.id %>
+
+		<div class="scripts">
+			<ul class="nav nav-tabs script_tabs">
+			  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+			  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+			  <li role="presentation" id="na"><a href="#">N/A</a></li>
+			</ul>
+			<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
+			<div class="script" id="english_script"><%= @video.english_script %></div>
+		</div>
+
+		</div> <!-- main_video_content -->
+		
 	</div>
 </div>

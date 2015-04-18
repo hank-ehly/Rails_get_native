@@ -1,18 +1,97 @@
 // Place all the styles related to the StudyPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.study_pages.index.main {
+div.study_pages.index {
   div.container {
-    table.table {
-      tr.study_video_instance {
-        cursor: pointer;
-      } // tr.study_video_instance
-    } // table
+    background: #fff;
+    @include border-radius;
+    h1 {
+      margin-bottom: 20px;
+    }
+    .select_time,
+    .select_video {
+      margin-bottom: 20px;
+    }
+    div.submit_button {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   } // div.container
 } // div.study_pages.index.main
-
-
 #foo_study_time {
-	width: auto;
-	display: inline-block;
+  width: auto;
+  display: inline-block;
+}
+
+.select_video {
+  table {
+    tr {
+      cursor: pointer;
+    }
+  }
+}
+
+.video_instance {
+  text-align: center;
+}
+
+.playPauseButtonContainer {
+  width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  button {
+    padding: 16px 36px;
+    font-size: 2.5em;
+  }
+}
+
+div.study_pages.main {
+  h1 {
+    text-align: center;
+  }
+  button#shadowingPopover,
+  button#speakingPopover {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+}
+
+.study_pages.shadowing {
+  .video_info {
+    width: 640px;
+    margin: 0 auto;
+    a {
+      float: right;
+    }
+  }
+}
+
+.main_video_content {
+  padding-top: 20px;
+}
+
+.study_pages.speaking {
+  .video_info {
+    width: 480px;
+    a {
+      float: right;
+    }
+  }
+  div.video_instance {
+    float: left;
+  }
+  div.scripts {
+    float: right;
+    width: 460px;
+    .script {
+      // border: 1px solid #ddd;
+      // border-top: none;
+      @include box-sizing(border-box);
+      padding: 10px;
+      line-height: 2em;
+    }
+  }
 }

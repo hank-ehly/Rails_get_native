@@ -9,24 +9,28 @@ class StudyPagesController < ApplicationController
   end
 
   def shadowing
+    @time = params[:foo][:study_time]
     @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
   end
 
   def speaking
+    @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
   end
 
   def listening
+    @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
   end
 
   def writing
+    @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url

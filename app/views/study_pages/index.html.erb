@@ -1,23 +1,47 @@
-<div class="study_pages index main">
+<div class="study_pages index">
 	<div class="container">
 		<h1>Study Now</h1>
-		<hr>
+
 		<%= form_tag action: 'shadowing' do %>
-		<p>How much time will you study?</p>
-		<%= select :foo, :study_time, 1..60, {}, class: 'study_time form-control' %> <span>minute(s)</span>
-		<hr>
-		<p>Select a video from your playlist:</p>
-		<table class="table">
-		<% @user.playlist_videos.each do |playlist_video| %>
-			<tr class="study_video_instance">
-				<td><img src="http://placehold.it/64x36" alt=""></td>
-				<td><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
-				<td><%= Topic.find(Video.find(playlist_video.video_id).topic_id).name %></td>
-				<td><%= full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id)) %></td>
-			</tr>
+
+			<div class="form-group select_time">
+				<h3>Select Time</h3>
+				<%= select :foo, :study_time, 4..60, {include_blank: "-"}, class: 'study_time form-control' %> <span>minutes</span>
+			</div>
+
+			<!-- try to catch the click event with JavaScript and go on from there -->
+
+			<div class="form-group select_video">
+				<h3>Select Playlist Video</h3>
+				<table class="table">	
+					<tr>
+						<th>Selected</th>
+						<th>Video</th>
+						<th>Topic</th>
+						<th>Speaker</th>
+					</tr>
+					<% @user.playlist_videos.each do |playlist_video| %>
+					<% 
+					video = Video.find(playlist_video.video_id)
+					url_queries = Rack::Utils.parse_query URI(video.original_url).query
+    			video_url = url_queries["v"] 
+    			%>
+					<tr class="study_video_instance">
+						<td><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
+						<td><img src=<%= get_thumbnail(video_url) %> alt=""></td>
+						<td><%= Topic.find(Video.find(playlist_video.video_id).topic_id).name %></td>
+						<td><%= full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id)) %></td>
+					</tr>
+					<% end %>
+				</table>
+			</div>
+
+
+			<div class="form-group submit_button"><%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %></div>
+
+
 		<% end %>
-		</table>
-		<%= submit_tag "Get_Native!", class: "btn btn-lg btn-primary" %>
-		<% end %>
+
+
 	</div>
 </div>

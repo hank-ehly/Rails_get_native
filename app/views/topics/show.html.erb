@@ -36,9 +36,13 @@
 				<th>Duration</th>
 			</tr>
 			<% @videos.each do |video| %>
+				<% 
+				url_queries = Rack::Utils.parse_query URI(video.original_url).query
+  			video_url = url_queries["v"] 
+  			%>
 				<% if video.topic_id == @topic.id %>
 					<tr>
-						<td><%= link_to controller: 'videos', action: 'show', id: video.id do %><img src="http://placehold.it/64x36" alt=""><% end %></td>
+						<td><%= link_to controller: 'videos', action: 'show', id: video.id do %><img src=<%= get_thumbnail(video_url) %> alt=""><% end %></td>
 						<td><%= link_to controller: 'speakers', action: 'show', id: video.speaker.id do %><%= full_name_of(video.speaker) %><% end %></td>
 						<td>duration...</td>
 					</tr>

@@ -1,14 +1,10 @@
-<div class="videos add main">
+<div class="videos new main">
 	<div class="container">
 		<h1>Add Video</h1>
-		<p>
-			<%= link_to controller: 'videos', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Videos
-			<% end %>
-		</p>
 
-		<%= form_for :video, url: { controller: 'videos', action: 'create' } do |f| %>
+		<%= form_for @video do |f| %>
+
+		<%= error_messages_for(@video) %>
 
 		<div class="form-group">
 			<%= f.label :original_url, "Video URL" %>
@@ -28,6 +24,16 @@
 		<div class="form-group">
 			<%= f.label :speaker_id, "Speaker" %>
 			<%= collection_select :video, :speaker_id, Speaker.order("speakers.first_name ASC"), :id, :first_name, { prompt: "- Select a speaker -" }, { class: 'form-control' } %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :japanese_script, "Japanese Script" %>
+			<%= f.text_area :japanese_script, rows: 5, placeholder: "Japanese Script...", class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :english_script, "English Script" %>
+			<%= f.text_area :english_script, rows: 5, placeholder: "English Script...", class: 'form-control' %>
 		</div>
 
 		<div class="form-group">

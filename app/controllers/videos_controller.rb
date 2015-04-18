@@ -11,11 +11,12 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
-    @playlist = Playlist.find(User.find(session[:user_id]).playlists.first)
+    @playlist = Playlist.find(User.find(session[:user_id]).playlists.first) if session[:user_id]
   end
 
-  def add
+  def new
     @topic = Topic.find(params[:topic_id]) if params[:topic_id]
+    @video = Video.new
   end
 
   def create
@@ -27,15 +28,29 @@ class VideosController < ApplicationController
       result = @video.original_url.match(/[\?\&]v\=([^&]+)/)
       if result.nil? || result[1].nil?
         @error = "The URL is not well formatted."
-        render :add
+        render :new
         return
       end
       if @video.save
         flash[:success] = "Video was saved successfully."
-        redirect_to(controller: 'videos', action: 'show', id: @video.id)
+        redirect_to video_path(@video.id)
       else
-        render :add
+        render :new
       end
+    end
+  end
+
+  def edit
+    @video = Video.find(params[:id])
+  end
+
+  def update
+    @video = Video.find(params[:id])
+    if @video.update_attributes(video_params)
+      flash[:success] = "Video was successfully updated."
+      redirect_to video_path(@video.id)
+    else
+      render :edit
     end
   end
 

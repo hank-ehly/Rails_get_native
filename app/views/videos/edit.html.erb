@@ -1,0 +1,46 @@
+<div class="videos edit main">
+	<div class="container">
+		<h1>Edit Video</h1>
+
+		<%= form_for @video do |f| %>
+
+		<%= error_messages_for(@videos) %>
+
+		<div class="form-group">
+			<%= f.label :original_url, "Video URL" %>
+			<%= f.text_field :original_url, placeholder: 'Paste URL here...', class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :topic_id, "Topic" %>
+			<%= collection_select :video, :topic_id, Topic.order("topics.name ASC"), :id, :name, { prompt: "- Select a topic -" }, { class: 'form-control' } %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :language_id, "Language" %>
+			<%= collection_select :video, :language_id, Language.order("languages.name ASC"), :id, :name, { prompt: "- Select a language -" }, { class: 'form-control' } %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :speaker_id, "Speaker" %>
+			<%= collection_select :video, :speaker_id, Speaker.order("speakers.first_name ASC"), :id, :first_name, { prompt: "- Select a speaker -" }, { class: 'form-control' } %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :japanese_script, "Japanese Script" %>
+			<%= f.text_area :japanese_script, rows: 5, placeholder: "Japanese Script...", class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :english_script, "English Script" %>
+			<%= f.text_area :english_script, rows: 5, placeholder: "English Script...", class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-primary' %>
+		</div>
+		
+		<% end %>
+		  
+	</div>
+</div>

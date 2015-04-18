@@ -1,11 +1,11 @@
 <div class="videos show main">
 	<div class="container">
 		<h1>
-			<%= link_to controller: 'speakers', action: 'show', id: @video.speaker.id do %>
+			<%= link_to speaker_path(@video.speaker.id) do %>
 				<%= full_name_of(@video.speaker) %>
 			<% end %>
 			: 
-			<%= link_to controller: 'topics', action: 'show', id: @video.topic.id do %>
+			<%= link_to topic_path(@video.topic.id) do %>
 				<%= @video.topic.name %>
 			<% end %>
 		</h1>
@@ -23,7 +23,7 @@
 				<td><%= @video.created_at %></td>
 				<td><%= @video.updated_at %></td>
 				<td>
-					<%= link_to "Edit", controller: 'videos', action: 'edit', id: @video.id %>
+					<%= link_to "Edit", edit_video_path(@video.id) %>
 					<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
 				</td>
 			</tr>
@@ -35,8 +35,22 @@
 			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
 		</div>
 
+		<div class="japanese_script">
+		<h3>Japanese Script</h3>
+			<p><%= @video.japanese_script %></p>
+		</div>
+
+		<div class="english_script">
+		<h3>English Script</h3>
+			<p><%= @video.english_script %></p>
+		</div>
+
+		<% unless @layout_style == 'Admin' %>
+
 		<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
 		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-large btn-primary' %>
+		<% end %>
+
 		<% end %>
 
 		<% if @layout_style == 'Admin' %>

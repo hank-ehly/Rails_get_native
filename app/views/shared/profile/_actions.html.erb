@@ -21,6 +21,14 @@
 					Study Now
 				<% end %>
 			</li>
+			<% if @layout_style == 'Admin' %>
+			<li>
+				<%= link_to new_video_path do %>
+					<span class="glyphicon glyphicon-plus"></span>
+					Add Video
+				<% end %>
+			</li>
+			<% end %>
 		</ul>
 	</div>
 </div>

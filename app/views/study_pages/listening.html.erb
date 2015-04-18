@@ -1,12 +1,15 @@
 <div class="study_pages listening main">
 	<div class="container">
 		<h1>Listening</h1>
-		<span class="countdown"><%= @time %></span>
+		<script>
+			study_time = <%= @time %>
+		</script>		
+		<span class="countdown"></span>
 		<button class="play_pause">Play/Pause</button>
 		<span class="paused_alert">PAUSED</span>
 		<div class="video_instance">
 			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
 		</div>
-		<%= link_to "Next", action: 'writing', id: @playlist_video.id %>
+		<%= link_to "Next", action: 'writing', id: @playlist_video.id, t: @time %>
 	</div>
 </div>
