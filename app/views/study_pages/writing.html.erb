@@ -1,18 +1,28 @@
 <div class="study_pages writing main">
 	<div class="container">
+
 		<h1>Writing</h1>
-		<script>
-			study_time = <%= @time %>
-		</script>
-		<span class="countdown"></span>
-		<button class="play_pause">Play/Pause</button>
-		<span class="paused_alert">PAUSED</span>
+		<button type="button" id="writingPopover" class="btn btn-default">Instructions <span class="caret"></span></button>
+		
 		<%= form_tag action: 'submit_writing' do %>
 		  <div class="form-group">
-		  	<%= label_tag :message %>
-		  	<%= text_area_tag :message, "", rows: 10, class: 'form-control' %>
-		  	<%= submit_tag "Check screen", class: "btn btn-default" %>
+		  	<p><strong>Q:</strong> What did the speaker talk about?</p>
+		  	<!-- Pretend you are the speaker. Describe what you think (talk about what the speaker talked about) -->
+		  	<%= label_tag :message, "Answer:" %>
+		  	<%= text_area_tag :message, "", rows: 8, placeholder: "内容がないよ〜", id: "writingTextField" ,class: 'form-control' %>
+		  	<div class="info_container">
+					<span class="countdown"></span>
+					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
+					<span>文字数: <span id="charNum"></span></span>
+					<!-- <span class="paused_alert">PAUSED</span> -->
+					<%= submit_tag "Continue", class: "btn btn-default btn-xs" %>
+				</div>
 		  </div>
 		<% end %>
+
+		
+		
+
+
 	</div>
 </div>

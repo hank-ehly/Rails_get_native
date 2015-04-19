@@ -1,5 +1,23 @@
 <div class="info_column col-md-6 col-sm-7">
 	<h2>Collocations</h2>
 	<hr>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit tempore, necessitatibus sed, blanditiis cum quis omnis quidem dignissimos maxime, repudiandae asperiores beatae nostrum at deserunt sit ut! Excepturi eligendi, pariatur.</p>
+
+
+<% @playlist_videos.each do |video| %>
+	<% video.collocations.each do |collocation| %>
+		<ul class="collocation_instance">
+			<li class="collocation_first"><%= collocation.collocation %></li>
+			<li class="well well-sm collocation_well"><%= collocation.context %></li>
+			<li class="collocation_video_info">
+				<%= link_to video_path(Video.find(video.video_id)) do %>Video<% end %> |
+				<%= link_to topic_path(Topic.find(Video.find(video.video_id).topic_id)) do %><%= Topic.find(Video.find(video.video_id).topic_id).name %><% end %> |
+				<%= link_to speaker_path(Speaker.find(Video.find(video.video_id).speaker_id)) do %><%= full_name_of(Speaker.find(Video.find(video.video_id).speaker_id)) %><% end %>
+			</li>
+		</ul>
+	<% end %>
+<% end %>
+
+
+
+
 </div> <!-- info_column col-sm-7 -->

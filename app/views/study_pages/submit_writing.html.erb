@@ -1,11 +1,16 @@
 <div class="study_pages submit_writing main">
 	<div class="container">
 		<h1>Submit Writing</h1>
+		<button type="button" id="submitWritingPopover" class="btn btn-default">Instructions <span class="caret"></span></button>
 		<%= form_tag action: 'submit_and_return_to_root' do %>
 		  <div class="form-group">
-		  	<%= label_tag :message %>
+		  	<p><strong>Q:</strong> What did the speaker talk about?</p>
+		  	<%= label_tag :message, "Answer:" %>
 		  	<%= text_area_tag :message, @message, rows: 10, readonly: true, class: 'form-control' %>
-		  	<%= submit_tag "Submit for revision", class: "btn btn-default" %>
+		  	<div class="info_container">
+		  		<span>文字数: <span id="submit_length"></span></span>
+		  		<%= submit_tag "Submit for revision", class: "btn btn-default" %>
+		  	</div>
 		  </div>
 		<% end %>
 	</div>

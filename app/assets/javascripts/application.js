@@ -38,7 +38,8 @@ $(document).ready(function() {
   $('.scripts #japanese_script').show();
 
   // script tabs
-  $('.script_tabs li').on('click', function() {
+  $('.script_tabs li').on('click', function(e) {
+    e.preventDefault();
     $('.scripts .script').hide();
     $(this).addClass('active').siblings().removeClass('active');
     if (this.id == "japanese_script_tab") {
@@ -46,14 +47,17 @@ $(document).ready(function() {
     } else if (this.id == "english_script_tab") {
       $('.scripts #english_script').show();
     } else if (this.id == "na") {
-      $('.scripts .script').hide();
+      $('.scripts #empty_script_tab').show();
+    } else if (this.id == "collocations_tab") {
+      $('.scripts #collocations').show();
     }
   })
 
-
-
   var shadowingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var speakingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
+  var listeningPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
+  var writingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
+  var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
 
   $('#shadowingPopover').popover({
     html: true,
@@ -71,7 +75,64 @@ $(document).ready(function() {
     content: speakingPopoverContent
   })
 
+  $('#listeningPopover').popover({
+    html: true,
+    container: 'body',
+    toggle: 'popover',
+    placement: 'bottom',
+    content: listeningPopoverContent
+  })
+
+  $('#writingPopover').popover({
+    html: true,
+    container: 'body',
+    toggle: 'popover',
+    placement: 'bottom',
+    content: writingPopoverContent
+  })
+
+  $('#submitWritingPopover').popover({
+    html: true,
+    container: 'body',
+    toggle: 'popover',
+    placement: 'bottom',
+    content: submitWritingPopoverContent
+  })
+
+  // collocations form
+
+  // $("form#new_collocation").on("submit", function(event) {
+
+    $('#account_settings').on('ajax:complete', function(event, xhr, status, error) {
+      // insert the failure message inside the "#account_settings" element
+      // $(this).append(xhr.responseText)
+      console.log('you did it');
+    });
+
+  // });
+
+  // $.ajax({
+  //   method: "POST",
+  //   url: "/collocations/create",
+  //   data: {
+  //     id: //the id,
+  //     collocation: // the text,
+  //     context: // the context
+  //   }
+  // })
+
+  // writing
+
+  $('#charNum').text("0");
+  $('#writingTextField').keyup(function() {
+    var len = $(this).val().length;
+    $('#charNum').text(len);
+  });
+
+  var subLen = $('#message').val().length
+  $('#submit_length').text(subLen)
+
+
+
+
 });
-
-
-// data-container="body" data-toggle="popover" data-placement="bottom"

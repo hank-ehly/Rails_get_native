@@ -1,14 +1,12 @@
 <div class="languages edit main">
 	<div class="container">
 
-		<h1><%= @language.name %></h1>
+		<!-- <h1><%= @language.name %></h1> -->
 
-		<p>
-			<%= link_to controller: 'languages', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Languages
-			<% end %>
-		</p>
+		<ol class="breadcrumb row">
+			<li><%= link_to "Languages", languages_path %></li>
+			<li>Edit: <%= @language.name %></li>
+		</ol>
 
 		<table class="table">
 			<tr>

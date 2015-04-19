@@ -1,13 +1,11 @@
-<div class="topics add main">
+<div class="topics new main">
 	<div class="container">
-		<h1>Add Topic</h1>
-		<p>
-		<%= link_to controller: 'topics', action: 'index' do %>
-		<span class="glyphicon glyphicon-backward"></span>
-		All Topics
-		<% end %>
-		</p>
-		<%= form_for :topic, url: { controller: 'topics', action: 'create' } do |f| %>
+		<!-- <h1>New Topic</h1> -->
+		<ol class="breadcrumb row">
+		  <li><%= link_to "Topics", topics_path %></li>
+		  <li class="active">New Topic</li>
+		</ol>
+		<%= form_for @topic do |f| %>
 
 			<%= error_messages_for(@topic) %>
 

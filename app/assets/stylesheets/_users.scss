@@ -1,7 +1,6 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 /* container */
 
 .container {
@@ -13,16 +12,13 @@
         span {
           font-style: italic;
         } // span
-     
       } // blockquote
       p {
         text-align: center;
       }
     } // .quote_column.col-sm-6
- 
   } // .row
 } // .users_add.sign_up.container
-
 .users_edit {
   .row {
     padding-bottom: 20px;
@@ -64,15 +60,10 @@
                 border: 1px solid #ddd;
                 border-bottom-color: transparent;
               } // a:hover
-           
             } // a
-         
           } // li
-       
         } // ul.nav.nav-tabs
-     
       } // .button_container
-   
     } // .nav_row.row
     .main_content.row {
       padding-bottom: 40px;
@@ -84,7 +75,6 @@
           text-align: center;
           @include border-radius;
         } // .photo_box
-     
       } // .photo_column
       .info_column {
         margin-bottom: 20px;
@@ -92,7 +82,6 @@
           // text-align: center;
           font-weight: 700;
         } // h2
-     
       } // .info_column
       .actions_column {
         .actions_box {
@@ -111,14 +100,9 @@
             li {
               padding: 3px 0;
             } // li
-         
           } // ul
-       
         } // .actions_box
-     
       } // actions_column
-   
     } // .main_content.row
- 
   } // .content.container
 } // .users_show

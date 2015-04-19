@@ -8,7 +8,7 @@ class LanguagesController < ApplicationController
   	@languages = Language.order("languages.name ASC")
   end
 
-  def add
+  def new
     if params[:id]
       @language = Language.find(params[:id])
     end
@@ -20,7 +20,7 @@ class LanguagesController < ApplicationController
       flash[:success] = "The language '#{@language.name}' has been successfully created."
       redirect_to(action: 'show', id: @language.id)
     else
-      render('add')
+      render :new
     end
   end
 

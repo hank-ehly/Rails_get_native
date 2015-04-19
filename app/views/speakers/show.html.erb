@@ -1,6 +1,9 @@
 <div class="speakers show main">
 	<div class="container">
-		<h1><%= link_to "Speakers", speakers_path %> / <%= full_name_of(@speaker) %></h1>
+		<ol class="breadcrumb row">
+			<li><%= link_to "Speakers", speakers_path %></li>
+			<li class="active"><%= full_name_of(@speaker) %></li>
+		</ol>
 		<table class="table">
 			<tr>
 				<th>Name</th>

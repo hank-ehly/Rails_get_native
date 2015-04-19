@@ -32,6 +32,9 @@ class ApplicationController < ActionController::Base
     def admin_params
       params.require(:admin).permit(:first_name, :last_name, :email, :email_confirmation, :password, :password_confirmation)
     end
+    def collocation_params
+      params.require(:collocation).permit(:collocation, :context, :playlist_video_id)
+    end
     def language_params
       params.require(:language).permit(:name)
     end

@@ -2,11 +2,12 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<h1>
-				<%= @current_user_admin.first_name + " " + @current_user_admin.last_name %>
+				<%= full_name_of(@current_user_admin) %>
 				<% if @layout_style == 'Admin' %>
 				(Admin)
 				<% end %>
 			</h1>
+			<% unless @layout_style == 'Admin' %>
 			<p>Currently studying: </p>
 			<div class="dropdown">
 			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -22,6 +23,7 @@
 			    <li role="presentation"><a role="menuitem" href="#"><span class="glyphicon glyphicon-plus"></span> Add Language</a></li>
 			  </ul> <!-- .dropdown-menu -->
 			</div> <!-- .dropdown -->
+			<% end %>
 		</div> <!-- .col-sm-12 -->
 	</div> <!-- .row -->
 </div> <!-- .header.container -->

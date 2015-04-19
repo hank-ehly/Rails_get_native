@@ -291,3 +291,28 @@ KANA bugs:
 	</ul>
 </li>
 
+
+
+
+
+
+
+
+
+				<%= form_for @collocation do |f| %>
+					
+					<%= error_messages_for(@collocation) %>
+						
+					<div class="form-group">
+						<%= f.label :collocation %>
+						<%= f.text_field :collocation %>
+						<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
+					</div>
+					
+				<% end %>
+				  
+				<ul>
+				<% @collocations.each do |collocation| %>
+					<li><%= collocation %></li>
+				<% end %>
+				</ul>

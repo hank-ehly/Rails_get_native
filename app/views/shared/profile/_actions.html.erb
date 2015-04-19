@@ -15,13 +15,14 @@
 					<% end %>
 				<% end %>
 			</li>
+			<% unless @layout_style == 'Admin' %>
 			<li>
 				<%= link_to study_pages_path do %>
 					<span class="glyphicon glyphicon-apple"></span>
 					Study Now
 				<% end %>
 			</li>
-			<% if @layout_style == 'Admin' %>
+			<% else %>
 			<li>
 				<%= link_to new_video_path do %>
 					<span class="glyphicon glyphicon-plus"></span>

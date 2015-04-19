@@ -1,12 +1,9 @@
 <div class="speakers edit main">
 	<div class="container">
-		<h1>Edit Speaker: <%= full_name_of(@speaker) %></h1>
-		<p>
-			<%= link_to controller: 'speakers', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Speakers
-			<% end %>
-		</p>
+		<ol class="breadcrumb row">
+			<li><%= link_to "Speakers", speakers_path %></li>
+			<li class="active">Edit: <%= full_name_of(@speaker) %></li>
+		</ol>
 		<table class="table">
 			<tr>
 				<th>ID</th>
@@ -37,7 +34,7 @@
 				<td><%= @speaker.created_at %></td>
 				<td><%= @speaker.updated_at %></td>
 				<td>
-					<%= link_to "View", controller: 'speakers', action: 'show', id: @speaker.id %>
+					<%= link_to "View", speaker_path(@speaker.id) %>
 					<%= link_to "Delete", controller: 'speakers', action: 'delete', id: @speaker.id %>
 				</td>
 			</tr>
@@ -45,7 +42,9 @@
 		</table>
 		<hr>
 
-		<%= form_for :speaker, url: { controller: 'speakers', action: 'update', id: @speaker.id } do |f| %>
+		<%= form_for @speaker do |f| %>
+
+		<%= error_messages_for(@speaker) %>
 
 			<div class="form-group">
 				<%= f.label :first_name %>

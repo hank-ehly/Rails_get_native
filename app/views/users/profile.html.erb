@@ -8,7 +8,9 @@
 
 		<div class="main_content row">
 
-			<%= render "shared/profile/photo_section" %>
+			<% unless @layout_style == 'Admin' %>
+			<%= render "shared/profile/photo_section" %>	
+			<% end %>
 
 			<%= render "shared/profile/#{@view}" %>
 

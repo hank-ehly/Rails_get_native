@@ -1,98 +1,104 @@
 /* Config */
 
 $default-border-radius: 5px;
-ul li { list-style-type: none; }
+ul li {
+  list-style-type: none;
+}
+
 $default-border-color: #e7e7e7;
 $default-background-color: #f8f8f8;
 $sm: 768px;
 $md: 992px;
 $lg: 1200px;
-
 th {
-	font-weight: bold;
+  font-weight: bold;
+}
+
+ul {
+  padding: 0;
 }
 
 label,
 input[type=radio] {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .main .container {
-	@include border-radius;
-	background: #fff;
+  @include border-radius;
+  background: #fff;
+}
+
+.breadcrumb {
+  background: transparent;
 }
 
 // disable responsiveness
-.container {
-	width: 980px !important;
-}
-
+// .container {
+// 	width: 980px !important;
+// }
 textarea {
-	resize: none;
+  resize: none;
 }
-
 /* Headings */
 
 #{headings()} {
-	font-family: "Roboto", sans-serif;
-	font-weight: 300;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
 }
-
 /* Body */
 
 * {
-	font-style: "Open Sans", sans-serif;
-	font-weight: 300;
+  font-style: "Open Sans", sans-serif;
+  font-weight: 300;
 }
 
 body {
-	background: lighten(#eee, 2);
-	padding-bottom: 70px;	
+  background: lighten(#eee, 2);
+  padding-bottom: 70px;
 }
-
 /* Header */
 
-header .navbar-brand  {
-	font-family: "Quicksand", sans-serif;
-	font-weight: 700;
-	font-size: 1.5em;
+header .navbar-brand {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 700;
+  font-size: 1.5em;
 }
 
 .badge {
-	float: left;
-	margin-right: 10px;
+  float: left;
+  margin-right: 10px;
 }
 
 footer {
-	line-height: 30px;
-	margin-top: 20px;
-	width: 100%;
-	float: none;
-	position: relative;
-	background: $default-background-color;
-	border-top: 1px solid $default-border-color;
-	@include susy-breakpoint($sm) {
-		position: fixed;
-		height: 30px;
-		bottom: 0;
-	}
-	p {
-		margin: 0;
-		padding: 0;
-		@include susy-breakpoint($sm) {
-			float: left;
-			display: inline-block;
-		}
-	}
-	ul {
-		padding: 0;
-		@include susy-breakpoint($sm) {
-			display: inline-block;
-			float: right;
-			li {
-				display: inline-block;
-				padding: 0 5px;
-			}
-		}
-	}
+  line-height: 30px;
+  margin-top: 20px;
+  width: 100%;
+  float: none;
+  position: relative;
+  background: $default-background-color;
+  border-top: 1px solid $default-border-color;
+  @include susy-breakpoint($sm) {
+    position: fixed;
+    height: 30px;
+    bottom: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    @include susy-breakpoint($sm) {
+      float: left;
+      display: inline-block;
+    }
+  }
+  ul {
+    padding: 0;
+    @include susy-breakpoint($sm) {
+      display: inline-block;
+      float: right;
+      li {
+        display: inline-block;
+        padding: 0 5px;
+      }
+    }
+  }
 }

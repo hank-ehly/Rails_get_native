@@ -1,6 +1,9 @@
 <div class="topics show main">
 	<div class="container">
-		<h1><%= link_to "Topics", topics_path %> / <%= @topic.name if @topic %></h1>
+		<ol class="breadcrumb row">
+		  <li><%= link_to "Topics", topics_path %></li>
+		  <li class="active"><%= @topic.name %></li>
+		</ol>
 		<table class="table">
 			<tr>
 				<th>Name</th>

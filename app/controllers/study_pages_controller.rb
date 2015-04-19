@@ -19,6 +19,7 @@ class StudyPagesController < ApplicationController
     @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
+    @collocation = Collocation.new
     get_video_url
   end
 

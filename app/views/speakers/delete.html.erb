@@ -1,19 +1,15 @@
 <div class="speakers delete main">
 	<div class="container">
-		<h1>Delete Speaker: <%= full_name_of(@speaker) %></h1>
-		<p>
-			<%= link_to controller: 'speakers', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Speakers
-			<% end %>
-		</p>
+		<ol class="breadcrumb row">
+			<li><%= link_to "Speakers", speakers_path %></li>
+			<li class="active">Delete: <%= full_name_of(@speaker) %></li>
+		</ol>
 		<table class="table">
 			<tr>
 				<th>ID</th>
 				<th>Name</th>
 				<th>Native Language</th>
 				<th># of Videos</th>
-				<th># of Topics</th>
 				<th>Gender</th>
 				<th>Age</th>
 				<th>Created at</th>
@@ -32,7 +28,6 @@
 					<% end %>
 				</td>
 				<td><%= @speaker.videos.count %></td>
-				<td><%= @speaker.topics.count %></td>
 				<td><%= @speaker.gender ? 'Male' : 'Female' %></td>
 				<td><%= age_range_of(@speaker) %></td>
 				<td><%= @speaker.created_at %></td>

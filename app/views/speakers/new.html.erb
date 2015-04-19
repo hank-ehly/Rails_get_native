@@ -1,13 +1,13 @@
 <div class="speakers add main">
 	<div class="container">
-		<h1>Add Speaker</h1>
-		<p>
-			<%= link_to controller: 'speakers', action: 'index' do %>
-				<span class="glyphicon glyphicon-backward"></span>
-				All Speakers
-			<% end %>
-		</p>
-		<%= form_for :speaker, url: { controller: 'speakers', action: 'create' } do |f| %>
+		<!-- <h1>Add Speaker</h1> -->
+		<ol class="breadcrumb row">
+			<li><%= link_to "Speakers", speakers_path %></li>
+			<li class="active">New Speaker</li>
+		</ol>
+		<%= form_for @speaker do |f| %>
+
+		<%= error_messages_for(@speaker) %>
 
 			<div class="form-group">
 				<%= f.label :first_name %>

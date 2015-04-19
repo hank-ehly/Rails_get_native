@@ -37,7 +37,7 @@ div.study_pages.index {
 }
 
 .playPauseButtonContainer {
-  width: 640px;
+  // width: 640px;
   margin: 0 auto;
   text-align: center;
   padding: 20px;
@@ -52,16 +52,20 @@ div.study_pages.main {
     text-align: center;
   }
   button#shadowingPopover,
-  button#speakingPopover {
+  button#speakingPopover,
+  button#listeningPopover,
+  button#writingPopover,
+  button#submitWritingPopover {
     display: block;
     margin: 0 auto;
     margin-bottom: 20px;
   }
 }
 
-.study_pages.shadowing {
+.study_pages.shadowing,
+.study_pages.listening {
   .video_info {
-    width: 640px;
+    // width: 640px;
     margin: 0 auto;
     a {
       float: right;
@@ -75,23 +79,191 @@ div.study_pages.main {
 
 .study_pages.speaking {
   .video_info {
-    width: 480px;
+    // width: 480px;
+    @include clearfix;
     a {
       float: right;
     }
   }
-  div.video_instance {
-    float: left;
-  }
   div.scripts {
-    float: right;
-    width: 460px;
+    @include box-sizing(border-box);
+    padding: 0;
+    margin-top: 20px;
     .script {
-      // border: 1px solid #ddd;
-      // border-top: none;
-      @include box-sizing(border-box);
-      padding: 10px;
+      // overflow: scroll;
       line-height: 2em;
     }
+  }
+}
+
+.video_info {
+  padding: 5px 0px;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.study_pages.speaking {
+  .main_video_content {
+    text-align: center;
+    .video_instance, .scripts {
+      vertical-align: top;
+      .script {
+        @media screen and (max-width: 768px) {
+          margin-top: 15px;
+        }
+        text-align: left;
+        line-height: 2.2em;
+      }
+    }
+  }
+}
+
+#collocation_list {
+  padding: 0;
+}
+
+form#new_collocation {
+  padding-top: 10px;
+  margin: 15px 0;
+  label {
+    margin: 0;
+    display: block;
+  }
+  #collocation_collocation {
+    width: auto;
+    display: inline-block;
+  }
+  input[type=submit] {
+    display: inline-block;
+  }
+}
+
+.study_pages.shadowing,
+.study_pages.listening {
+  @media screen and (min-width: 670px) {
+    .video_instance {
+      width: 100%;
+    }
+    .video-container,
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      padding: 0;
+      margin: 0 auto;
+      position: relative;
+      width: 640px;
+      height: 370px;
+    }
+    .video_info {
+      width: 640px;
+    }
+  }
+}
+
+.study_pages.speaking {
+  @media screen and (min-width: 768px) and (max-width: 992px) {
+    .video_instance {
+      display: inline-block;
+    }
+    .video-container,
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      padding: 0;
+      width: 352px;
+      height: 198px;
+    }
+    .video_info {
+      width: 352px;
+    }
+    div.scripts {
+      padding: 0 10px 10px 10px;
+      display: inline-block;
+      margin-top: 0px;
+      width: 352px;
+      .script {
+        margin-top: 0px;
+        @include box-sizing(border-box);
+      }
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .video_instance {
+      display: inline-block;
+    }
+    .video-container,
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      padding: 0;
+      width: 448px;
+      height: 252px;
+    }
+    .video_info {
+      width: 448px;
+    }
+    div.scripts {
+      padding: 0 10px 10px 10px;
+      display: inline-block;
+      margin-top: 0px;
+      width: 448px;
+      .script {
+        margin-top: 0px;
+        overflow: scroll;
+        @include box-sizing(border-box);
+        line-height: 2em;
+      }
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .video_instance {
+      display: inline-block;
+    }
+    .video-container,
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+      padding: 0;
+      width: 544px;
+      height: 306px;
+    }
+    .video_info {
+      width: 544px;
+    }
+    div.scripts {
+      padding: 0 10px 10px 10px;
+      display: inline-block;
+      margin-top: 0px;
+      width: 544px;
+      .script {
+        overflow: scroll;
+        @include box-sizing(border-box);
+        line-height: 2em;
+      }
+    }
+  }
+}
+
+// writing
+.info_container {
+  padding: 5px 0px;
+  input {
+    float: right;
   }
 }

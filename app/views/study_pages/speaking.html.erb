@@ -2,17 +2,19 @@
 	<div class="container">
 		<h1>Speaking</h1>
 
-		<button type="button" id="speakingPopover" class="btn btn-default">What do I do?</button>
+		<button type="button" id="speakingPopover" class="btn btn-default">Instructions <span class="caret"></span></button>
 
 		<div class="main_video_content">
 		
 		<div class="video_instance">
-			<iframe width="480" height="270" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<div class="video-container">
+				<iframe width="480" height="270" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			</div>
 			<div class="video_info">
 				<div class="pull-left">
 					<span class="countdown"></span>
-					<button class="play_pause">Play/Pause</button>
-					<span class="paused_alert">PAUSED</span>
+					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
+					<!-- <span class="paused_alert">PAUSED</span> -->
 				</div>
 				<%= link_to "Continue", action: 'listening', id: @playlist_video.id, t: @time %>
 			</div>
@@ -23,10 +25,40 @@
 			  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
 			  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
 			  <li role="presentation" id="na"><a href="#">N/A</a></li>
+			  <li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li>
 			</ul>
 			<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
 			<div class="script" id="english_script"><%= @video.english_script %></div>
-		</div>
+			<div class="script" id="empty_script_tab"></div>
+			<div class="script" id="collocations">
+
+
+
+				<%= form_for @collocation, remote: true do |f| %>
+					
+					<%= error_messages_for @collocation %>
+						
+					<div class="form-group">
+
+						<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
+						<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
+						<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
+
+					</div>
+					
+				<% end %>
+
+				<ul id="collocation_list">
+					<% @playlist_video.collocations.each do |collocation| %>
+						<li class="collocation_first"><%= collocation.collocation %></li>
+						<li class="well well-sm collocation_well"><%= collocation.context %></li>
+					<% end %>
+				</ul>
+				  
+				
+			</div> <!-- collocation -->
+
+		</div> <!-- scripts -->
 
 		</div> <!-- main_video_content -->
 		

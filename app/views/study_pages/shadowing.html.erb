@@ -2,14 +2,15 @@
 	<div class="container">
 		<h1>Shadowing</h1>
 
-		<button type="button" id="shadowingPopover" class="btn btn-default">What do I do?</button>
+		<button type="button" id="shadowingPopover" class="btn btn-default">Instructions <span class="caret"></span></button>
 
 		<div class="video_instance">
-			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<div class="video-container">
+				<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			</div>
 		</div>
 
 		<div class="video_info">
-			<script> studyTime = originalTime </script>
 			<span class="countdown"><%= @time %></span>
 			<%= link_to "Continue", action: 'speaking', id: @playlist_video.id, t: @time %>
 		</div>
@@ -17,7 +18,7 @@
 
 		<div class="playPauseButtonContainer">
 			<button class="play_pause btn btn-primary btn-lg"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
-			<span class="paused_alert">PAUSED</span>
+			<!-- <span class="paused_alert">PAUSED</span> -->
 		</div>
 
 		

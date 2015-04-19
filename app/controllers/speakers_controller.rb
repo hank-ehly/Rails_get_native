@@ -15,7 +15,8 @@ class SpeakersController < ApplicationController
     @videos = Video.all
   end
 
-  def add
+  def new
+    @speaker = Speaker.new
   end
 
   def create
@@ -24,7 +25,7 @@ class SpeakersController < ApplicationController
       flash[:success] = "Speaker successfully created."
       redirect_to action: 'index'
     else
-      render :add
+      render :new
     end
   end
 

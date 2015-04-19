@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   root 'users#profile'
 
-  resources :admins, :users, :languages, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages
+  resources :admins, :users, :languages, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages, :collocations
 
   match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post, :patch]
 

@@ -1,12 +1,9 @@
 <div class="topics edit main">
 	<div class="container">
-		<h1><%= @topic.name if @topic %></h1>
-		<p>
-		<%= link_to controller: 'topics', action: 'index' do %>
-		<span class="glyphicon glyphicon-backward"></span>
-		All Topics
-		<% end %>
-		</p>
+		<ol class="breadcrumb row">
+		  <li><%= link_to "Topics", topics_path %></li>
+		  <li class="active">Edit: <%= @topic.name %></li>
+		</ol>
 		<table class="table">
 			<tr>
 				<th>Name</th>
