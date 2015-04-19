@@ -8,6 +8,10 @@
 			<%= link_to topic_path(@video.topic.id) do %>
 				<%= @video.topic.name %>
 			<% end %>
+			<% unless @layout_style == 'Admin' %>
+			<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
+		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-sm btn-default' %>
+			<% end %>
 		</h1>
 		<% if @layout_style == 'Admin' %>
 		<table class="table">
@@ -31,31 +35,34 @@
 		</table>
 		<% end %>
 
+		<div class="main_video_content">
+
 		<div class="video_instance">
-			<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<div class="video-container">
+				<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			</div>
 		</div>
 
-		<div class="japanese_script">
-		<h3>Japanese Script</h3>
-			<p><%= @video.japanese_script %></p>
+		<div class="scripts">
+			<ul class="nav nav-tabs script_tabs">
+			  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+			  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+			  <li role="presentation" id="na"><a href="#">N/A</a></li>
+			</ul>
+			<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
+			<div class="script" id="english_script"><%= @video.english_script %></div>
+			<div class="script" id="empty_script_tab"></div>
 		</div>
 
-		<div class="english_script">
-		<h3>English Script</h3>
-			<p><%= @video.english_script %></p>
 		</div>
-
-		<% unless @layout_style == 'Admin' %>
-
-		<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
-		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-large btn-primary' %>
-		<% end %>
 
 		<% end %>
 
 		<% if @layout_style == 'Admin' %>
 			<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
 		<% end %>
+
+
 
 
 	</div>

@@ -37,7 +37,6 @@ div.study_pages.index {
 }
 
 .playPauseButtonContainer {
-  // width: 640px;
   margin: 0 auto;
   text-align: center;
   padding: 20px;
@@ -77,7 +76,8 @@ div.study_pages.main {
   padding-top: 20px;
 }
 
-.study_pages.speaking {
+.study_pages.speaking,
+.videos.show {
   .video_info {
     // width: 480px;
     @include clearfix;
@@ -118,7 +118,8 @@ div.study_pages.main {
   height: 100%;
 }
 
-.study_pages.speaking {
+.study_pages.speaking,
+.videos.show {
   .main_video_content {
     text-align: center;
     .video_instance, .scripts {
@@ -176,7 +177,8 @@ form#new_collocation {
   }
 }
 
-.study_pages.speaking {
+.study_pages.speaking,
+.videos.show {
   @media screen and (min-width: 768px) and (max-width: 992px) {
     .video_instance {
       display: inline-block;
