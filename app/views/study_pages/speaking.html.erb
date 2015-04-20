@@ -12,11 +12,11 @@
 			</div>
 			<div class="video_info">
 				<div class="pull-left">
-					<span class="countdown"></span>
+					<span class="countdown"><%= session[:study_time] %></span>
 					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
 					<!-- <span class="paused_alert">PAUSED</span> -->
 				</div>
-				<%= link_to "Continue", action: 'listening', id: @playlist_video.id, t: @time %>
+				<%= link_to "Continue", action: 'listening', id: @playlist_video.id %>
 			</div>
 		</div>
 

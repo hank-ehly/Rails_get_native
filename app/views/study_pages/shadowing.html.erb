@@ -11,8 +11,8 @@
 		</div>
 
 		<div class="video_info">
-			<span class="countdown"><%= @time %></span> <span class="paused_alert">paused</span>
-			<%= link_to "Continue", action: 'speaking', id: @playlist_video.id, t: @time %>
+			<span class="countdown"><%= session[:study_time] %></span> <span class="paused_alert">paused</span>
+			<%= link_to "Continue", action: 'speaking', id: @playlist_video.id %>
 		</div>
 
 

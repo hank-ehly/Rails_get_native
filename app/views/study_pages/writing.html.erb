@@ -11,7 +11,7 @@
 		  	<%= label_tag :message, "Answer:" %>
 		  	<%= text_area_tag :message, "", rows: 8, placeholder: "内容がないよ〜", id: "writingTextField" ,class: 'form-control' %>
 		  	<div class="info_container">
-					<span class="countdown"></span>
+					<span class="countdown"><%= session[:study_time] %></span>
 					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
 					<span>文字数: <span id="charNum"></span></span>
 					<!-- <span class="paused_alert">PAUSED</span> -->

@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
 $(document).ready(function() {
@@ -147,9 +147,6 @@ $(document).ready(function() {
     var len = $(this).val().length;
     $('#charNum').text(len);
   });
-
-  var subLen = $('#message').val().length
-  $('#submit_length').text(subLen)
 
 
 
