@@ -17,6 +17,25 @@
 //= require bootstrap-sprockets
 $(document).ready(function() {
 
+  // smooth scrolling
+
+  $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var target = $(this.hash);
+      target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+      if (target.length) {
+        $('html,body').animate({
+          scrollTop: target.offset().top
+        }, 400);
+        return false;
+      }
+    }
+  });
+
+  // tooltip on videos.show
+
+  $('[data-toggle="tooltip"]').tooltip()
+
   // $('tr.study_video_instance td:first-child input[type=radio]').hide();
   $('tr.study_video_instance:nth-child(2) td:first-child input[type=radio]').prop("checked", true);
   $('tr.study_video_instance:nth-child(2)').addClass('active');
@@ -103,11 +122,11 @@ $(document).ready(function() {
 
   // $("form#new_collocation").on("submit", function(event) {
 
-    $('#account_settings').on('ajax:complete', function(event, xhr, status, error) {
-      // insert the failure message inside the "#account_settings" element
-      // $(this).append(xhr.responseText)
-      console.log('you did it');
-    });
+  $('#account_settings').on('ajax:complete', function(event, xhr, status, error) {
+    // insert the failure message inside the "#account_settings" element
+    // $(this).append(xhr.responseText)
+    console.log('you did it');
+  });
 
   // });
 

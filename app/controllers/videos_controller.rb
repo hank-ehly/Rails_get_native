@@ -8,10 +8,25 @@ class VideosController < ApplicationController
   end
 
   def show
+    
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
-    @playlist = Playlist.find(User.find(session[:user_id]).playlists.first) if session[:user_id]
+
+    if session[:user_id]
+      @playlist = Playlist.find(User.find(session[:user_id]).playlists.first)
+      @user = User.find(session[:user_id])
+      @user_playlist = Playlist.find_by(user_id: @user.id)
+      @collocation = Collocation.new
+      # if user's playlist contains playlist video where video_id == @video.id
+      @user_playlist.playlist_videos.each do |playlist_video|
+        if playlist_video.video_id == @video.id
+          @playlist_video = PlaylistVideo.where(video_id: @video.id).first
+        end
+      end
+      # disable "add to playlist" button with tooltip (this video is already in your playlist!)
+      # show 'collocations form inside ul.scripts'
+    end
   end
 
   def new
@@ -21,7 +36,7 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
-    
+
     url = Domainator.parse(@video.original_url)
 
     if url == "youtube.com"

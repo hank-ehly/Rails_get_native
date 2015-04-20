@@ -1,6 +1,7 @@
 <div class="videos show main">
 	<div class="container">
 		<h1>
+
 			<%= link_to speaker_path(@video.speaker.id) do %>
 				<%= full_name_of(@video.speaker) %>
 			<% end %>
@@ -8,55 +9,125 @@
 			<%= link_to topic_path(@video.topic.id) do %>
 				<%= @video.topic.name %>
 			<% end %>
+
 			<% unless @layout_style == 'Admin' %>
-			<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
-		  <%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: 'btn btn-sm btn-default' %>
+				<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
+					<% if @playlist_video %>
+						<div class="tooltip_added" data-toggle="tooltip" data-placement="top" title="This video is already in your playlist!">	
+							<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', disabled: "disabled", class: "btn btn-sm btn-default" %>
+						</div>	
+					<% else %>
+						<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: "btn btn-sm btn-default" %>
+					<% end %>
+				<% end %>
 			<% end %>
+
 		</h1>
+
+
+
+
+	<% debug = false %>
+	<% if debug %>
+		<div class="debug">
+			<ul>
+				<li>User id: <%= @user.id %>: <%= full_name_of(@user) %></li>
+				<li>User playlist id: <%= @user.playlists.first.id %></li>
+				<li># of playlist videos in user playlist: <%= @user.playlists.first.playlist_videos.count %></li>
+				<% if @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.count %>
+				<li># of collocations for THIS PAGE playlist video <%= @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.count %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+
+
+
+
+
 		<% if @layout_style == 'Admin' %>
-		<table class="table">
-			<tr>
-				<th>ID</th>
-				<th>Created at</th>
-				<th>Updated at</th>
-				<th>Actions</th>
-			</tr>
-			<% if @video %>
-			<tr>
-				<td><%= @video.id %></td>
-				<td><%= @video.created_at %></td>
-				<td><%= @video.updated_at %></td>
-				<td>
-					<%= link_to "Edit", edit_video_path(@video.id) %>
-					<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
-				</td>
-			</tr>
-			<% end %>
-		</table>
+
+			<table class="table">
+				<tr>
+					<th>ID</th>
+					<th>Created at</th>
+					<th>Updated at</th>
+					<th>Actions</th>
+				</tr>
+				<% if @video %>
+				<tr>
+					<td><%= @video.id %></td>
+					<td><%= @video.created_at %></td>
+					<td><%= @video.updated_at %></td>
+					<td>
+						<%= link_to "Edit", edit_video_path(@video.id) %>
+						<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+
 		<% end %>
+
+
+
+
+
 
 		<div class="main_video_content">
 
-		<div class="video_instance">
-			<div class="video-container">
-				<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+			<div class="video_instance">
+				<div class="video-container">
+					<iframe width="640" height="390" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe>
+				</div>
 			</div>
-		</div>
 
-		<div class="scripts">
-			<ul class="nav nav-tabs script_tabs">
-			  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
-			  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
-			  <li role="presentation" id="na"><a href="#">N/A</a></li>
-			</ul>
-			<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
-			<div class="script" id="english_script"><%= @video.english_script %></div>
-			<div class="script" id="empty_script_tab"></div>
-		</div>
+			<div class="scripts">
+				<ul class="nav nav-tabs script_tabs">
+				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+				  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+				  <li role="presentation" id="na"><a href="#">N/A</a></li>
+				  <% unless @layout_style=='Admin' %><li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li><% end %>
+				</ul>
+				<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
+				<div class="script" id="english_script"><%= @video.english_script %></div>
+				<div class="script" id="empty_script_tab"></div>
 
-		</div>
+				<% unless @layout_style == 'Admin' %>
+					<% if @playlist_video %>
+					
+					<div class="script" id="collocations">
 
-		<% end %>
+						<%= form_for @collocation, remote: true do |f| %>
+							
+							<%= error_messages_for @collocation %>
+								
+							<div class="form-group">
+								<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
+								<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
+								<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
+							</div>
+							
+						<% end %> <!-- form_for @collocation -->
+			
+						<ul id="collocation_list">
+							<% @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.each do |collocation| %>
+								<li class="collocation_first"><%= collocation.collocation %></li>
+								<li class="well well-sm collocation_well"><%= collocation.context %></li>
+							<% end %>
+						</ul>
+						  
+					</div> <!-- collocation -->
+					<% end %><!-- if @playlist_video -->
+				<% end %> <!-- unless @layout_style == 'Admin' -->
+			</div> <!-- scripts -->
+		</div> <!-- main_video_content -->
+
+		
+
+
+
 
 		<% if @layout_style == 'Admin' %>
 			<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>

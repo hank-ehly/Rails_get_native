@@ -16,7 +16,7 @@ class StudyPagesController < ApplicationController
   end
 
   def speaking
-    @time = params[:t]
+    # @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     @collocation = Collocation.new
@@ -24,14 +24,14 @@ class StudyPagesController < ApplicationController
   end
 
   def listening
-    @time = params[:t]
+    # @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
   end
 
   def writing
-    @time = params[:t]
+    # @time = params[:t]
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url

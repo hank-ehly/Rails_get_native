@@ -1,21 +1,19 @@
 $(function() {
-  'use strict';
+  // 'use strict';
 
 
   // declare vars
-  var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, originalTime, studyTime;
+  var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, studyTime;
 
-
-
-
-
-
-
+  // $('body > div > div > form').on("submit", function() {
+  //   originalTime = $('#foo_study_time').val();
+  //   console.log(originalTime);
+  // });
 
   // get the time in minutes
-  originalTime = parseInt($('.countdown').html());
+  time_minutes = parseInt($('.countdown').html());
   // change it into seconds
-  time_seconds = (studyTime * 60);
+  time_seconds = (time_minutes * 60);
   // divide it by 4
   time_by_4 = (time_seconds / 4);
 
@@ -58,7 +56,17 @@ $(function() {
       incrementTimeInterval = setInterval(incrementTime, 1000);
       state = true;
     }
+  });
 
+  $('#shadowingPopover').on('click', function() {
+    $('.paused_alert').toggle()
+    if (state) {
+      clearInterval(incrementTimeInterval);
+      state = false;
+    } else if (!state) {
+      incrementTimeInterval = setInterval(incrementTime, 1000);
+      state = true;
+    }
   });
 
 

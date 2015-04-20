@@ -32,8 +32,11 @@ class UsersController < ApplicationController
     @speakers = Speaker.order("speakers.first_name ASC")
     @languages = Language.order("languages.name ASC")
     @admins = Admin.order("admins.first_name ASC")
-    @user_playlist = @user.playlists.first
-    @playlist_videos = @user_playlist.playlist_videos
+    unless @layout_style == 'Admin'
+      @user_playlist = @user.playlists.first
+      @playlist_videos = @user_playlist.playlist_videos
+    end
+
   end
 
   def edit

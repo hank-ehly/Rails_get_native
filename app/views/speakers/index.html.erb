@@ -1,12 +1,25 @@
 <div class="speakers index main">
 <div class="container">
-		
+
+	<h2><i>Japanese Language</i></h2>
+	<div class="dropdown">
+	  <button class="btn btn-default dropdown-toggle" type="button" id="selectLanguageIndex" data-toggle="dropdown" aria-expanded="true">
+	  Switch Languages
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" role="menu" aria-labelledby="selectLanguageIndex">
+			<% Language.order("languages.name ASC").each do |language| %>
+			<li role="presentation"><a role="menuitem" href="#"><%= language.name %></a></li>	<!-- can add class 'disabled' -->
+			<% end %>
+	    <li role="presentation" class="divider"></li>
+	    <li role="presentation"><a role="menuitem" href="#"><span class="glyphicon glyphicon-plus"></span> Add Language</a></li>
+	  </ul> <!-- .dropdown-menu -->
+	</div> <!-- .dropdown -->
+	
 	<h2>
 	<%= link_to "Topics", topics_path %>
 	|
 	<span>Speakers</span>
-	|
-	<%= link_to "Languages", languages_path %>
 </h2>
 	<h4><%= pluralize(@speakers.size, "speaker") %></h4>
 
