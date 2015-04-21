@@ -2,6 +2,10 @@
 	<h2>Playlist</h2>
 	
 
+	<% if @user_playlist.videos.count < 1 %>
+		<p>You haven't added any videos to your playlist yet!</p>
+		<%= link_to "Browse Videos!", topics_path %>
+	<% else %>
 
 	<table class="table table-hover">
 		<tr>
@@ -10,9 +14,8 @@
 			<th>Speaker</th>
 			<th>Actions</th>
 		</tr>
-		<% if @user.playlists.first %>
-		<% my_playlist = @user.playlists.first %>
-		<% my_playlist.videos.each do |video| %>
+
+		<% @user_playlist.videos.each do |video| %>
 			<% 
 			url_queries = Rack::Utils.parse_query URI(video.original_url).query
 			video_url = url_queries["v"] 
@@ -39,13 +42,9 @@
 				</td>
 			</tr>
 		<% end %>
-		<% else %>
-			<tr>
-				<td>no</td>
-				<td>data</td>
-				<td>yet.</td>
-			</tr>
-		<% end %>
+
 	</table>
+
+	<% end %>
 
 </div> <!-- info_column col-sm-7 -->

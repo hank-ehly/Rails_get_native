@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419054848) do
+ActiveRecord::Schema.define(version: 20150420234959) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -98,13 +98,9 @@ ActiveRecord::Schema.define(version: 20150419054848) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.string   "title",           limit: 255
-    t.integer  "duration",        limit: 4
-    t.text     "description",     limit: 65535
     t.integer  "views_count",     limit: 4
     t.integer  "speaker_id",      limit: 4
     t.integer  "language_id",     limit: 4
-    t.text     "script",          limit: 65535
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.integer  "topic_id",        limit: 4

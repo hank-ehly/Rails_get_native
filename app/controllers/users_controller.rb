@@ -21,9 +21,7 @@ class UsersController < ApplicationController
   end
 
   def profile
-    if session[:user_id]
-      @user = User.find(session[:user_id])
-    end
+    @user = User.find(session[:user_id]) if session[:user_id]
     @view = params[:view]
     @view.blank? ? @view = 'account_info' : nil
     @actives = {@view => "active"}
@@ -32,11 +30,7 @@ class UsersController < ApplicationController
     @speakers = Speaker.order("speakers.first_name ASC")
     @languages = Language.order("languages.name ASC")
     @admins = Admin.order("admins.first_name ASC")
-    unless @layout_style == 'Admin'
-      @user_playlist = @user.playlists.first
-      @playlist_videos = @user_playlist.playlist_videos
-    end
-
+    unless @layout_style == 'Admin'; @user_playlist = @user.playlists.first; @playlist_videos = @user_playlist.playlist_videos; end
   end
 
   def edit
