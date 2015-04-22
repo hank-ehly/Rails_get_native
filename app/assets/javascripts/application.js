@@ -80,6 +80,7 @@ $(document).ready(function() {
   var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
 
   $('#shadowingPopover').popover({
+    title: "Shadowing",
     html: true,
     container: 'body',
     toggle: 'popover',
@@ -88,6 +89,7 @@ $(document).ready(function() {
   })
 
   $('#speakingPopover').popover({
+    title: "Speaking",
     html: true,
     container: 'body',
     toggle: 'popover',
@@ -96,6 +98,7 @@ $(document).ready(function() {
   })
 
   $('#listeningPopover').popover({
+    title: 'Listening',
     html: true,
     container: 'body',
     toggle: 'popover',
@@ -104,6 +107,7 @@ $(document).ready(function() {
   })
 
   $('#writingPopover').popover({
+    title: 'Writing',
     html: true,
     container: 'body',
     toggle: 'popover',
@@ -117,6 +121,20 @@ $(document).ready(function() {
     toggle: 'popover',
     placement: 'bottom',
     content: submitWritingPopoverContent
+  })
+
+
+
+  // on clicking of pause button
+  $('button.play_pause').on('click', function() {
+    // check to see if popover is visible
+    var isVisible = $('.ppover').data('bs.popover').tip().hasClass('in');
+    // if it's visible, hide it
+    if (isVisible) {
+      $('.ppover').popover('hide');
+    } else {
+      return false;
+    }
   })
 
   // writing
