@@ -3,6 +3,7 @@ class SpeakersController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
+  before_action :sent_speaker, except: [:index, :new, :create]
 
 
 
@@ -11,7 +12,7 @@ class SpeakersController < ApplicationController
   end
 
   def show
-    @speaker = Speaker.find(params[:id])
+    # @speaker = Speaker.find(params[:id])
     @videos = Video.all
   end
 
@@ -30,11 +31,11 @@ class SpeakersController < ApplicationController
   end
 
   def edit
-    @speaker = Speaker.find(params[:id])
+    # @speaker = Speaker.find(params[:id])
   end
 
   def update
-    @speaker = Speaker.find(params[:id])
+    # @speaker = Speaker.find(params[:id])
     if @speaker.update_attributes(speaker_params)
       flash[:success] = "#{@speaker.first_name} #{@speaker.last_name}'s information was successfully updated."
       redirect_to(action: 'show', id: @speaker.id)
@@ -44,11 +45,11 @@ class SpeakersController < ApplicationController
   end
 
   def delete
-    @speaker = Speaker.find(params[:id])
+    # @speaker = Speaker.find(params[:id])
   end
 
   def destroy
-    @speaker = Speaker.find(params[:id])
+    # @speaker = Speaker.find(params[:id])
     if @speaker.destroy
       flash[:success] = "#{@speaker.first_name} #{@speaker.last_name} was successfully destroyed."
       redirect_to(action: 'index')
@@ -56,5 +57,11 @@ class SpeakersController < ApplicationController
       render('delete')
     end
   end
+
+  private
+
+    def sent_speaker
+      @speaker = Speaker.find(params[:id])
+    end
 
 end

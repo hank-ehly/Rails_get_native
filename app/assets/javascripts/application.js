@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
 $(document).ready(function() {
 
   // smooth scrolling
@@ -118,28 +119,6 @@ $(document).ready(function() {
     content: submitWritingPopoverContent
   })
 
-  // collocations form
-
-  // $("form#new_collocation").on("submit", function(event) {
-
-  $('#account_settings').on('ajax:complete', function(event, xhr, status, error) {
-    // insert the failure message inside the "#account_settings" element
-    // $(this).append(xhr.responseText)
-    console.log('you did it');
-  });
-
-  // });
-
-  // $.ajax({
-  //   method: "POST",
-  //   url: "/collocations/create",
-  //   data: {
-  //     id: //the id,
-  //     collocation: // the text,
-  //     context: // the context
-  //   }
-  // })
-
   // writing
 
   $('#charNum').text("0");
@@ -147,8 +126,6 @@ $(document).ready(function() {
     var len = $(this).val().length;
     $('#charNum').text(len);
   });
-
-
 
 
 });

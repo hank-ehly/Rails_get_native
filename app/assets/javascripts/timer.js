@@ -58,15 +58,15 @@ $(function() {
     }
   });
 
-  $('#shadowingPopover').on('click', function() {
+  $('.ppover').on('click', function() {
     $('.paused_alert').toggle()
     if (state) {
       clearInterval(incrementTimeInterval);
       state = false;
-    } else if (!state) {
+    }/* else if (!state) {
       incrementTimeInterval = setInterval(incrementTime, 1000);
       state = true;
-    }
+    }*/
   });
 
 
