@@ -51,9 +51,11 @@ $(function() {
     $('.paused_alert').toggle()
     if (state) {
       clearInterval(incrementTimeInterval);
+      $('#writingTextField').attr('disabled', 'disabled');
       state = false;
     } else if (!state) {
       incrementTimeInterval = setInterval(incrementTime, 1000);
+      $('#writingTextField').removeAttr('disabled');
       state = true;
     }
   });

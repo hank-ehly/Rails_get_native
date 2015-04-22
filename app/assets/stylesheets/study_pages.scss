@@ -270,7 +270,9 @@ form#new_collocation {
   }
 }
 
-
 #player {
   pointer-events: none;
+  body {
+    background: rgba(#000, .5);
+  }
 }

@@ -1,100 +1,3 @@
-<script>
-
-	// load javascript YT API
-	var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-
-	var player;
-	function onYouTubeIframeAPIReady() {
-	  player = new YT.Player('player', {
-	    height: '390',
-	    width: '640',
-	    videoId: '<%= @video_url %>',
-	    playerVars: 
-	    {
-	      controls: 0,
-	      modestbranding: 1,
-	      showinfo: 0,
-	      autoplay: 1,
-	      loop: 1,
-	      playlist: '<%= @video_url %>'
-	      // enablejsapi: 1
-	    },
-	    events: {
-	      'onReady': onPlayerReady,
-	      'onStateChange': onPlayerStateChange
-	    }
-	  });
-	}
-
-
-  function onPlayerReady(event) {
-    // event.target.playVideo();
-  }
-
-  function onPlayerStateChange(event) {
-  	console.log(event.data);
-    if (event.data == YT.PlayerState.PLAYING) {
-      incrementTimeInterval = setInterval(incrementTime, 1000);
-    } else if (event.data == YT.PlayerState.PAUSED) {
-    	clearInterval(incrementTimeInterval);
-    }
-
-  }
-  function stopVideo() {
-    // player.stopVideo();
-  }
-
-    var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, studyTime;
-
-  // $('body > div > div > form').on("submit", function() {
-  //   originalTime = $('#foo_study_time').val();
-  //   console.log(originalTime);
-  // });
-
-
-$(document).ready(function() {
-
-  // var button = document.getElementById('playPause');
-  $('button.play_pause').on('click', function() {
-
-  	// ********* GET DURATION
-  	// console.log(player.getDuration()); <-- get video duration
-
-  	// ********* GET PLAYER STATE **********
-  	// console.log(player.getPlayerState());
-  	// console.log(YT.PlayerState.PLAYING);
-
-
-  	if (player.getPlayerState() == YT.PlayerState.PAUSED) {
-  		player.playVideo();
-  		// incrementTimeInterval = setInterval(incrementTime, 1000);
-  	} else if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-  		player.pauseVideo();
-  		// clearInterval(incrementTimeInterval);
-  	}
-
-  })
-
-  $('button.btn.btn-default').on('click', function() {
-  	if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-  		player.pauseVideo();
-  		// clearInterval(incrementTimeInterval);
-  	}
-  })
-
-  // event.data == YT.PlayerState.PLAYING
-  // event.data returns integer corresponding to YT.PlayerState.PLAYING/PAUSED/etc...
-  // to check player state, echo event.data
-
-
-  });
-
-</script>
 <div class="study_pages writing main">
 	<div class="container">
 
@@ -106,7 +9,7 @@ $(document).ready(function() {
 		  	<p><strong>Q:</strong> What did the speaker talk about?</p>
 		  	<!-- Pretend you are the speaker. Describe what you think (talk about what the speaker talked about) -->
 		  	<%= label_tag :message, "Answer:" %>
-		  	<%= text_area_tag :message, "", rows: 8, placeholder: "内容がないよ〜", id: "writingTextField" ,class: 'form-control' %>
+		  	<%= text_area_tag :message, "", rows: 8, placeholder: "内容がないよ〜", id: "writingTextField", class: 'form-control' %>
 		  	<div class="info_container">
 					<span class="countdown"><%= session[:study_time] %></span>
 					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
