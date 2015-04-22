@@ -18,6 +18,8 @@
 
 $(document).ready(function() {
 
+
+
   // smooth scrolling
 
   $('a[href*=#]:not([href=#])').click(function() {
