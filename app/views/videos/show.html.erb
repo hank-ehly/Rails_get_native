@@ -27,10 +27,18 @@
 
 
 
-	<% debug = false %>
+	<% debug = true %>
 	<% if debug %>
 		<div class="debug">
 			<ul>
+				<li>params:
+					<ul>
+						<% params.each do |param| %>
+							<li>- <%= param %></li>
+						<% end %>
+					</ul>
+				</li>
+				<li>Playlist video: <%= @playlist_video.id %></li>
 				<li>User id: <%= @user.id %>: <%= full_name_of(@user) %></li>
 				<li>User playlist id: <%= @user.playlists.first.id %></li>
 				<li># of playlist videos in user playlist: <%= @user.playlists.first.playlist_videos.count %></li>
@@ -99,23 +107,14 @@
 					
 					<div class="script" id="collocations">
 
-						<%= form_for @collocation, remote: true do |f| %>
-							
-							<%= error_messages_for @collocation %>
-								
-							<div class="form-group">
-								<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
-								<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
-								<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
-							</div>
-							
-						<% end %> <!-- form_for @collocation -->
-			
+						<%= link_to "Add Collocation", new_collocation_path, remote: true %>
+
+						<div id="collocation-form" style="display:none;">
+							<!-- form -->
+						</div>
+
 						<ul id="collocation_list">
-							<% @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.each do |collocation| %>
-								<li class="collocation_first"><%= collocation.collocation %></li>
-								<li class="well well-sm collocation_well"><%= collocation.context %></li>
-							<% end %>
+							<%= render partial: "shared/collocations", locals: { playlist_video: @playlist_video } %>
 						</ul>
 						  
 					</div> <!-- collocation -->

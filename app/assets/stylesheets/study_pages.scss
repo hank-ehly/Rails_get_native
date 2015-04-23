@@ -270,9 +270,54 @@ form#new_collocation {
   }
 }
 
-#player {
-  pointer-events: none;
-  body {
-    background: rgba(#000, .5);
+.video_info {
+  @include clearfix;
+}
+
+span.countdown {
+  float: left;
+}
+
+.video-container {
+  #player {
+    pointer-events: none;
+  }
+  #paused-overlay {
+    @include background(image-url("white-paused-icon.png"), rgba(#000, .7));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -10px center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    color: #fff;
+    display: none;
+  }
+  #options-overlay {
+    @include background(rgba(#000, .7));
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: -10px center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    line-height: 1em;
+    color: #fff;
+    display: none;
+    padding-top: 150px;
+    p {
+      &.link {
+        font-size: 2em;
+      }
+      a {
+        color: #fff;
+      }
+    }
   }
 }

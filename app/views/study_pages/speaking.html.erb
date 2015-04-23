@@ -72,9 +72,11 @@ $(document).ready(function() {
 
   	if (player.getPlayerState() == YT.PlayerState.PAUSED) {
   		player.playVideo();
+  		$('#paused-overlay').hide();
   		// incrementTimeInterval = setInterval(incrementTime, 1000);
   	} else if (player.getPlayerState() == YT.PlayerState.PLAYING) {
   		player.pauseVideo();
+  		$('#paused-overlay').show();
   		// clearInterval(incrementTimeInterval);
   	}
 
@@ -83,6 +85,7 @@ $(document).ready(function() {
   $('button.btn.btn-default').on('click', function() {
   	if (player.getPlayerState() == YT.PlayerState.PLAYING) {
   		player.pauseVideo();
+  		$('#paused-overlay').show();
   		// clearInterval(incrementTimeInterval);
   	}
   })
@@ -109,6 +112,8 @@ $(document).ready(function() {
 			<div class="video-container">
 				<!-- <iframe width="480" height="270" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe> -->
 				<div id="player"></div>
+				<div id="paused-overlay"></div>
+				<div id="options-overlay"></div>
 			</div>
 			<div class="video_info">
 				<div class="pull-left">

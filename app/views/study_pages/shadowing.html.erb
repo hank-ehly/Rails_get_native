@@ -43,19 +43,7 @@
     } else if (event.data == YT.PlayerState.PAUSED) {
     	clearInterval(incrementTimeInterval);
     }
-
   }
-  function stopVideo() {
-    // player.stopVideo();
-  }
-
-    var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, studyTime;
-
-  // $('body > div > div > form').on("submit", function() {
-  //   originalTime = $('#foo_study_time').val();
-  //   console.log(originalTime);
-  // });
-
 
 $(document).ready(function() {
 
@@ -72,9 +60,15 @@ $(document).ready(function() {
 
   	if (player.getPlayerState() == YT.PlayerState.PAUSED) {
   		player.playVideo();
+      $('#paused-overlay').hide();
   		// incrementTimeInterval = setInterval(incrementTime, 1000);
   	} else if (player.getPlayerState() == YT.PlayerState.PLAYING) {
   		player.pauseVideo();
+      if ($('#options-overlay').css('display') == 'block') {
+        return false;
+      } else {
+        $('#paused-overlay').show();  
+      }
   		// clearInterval(incrementTimeInterval);
   	}
 
@@ -83,6 +77,7 @@ $(document).ready(function() {
   $('button.btn.btn-default').on('click', function() {
   	if (player.getPlayerState() == YT.PlayerState.PLAYING) {
   		player.pauseVideo();
+      $('#paused-overlay').show();
   		// clearInterval(incrementTimeInterval);
   	}
   })
@@ -106,8 +101,14 @@ $(document).ready(function() {
 		<div class="video_instance">
 			<div class="video-container">
 				<div id="player"></div>
-			</div>
-		</div>
+        <div id="paused-overlay"></div>
+        <div id="options-overlay">
+          <p class="link"><%= link_to "Continue to Speaking", action: 'speaking', id: @playlist_video.id %></p>
+          <p>OR</p>
+          <p class="link"><%= link_to "Continue Shadowing", action: 'shadowing', id: @playlist_video.id %></p>
+        </div>
+  		</div>
+    </div>
 
 		<div class="video_info">
 			<span id="countdown" class="countdown"><%= session[:study_time] %></span> <!-- <span class="paused_alert">paused</span> -->
@@ -121,4 +122,8 @@ $(document).ready(function() {
 
 		
 	</div>
+
 </div>
+
+
+

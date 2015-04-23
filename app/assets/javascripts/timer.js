@@ -52,10 +52,12 @@ $(function() {
     if (state) {
       clearInterval(incrementTimeInterval);
       $('#writingTextField').attr('disabled', 'disabled');
+      $('body > div > div > form > div > div > input').attr('disabled', 'disabled');
       state = false;
     } else if (!state) {
       incrementTimeInterval = setInterval(incrementTime, 1000);
       $('#writingTextField').removeAttr('disabled');
+      $('body > div > div > form > div > div > input').removeAttr('disabled');
       state = true;
     }
   });
@@ -98,6 +100,8 @@ $(function() {
     if (time_by_4 == 0) {
       clearInterval(incrementTimeInterval);
       console.log("time's up");
+      $('#paused-overlay').hide();
+      $('#options-overlay').show();
     };
 
   };

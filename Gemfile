@@ -13,6 +13,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+gem 'responders', '~> 2.0'
+
 # Use Bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'
 # Use Compass
