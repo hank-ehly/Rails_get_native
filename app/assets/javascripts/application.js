@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
 
-
+  $('.collapse').collapse()
 
   // smooth scrolling
 
@@ -146,6 +146,7 @@ $(document).ready(function() {
     var len = $(this).val().length;
     $('#charNum').text(len);
   });
+
 
 
 });
