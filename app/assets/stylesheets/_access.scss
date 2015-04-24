@@ -9,3 +9,62 @@
     margin-left: 0;
   }
 }
+
+.login_anchor {
+  cursor: pointer;
+}
+
+.top-quote {
+	position: absolute;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	z-index: 99;	
+	h1 {
+		font-weight: bold;
+		font-size: 7em;
+	}
+}
+
+.carousel.login {
+	margin-bottom: 20px;
+	img {
+		margin: 0 auto;
+		width: 100%;
+	}
+}
+
+.try-signup-options {
+	text-align: center;
+	button {
+		margin: 0 10px;
+	}
+}
+
+.page.about {
+	margin-top: 20px;
+	color: #fff;
+	.row {
+		padding: 50px 0;
+		border-radius: 0;
+		background: #1b557a;
+		.col-sm-6 {
+			h1,h2,h3,h4,h5,h6 {
+				text-align: center;
+			}
+			p {
+				width: 80%;
+				margin: 0 auto;
+				text-align: justify;
+			}
+			button {
+				display: block;
+				margin: 10px auto 0;
+			}
+			img {
+				display: block;
+				margin: 0 auto;
+			}
+		}
+	}
+}

@@ -1,10 +1,12 @@
-<%= form_for @collocation, remote: true do |f| %>
+<%= form_for :collocation, controller: 'videos', action: 'create_collocation', remote: true do |f| %>
 	
 	<%= error_messages_for @collocation %>
 		
 	<div class="form-group">
 
-		<!-- f.hidden_field :playlist_video_id, value: foo -->		
+		<!-- f.hidden_field :playlist_video_id, value: pvid -->
+		<!-- send playlist video id -->
+		<p>PVID = <%= playlist_video_id %></p>
 		<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
 		<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
 

@@ -3,6 +3,7 @@ class VideosController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
+  respond_to :js, :html
 
   def index
   end
@@ -22,11 +23,25 @@ class VideosController < ApplicationController
       @user_playlist.playlist_videos.each do |playlist_video|
         if playlist_video.video_id == @video.id
           @playlist_video = PlaylistVideo.where(video_id: @video.id).first
+          @pvid = @playlist_video.id
+          @collocations = @playlist_video.collocations.order("collocations.created_at DESC")
         end
       end
-      # disable "add to playlist" button with tooltip (this video is already in your playlist!)
       # show 'collocations form inside ul.scripts'
     end
+  end
+
+  def new_collocation
+    @collocation = Collocation.new
+  end
+
+  def create_collocation
+    @collocations = Collocation.order("collocations.created_at DESC")
+    @collocation = Collocation.new(collocation_params)
+    video_id = params[:id]
+    @playlist_video_id = PlaylistVideo.where(video_id: video_id).first.id
+    @collocation.playlist_video_id = playlist_video_id
+    @collocation.save
   end
 
   def new

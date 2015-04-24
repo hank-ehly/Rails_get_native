@@ -1,51 +1,15 @@
-<div class="users_login container">
 
-	<div class="row">
+<div class="access login main">
+	<div class="container">
 
-		<div class="col-sm-6"><h1>Login</h1>
-			
-			<%= form_tag(:controller => "access", :action => "attempt_login", :html => {class: "form"}) do %>
-			
-				<div class="form-group">
-					<%= label_tag (:email) %>
-					<div class="controls">
-						<%= text_field_tag :email, "", placeholder: "Email", tabindex: 1, class: "form-control" %>
-					</div>
-				</div>
-			
-				<div class="form-group">
-					<%= label_tag (:password) %>
-					<div class="controls">
-						<%= password_field_tag(:password, "", placeholder: "Password", tabindex: 2, class: 'form-control') %>
-					</div>
-					<a href="#">I forgot my password!!</a>
-				</div>
+		<div class="page intro">
+			<%= render 'shared/homepage/intro' %>
+		</div>
 
-				<div class="checkbox">
-					<%= check_box_tag :remember_me %>
-					<%= label_tag :remember_me %>
-			  </div>
-			
-				<div class="form-group">
-					<%= submit_tag "Login", tabindex: 3, class: "btn btn-primary" %>
-				</div>
+		<div class="page about">
+			<%= render 'shared/homepage/about' %>
+		</div>
 
-				<p>Don't have an account? <%= link_to "Sign Up", new_user_path %></p>
-				
-			<% end %>
 
-			</div> <!-- col-sm-6 -->
-
-			<div class="quote_column col-sm-6">
-
-				<h3>In case you're still deciding, here's what our members have to say!</h3>
-
-				<blockquote>Get_Native.com is dolor sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Jenny (23)</span></blockquote>
-				<blockquote>I used Get_Native.com to sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Paul (19)</span></blockquote>
-				<p>Still not convinced we're legit? <%= link_to "Read more reviews" %></p>
-				
-			</div> <!-- col-sm-6 -->
-
-		</div> <!-- row -->
-	  
-</div> <!-- users_add sign_up container -->
+	</div> <!-- container -->
+</div> <!-- access login main -->

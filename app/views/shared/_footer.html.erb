@@ -3,8 +3,9 @@
 		<p>&copy; Get_Native.com <% time = Time.new %><%= time.year %></p>
 		<ul class="horizontal_list">
 			<li><a href="#">Company Information</a></li>
-			<li><a href="#">Contact Us</a></li>
-			<li><%= link_to "FAQs", controller: 'static_pages', action: 'faqs' %></li>
+			<li><%= link_to "Contact Us", contact_us_static_pages_path %></li>
+			<li><%= link_to "FAQs", faqs_static_pages_path %></li>
+			<li><%= link_to "Study Methods", study_methods_static_pages_path %></li>
 			<li><a href="#">Testimonials</a></li>
 			<li><a href="#">Feedback</a></li>
 			<li><a href="#">Privacy Policy</a></li>

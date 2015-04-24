@@ -9,6 +9,12 @@ Rails.application.routes.draw do
 
   resources :admins, :users, :languages, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages, :collocations
 
+  resources :static_pages do
+    collection do
+      get 'faqs', 'study_methods', 'contact_us'
+    end
+  end
+
   match ':controller(/:action(/:id(/.:format)))', :via => [:get, :post, :patch]
 
   # Example of regular route:

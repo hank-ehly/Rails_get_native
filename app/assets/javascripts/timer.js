@@ -67,18 +67,34 @@ $(function() {
     if (state) {
       clearInterval(incrementTimeInterval);
       state = false;
-    }/* else if (!state) {
-      incrementTimeInterval = setInterval(incrementTime, 1000);
-      state = true;
-    }*/
+    }
+    /* else if (!state) {
+          incrementTimeInterval = setInterval(incrementTime, 1000);
+          state = true;
+        }*/
   });
 
 
 
 
+  var blink = function(el) {
+    el.fadeTo(500, 0.5, function() {
+      el.fadeTo(500, 1, function() {
+        blink($('.countdown'));
+      });
+    });
+  }
 
 
 
+
+  var timesUp = function() {
+    $('.countdown').html("00:00");
+    console.log("time's up");
+    $('#paused-overlay').hide();
+    $('#options-overlay').show();
+    blink($('.countdown'));
+  }
 
 
 
@@ -99,11 +115,8 @@ $(function() {
 
     if (time_by_4 == 0) {
       clearInterval(incrementTimeInterval);
-      console.log("time's up");
-      $('#paused-overlay').hide();
-      $('#options-overlay').show();
+      setTimeout(timesUp, 1000);
     };
-
   };
 
   // call incrementTime function every 1 second

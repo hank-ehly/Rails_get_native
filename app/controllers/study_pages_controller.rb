@@ -16,10 +16,10 @@ class StudyPagesController < ApplicationController
   end
 
   def speaking
-    
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     @collocation = Collocation.new
+    @collocations = @playlist_video.collocations.order("collocations.created_at DESC")
     get_video_url
   end
 
