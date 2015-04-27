@@ -3,11 +3,8 @@
 		<div class="col-sm-12">
 			<h1>
 				<%= full_name_of(@current_user_admin) %>
-				<% if @layout_style == 'Admin' %>
-				(Admin)
-				<% end %>
+				<%= @layout_style == 'Admin' ? '(Admin)' : nil %>
 			</h1>
-			<p>User Profile</p>
 		</div> <!-- .col-sm-12 -->
 	</div> <!-- .row -->
 </div> <!-- .header.container -->

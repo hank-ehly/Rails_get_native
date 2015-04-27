@@ -43,8 +43,8 @@ $(document).ready(function() {
   
 
   // $('tr.study_video_instance td:first-child input[type=radio]').hide();
-  $('tr.study_video_instance:nth-child(2) td:first-child input[type=radio]').prop("checked", true);
-  $('tr.study_video_instance:nth-child(2)').addClass('active');
+  $('tr.study_video_instance:first-child td:first-child input[type=radio]').prop("checked", true);
+  $('tr.study_video_instance:first-child').addClass('active');
 
   $('tr.study_video_instance').on('click', function() {
     $(this).addClass('active').siblings().removeClass('active');
@@ -71,6 +71,8 @@ $(document).ready(function() {
       $('#japanese_script').show();
     } else if (this.id == "english_script_tab") {
       $('#english_script').show();
+    } else if (this.id == "spanish_script_tab") {
+      $('#spanish_script').show();
     } else if (this.id == "na") {
       $('#empty_script_tab').show();
     } else if (this.id == "collocations_tab") {

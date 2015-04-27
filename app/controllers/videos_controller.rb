@@ -39,9 +39,10 @@ class VideosController < ApplicationController
     @collocations = Collocation.order("collocations.created_at DESC")
     @collocation = Collocation.new(collocation_params)
     video_id = params[:id]
-    @playlist_video_id = PlaylistVideo.where(video_id: video_id).first.id
-    @collocation.playlist_video_id = playlist_video_id
+    @playlist_video = PlaylistVideo.where(video_id: video_id).first
+    @collocation.playlist_video_id = @playlist_video.id
     @collocation.save
+    redirect_to :back
   end
 
   def new

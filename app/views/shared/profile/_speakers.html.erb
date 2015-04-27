@@ -1,23 +1,25 @@
-<div class="shared profile speakers col-md-6 col-sm-7">
-	<h2>Speakers</h2>
-	<%= link_to "+ Add Speaker", controller: 'speakers', action: 'add' %>
-	<div id="searcharea">
+<div class="shared profile speakers col-sm-12">
+	<h2><strong>Speakers</strong>&nbsp;<small><%= link_to "+ New", new_speaker_path %></small></h2>
+<!-- 	<div id="searcharea">
     <input type="search" name="search" id="search" class="form-control" placeholder="Search speakers by name...">
   </div>
-  <div id="update"></div>
+  <div id="update"></div> -->
 	<table class="table table-hover">
-		<tr>
+		<thead>
 		<!-- depending on how speakers are sorted, add 'caret' class to spans // default is 'name' -->
+			<th class="topic_sorter">Picture</th>
 			<th class="topic_sorter">Name <span class="caret"></span></th>
-			<th class="topic_sorter"># of Videos <span class=""></span></th>
-			<th class="topic_sorter">Native Language <span class=""></span></th>
+			<th class="topic_sorter">Video Count <span class=""></span></th>
+			<th class="topic_sorter">Language <span class=""></span></th>
 			<th>Actions</th>
-		</tr>
+		</thead>
 		<% if @speakers %>
 		<% @speakers.each do |speaker| %>
 		<tr>
+			<% url_queries = Rack::Utils.parse_query URI(speaker.videos.first.original_url).query; video_url = url_queries["v"] %>
+			<td><%= image_tag get_thumbnail(video_url) %></td>
 			<td><%= full_name_of(speaker) %></td>
-			<td><%= "speaker.videos.count" %></td>
+			<td><%= speaker.videos.count %></td>
 			<td>
 			<% @languages.each do |language| %>
 			<% if language.id == speaker.language_id %>

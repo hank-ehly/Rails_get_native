@@ -9,12 +9,14 @@
 		<div class="main_content row">
 
 			<% unless @layout_style == 'Admin' %>
-			<%= render "shared/profile/photo_section" %>	
+				<%= render "shared/profile/photo_section" %>	
 			<% end %>
 
 			<%= render "shared/profile/#{@view}" %>
 
-			<%= render "shared/profile/actions" %>
+			<% unless @layout_style == 'Admin' %>
+				<%= render "shared/profile/actions" %>	
+			<% end %>
 
 		</div> <!-- main_content row -->
 		

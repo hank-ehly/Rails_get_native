@@ -10,7 +10,7 @@
 		
 			<div class="video_instance">
 				<div class="video-container">
-					<div id="player"></div>
+					<div id="player" style="pointer-events:auto;"></div>
 					<%= render 'shared/studyPages/overlays' %>
 				</div>
 				<%= render 'shared/studyPages/videoInfo' %>
@@ -20,11 +20,13 @@
 				<ul class="nav nav-tabs script_tabs">
 				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
 				  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+				  <li role="presentation" id="spanish_script_tab"><a href="#">Spanish</a></li>
 				  <li role="presentation" id="na"><a href="#">N/A</a></li>
 				  <li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li>
 				</ul>
 				<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
 				<div class="script" id="english_script"><%= @video.english_script %></div>
+				<div class="script" id="spanish_script"><%= @video.spanish_script %></div>
 				<div class="script" id="empty_script_tab"></div>
 				<div class="script" id="collocations">
 

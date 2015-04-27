@@ -3,11 +3,11 @@
 
 		<h1><%= @language.name %> Topics</h1>
 
-		<h2>
+		<h3>
 		Topics | 
 		<%= link_to "Speakers", speakers_language_path %> | 
 		<%= link_to "All Videos", videos_language_path %>
-		</h2>
+		</h3>
 
 		<%= render 'shared/languages/showTopics', topics: @topics %>
 

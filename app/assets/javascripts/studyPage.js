@@ -18,7 +18,7 @@ function onYouTubeIframeAPIReady() {
       controls: controls_bool,
       modestbranding: 1,
       showinfo: 0,
-      autoplay: 1,
+      autoplay: autoplay_bool,
       loop: 1,
       playlist: video_url,
       enablejsapi: 1
@@ -115,13 +115,16 @@ $(document).ready(function() {
     }) // on BIG button click
 
   $('button.btn.btn-default.ppover').on('click', function() {
-    if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-      player.pauseVideo();
-      $('#paused-overlay').show();
-      // if (controls_bool == 0) {
-      //   
-      // }
+    if (player) {
+      if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+        player.pauseVideo();
+        $('#paused-overlay').show();
+        // if (controls_bool == 0) {
+        //   
+        // }
+      }
     }
+
   })
 
   // event.data == YT.PlayerState.PLAYING

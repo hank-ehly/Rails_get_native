@@ -1,24 +1,22 @@
-<div class="shared profile_topics main col-md-6 col-sm-7">
-	<h2>Topics</h2>
-	<%= link_to "+ Add Topic", controller: 'topics', action: 'add' %>
-	<div id="searcharea">
+<div class="shared profile_topics main col-sm-12">
+	<h2><strong>Topics</strong>&nbsp;<small><%= link_to "+ New", new_topic_path %></small></h2>
+	
+<!-- 	<div id="searcharea">
     <input type="search" name="search" id="search" class="form-control" placeholder="Search topics by name...">
   </div>
-  <div id="update"></div>
+  <div id="update"></div> -->
 	<table class="table table-hover">
-		<tr>
+		<thead>
 		<!-- depending on how topics are sorted, add 'caret' class to spans // default is 'name' -->
 			<th class="topic_sorter">Name <span class="caret"></span></th>
 			<th class="topic_sorter"># of Videos <span class=""></span></th>
-			<th class="topic_sorter"># of Speakers <span class=""></span></th>
 			<th>Actions</th>
-		</tr>
+		</thead>
 		<% if @topics %>
 		<% @topics.each do |topic| %>
 		<tr>
 			<td><%= topic.name %></td>
-			<td><%= "topic.videos.count" %></td>
-			<td><%= topic.speakers.count %></td>
+			<td><%= topic.videos.count %></td>
 			<td>
 				<%= link_to "View", controller: 'topics', action: 'show', id: topic.id %>
 				<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>

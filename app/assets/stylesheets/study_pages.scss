@@ -9,8 +9,14 @@ div.study_pages.index {
       margin-bottom: 20px;
     }
     .select_time,
-    .select_video {
+    .select_video,
+    .select_language {
       margin-bottom: 20px;
+    }
+    .select_language {
+      select {
+        width: auto;
+      }
     }
     div.submit_button {
       width: 50%;

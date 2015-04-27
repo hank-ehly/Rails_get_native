@@ -60,12 +60,12 @@
 		<% if @layout_style == 'Admin' %>
 
 			<table class="table">
-				<tr>
+				<thead>
 					<th>ID</th>
 					<th>Created at</th>
 					<th>Updated at</th>
 					<th>Actions</th>
-				</tr>
+				</thead>
 				<% if @video %>
 				<tr>
 					<td><%= @video.id %></td>
@@ -98,11 +98,13 @@
 				<ul class="nav nav-tabs script_tabs">
 				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
 				  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+				  <li role="presentation" id="spanish_script_tab"><a href="#">Spanish</a></li>
 				  <li role="presentation" id="na"><a href="#">N/A</a></li>
 				  <% unless @layout_style=='Admin' %><li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li><% end %>
 				</ul>
 				<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
 				<div class="script" id="english_script"><%= @video.english_script %></div>
+				<div class="script" id="spanish_script"><%= @video.spanish_script %></div>
 				<div class="script" id="empty_script_tab"></div>
 
 				<% unless @layout_style == 'Admin' %>
@@ -110,18 +112,27 @@
 					
 					<div class="script" id="collocations">
 
-						<%= link_to "Add Collocation", action: 'new_collocation', remote: true, id: @video.id %>
+						
 
-						<div id="collocation-form" style="display:none;">
-							<!-- form -->
-						</div>
+						<div id="collocation-form">
+							<%= form_for @collocation, url: { controller: 'videos', action: 'create_collocation', id: @video.id } do |f| %>
+									
+								<div class="form-group">
+									<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
+									<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
+									<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
+								</div>
+							
+							<% end %>
+						</div> <!-- collocation-form -->
 
 						<ul id="collocation_list">
-							<!-- render partial: "shared/collocations" -->
-							<% @collocations.each do |collocation| %>
-								<li class="collocation_first"><%= collocation.collocation %></li>
-								<li class="well well-sm collocation_well"><%= collocation.context %></li>
-							<% end %>
+							<% @user_playlist.playlist_videos.each do |pv| %>
+								<% pv.collocations.each do |collocation| %>
+	              <li class="collocation_first"><%= collocation.collocation %></li>
+	              <li class="well well-sm collocation_well"><%= collocation.context %></li>
+	              <% end %>
+	            <% end %>
 						</ul>
 						  
 					</div> <!-- collocation -->

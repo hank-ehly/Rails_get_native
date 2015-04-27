@@ -26,9 +26,12 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @language = Language.find(params[:language_id])
-    @videos = Video.where(topic_id: params[:id], language_id: @language.id)
-    # @videos = Video.all
+    if params[:language_id]
+      @language = Language.find(params[:language_id])
+      @videos = Video.where(topic_id: params[:id], language_id: @language.id)
+    else
+      @videos = Video.where(topic_id: params[:id])
+    end
   end
 
   def edit
@@ -40,11 +43,11 @@ class TopicsController < ApplicationController
     if @topic.update_attributes(topic_params)
       # success
       flash[:success] = "You successfully updated the topic \'#{@topic.name}\'"
-      redirect_to(controller: 'topics', action: 'show', id: @topic.id)
+      redirect_to topic_path(@topic.id)
     else
       # failure
       flash[:danger] = 'Unable to update topic.'
-      render('edit')
+      render :edit
     end
   end
 
@@ -56,7 +59,7 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @topic.destroy
     flash[:success] = "You have successfully deleted the topic '#{@topic.name}'"
-    redirect_to action: 'index'
+    redirect_to topics_path
   end
 
   private

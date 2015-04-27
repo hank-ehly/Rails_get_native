@@ -5,21 +5,35 @@
 		<%= form_tag action: 'shadowing' do %>
 
 			<div class="form-group select_time">
-				<h3>Select Time</h3>
+				<h3>How long?</h3>
 				<%= select :foo, :study_time, 1..60,{}, class: 'study_time form-control' %> <span>minutes</span>
 			</div>
 
 			<!-- try to catch the click event with JavaScript and go on from there -->
 
+			<div class="form-group select_language">
+				<h3>What language?</h3>
+				<%
+				userLanguages = Array.new()
+				Language.all.each do |l|
+					@user.playlist_videos.each do |pv|
+						userLanguages << Language.find(Video.find(pv.video_id).language_id)
+					end
+				end
+				userLanguages = userLanguages.uniq
+				%>
+				<%= collection_select(:language, :id, userLanguages, :id, :name, {}, class: 'form-control') %>
+			</div>
+
 			<div class="form-group select_video">
 				<h3>Select Playlist Video</h3>
 				<table class="table">	
-					<tr>
-						<th>Selected</th>
+					<thead>
+						<th style="display:none;">Selected</th>
 						<th>Video</th>
 						<th>Topic</th>
 						<th>Speaker</th>
-					</tr>
+					</thead>
 					<% @user.playlist_videos.each do |playlist_video| %>
 					<% 
 					video = Video.find(playlist_video.video_id)
@@ -27,7 +41,7 @@
     			video_url = url_queries["v"] 
     			%>
 					<tr class="study_video_instance">
-						<td><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
+						<td style="display:none;"><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
 						<td><img src=<%= get_thumbnail(video_url) %> alt=""></td>
 						<td><%= Topic.find(Video.find(playlist_video.video_id).topic_id).name %></td>
 						<td><%= full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id)) %></td>

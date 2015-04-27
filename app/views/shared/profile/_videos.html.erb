@@ -1,0 +1,31 @@
+<div class="shared profile videos col-sm-12">
+	<h2><strong>Videos</strong>&nbsp;<small><%= link_to "+ New", new_video_path %></small></h2>
+<!-- 	<div id="searcharea">
+    <input type="search" name="search" id="search" class="form-control" placeholder="Search speakers by name...">
+  </div>
+  <div id="update"></div> -->
+	<table class="table table-hover">
+		<thead>
+		<!-- depending on how speakers are sorted, add 'caret' class to spans // default is 'name' -->
+			<th class="topic_sorter">Thumbnail <span class="caret"></span></th>
+			<th class="topic_sorter">Speaker <span class=""></span></th>
+			<th class="topic_sorter">Native Language <span class=""></span></th>
+			<th>Actions</th>
+		</thead>
+		<% if @videos %>
+		<% @videos.each do |video| %>
+		<tr>
+		  <% url_queries = Rack::Utils.parse_query URI(video.original_url).query; video_url = url_queries["v"] %>
+			<td><%= image_tag get_thumbnail(video_url) %></td>
+			<td><%= full_name_of(video.speaker) %></td>
+			<td><%= Language.find(video.speaker.language_id).name %></td>
+			<td>
+				<%= link_to "View", video_path(video.id) %>
+				<%= link_to "Edit", edit_video_path(video.id) %>
+				<%= link_to "Delete", controller: 'videos', action: 'delete', id: video.id %>
+			</td>
+		</tr>
+		<% end %>
+		<% end %>
+	</table>
+</div>

@@ -1,16 +1,27 @@
 <div class="nav_row row">
 	<div class="button_container col-sm-12">
 		<ul class="nav nav-tabs profile_tabs">
+
 		  <li role="presentation"><%= link_to "Account", { action: 'profile', view: 'account_info' }, class: @actives["account_info"] %></li>
+
+
 		  <% unless @layout_style == 'Admin' %>
-		  <li role="presentation"><%= link_to "Progress", { action: 'profile', view: 'progress' }, class: @actives["progress"] %></li>
-		  <li role="presentation"><%= link_to "Collocations", { action: 'profile', view: 'collocations' }, class: @actives["collocations"] %></li>
-		  <li role="presentation" style="display:none;"><%= link_to "Words", { action: 'profile', view: 'words' }, class: @actives["words"] %></li>	
-		  <li role="presentation"><%= link_to "Playlist", { action: 'profile', view: 'playlist' }, class: @actives["playlist"] %></li>
+			  <li role="presentation"><%= link_to "Progress", { action: 'profile', view: 'progress' }, class: @actives["progress"] %></li>
+			  <li role="presentation"><%= link_to "Collocations", { action: 'profile', view: 'collocations' }, class: @actives["collocations"] %></li>
+			  <li role="presentation" style="display:none;"><%= link_to "Words", { action: 'profile', view: 'words' }, class: @actives["words"] %></li>	
+			  <li role="presentation"><%= link_to "Playlist", { action: 'profile', view: 'playlist' }, class: @actives["playlist"] %></li>
 		  <% end %>
+
+
 			<% if @layout_style == 'Admin' %>
-			<li role="presentation"><%= link_to "Admins", { action: 'profile', view: 'admins' }, class: @actives["admins"] %></li>
+				<li role="presentation"><%= link_to "Admins", { action: 'profile', view: 'admins' }, class: @actives["admins"] %></li>
+				<li role="presentation"><%= link_to "Topics", { action: 'profile', view: 'topics' }, class: @actives["topics"] %></li>
+				<li role="presentation"><%= link_to "Speakers", { action: 'profile', view: 'speakers' }, class: @actives["speakers"] %></li>
+				<li role="presentation"><%= link_to "Videos", { action: 'profile', view: 'videos' }, class: @actives["videos"] %></li>
 			<% end %>
+
+
+
 		</ul> <!-- nav nav-pills -->
 	</div> <!-- button_container col-sm-12 -->
 </div> <!-- nav_row row -->

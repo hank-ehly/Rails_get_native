@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427024433) do
+ActiveRecord::Schema.define(version: 20150427162354) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -112,6 +112,7 @@ ActiveRecord::Schema.define(version: 20150427024433) do
     t.string   "original_url",    limit: 255
     t.text     "japanese_script", limit: 65535
     t.text     "english_script",  limit: 65535
+    t.text     "spanish_script",  limit: 65535
   end
 
   add_index "videos", ["speaker_id"], name: "index_videos_on_speaker_id", using: :btree

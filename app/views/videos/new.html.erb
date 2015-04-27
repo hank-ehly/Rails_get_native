@@ -37,6 +37,11 @@
 		</div>
 
 		<div class="form-group">
+			<%= f.label :spanish_script, "Spanish Script" %>
+			<%= f.text_area :spanish_script, rows: 5, placeholder: "Spanish Script...", class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
 			<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-primary' %>
 		</div>
 		
