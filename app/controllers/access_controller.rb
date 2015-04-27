@@ -34,6 +34,7 @@ class AccessController < ApplicationController
     session[:user_id] = nil
     session[:admin_id] = nil
     session[:email] = nil
+    session[:study_time] = nil
     flash[:success] = "You have been logged out."
     redirect_to(:action => 'login')
   end

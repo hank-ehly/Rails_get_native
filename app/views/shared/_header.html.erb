@@ -16,7 +16,21 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	      	<% if @current_user_admin %>
-	        	<li><%= link_to "Videos", topics_path %></li>
+	        	<li class="dropdown">
+		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language <span class="caret"></span></a>
+		          <ul class="dropdown-menu" role="menu">
+		            <% Language.all.each do |language| %>
+		            	<li>
+		            		<%= link_to language_path(language.id) do %>
+			            		<%= language.name %>
+		            		<% end %>
+		            	</li>
+		            <% end %>
+		            <li class="divider"></li>
+		            <li><a href="">+ Add Language</a></li>
+		          </ul>
+		        </li> <!-- dropdown -->
+		        <li><%= link_to "Study Now", study_pages_path %></li>
 	        <% elsif @layout_style == 'Admin' %>
 	        	<li><%= link_to "Add Video +", new_video_path %></li>
 	        <% else %>
@@ -44,67 +58,8 @@
 		        	<%= link_to "Logout", :controller => "access", :action => "logout" %>
 		        </li>
 	        <% else %>
-		        <li>
-
-
-							<!-- Button trigger modal -->
-							<a class="login_anchor" data-toggle="modal" data-target="#myModal">Login</a>
-
-							<!-- Modal -->
-							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-dialog">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h1 class="modal-title" id="myModalLabel">Login</h1>
-							      </div>
-							      <div class="modal-body">
-											
-												<%= form_tag(:controller => "access", :action => "attempt_login", :html => {class: "form"}) do %>
-												
-													<div class="form-group">
-														<%= label_tag (:email) %>
-														<div class="controls">
-															<%= text_field_tag :email, "", placeholder: "Email", tabindex: 1, class: "form-control" %>
-														</div>
-													</div>
-												
-													<div class="form-group">
-														<%= label_tag (:password) %>
-														<div class="controls">
-															<%= password_field_tag(:password, "", placeholder: "Password", tabindex: 2, class: 'form-control') %>
-														</div>
-													</div>
-
-													<div class="checkbox">
-														<%= check_box_tag :remember_me %>
-														<%= label_tag :remember_me %>
-												  </div>
-												
-													<div class="form-group">
-														<%= submit_tag "Login", tabindex: 3, class: "btn btn-primary" %>
-													</div>
-
-													<p>Don't have an account? <%= link_to "Sign Up", new_user_path %></p>
-													
-												<% end %> <!-- login form -->
-											
-							      </div> <!-- modal-body -->
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-							      </div>
-							    </div>
-							  </div>
-							</div> <!-- modal -->
-
-
-
-
-
-
-		        </li>
-		        <li><%= link_to "Sign Up", new_user_path %></li>
+		        <li><%= render 'shared/login_modal' %></li>
+		        <li><a href="#signup">Sign Up</a></li>
 	        <% end %>
 	      </ul> <!-- navbar-right -->
 	    </div><!-- .navbar-collapse -->

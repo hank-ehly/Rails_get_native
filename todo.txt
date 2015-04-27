@@ -314,3 +314,33 @@ KANA bugs:
 					<li><%= collocation %></li>
 				<% end %>
 				</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+VIDEOS SHOW
+
+
+
+								

@@ -1,10 +1,69 @@
 <div class="languages show main">
 	<div class="container">
-		<ol class="breadcrumb row">
-			<li><%= link_to "Languages", languages_path %></li>
-			<li><%= @language.name %></li>
-		</ol>
+
+		<h1><%= @language.name %></h1>
+
+		<h2>
+			<%= link_to "Topics" %>
+			|
+			<%= link_to "Speakers" %>
+			|
+			<%= link_to "All Videos" %>
+		</h2>
+
+		<h3>Topics</h3>
 		<table class="table">
+			<thead>
+				<th>Topic name</th>
+				<th># of videos in specified language</th>
+			</thead>
+
+			<% @language.topics.order("topics.name ASC").each do |topic| %>
+
+			<tr>
+				<td><%= topic.name %></td>
+				<td><%= Video.where(language_id: @language.id, topic_id: topic.id).count %></td>
+			</tr>
+
+			<% end %>
+
+
+		</table>
+
+		<hr>
+		
+		<h3>Speakers</h3>
+		<table class="table">
+			<thead>
+				<th>Picture</th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Video Count</th>
+			</thead>
+			<% @language.speakers.each do |speaker| %>
+			<tr>
+				<td>
+				<% video = speaker.videos.first %>
+				<% 
+				url_queries = Rack::Utils.parse_query URI(video.original_url).query
+  			video_url = url_queries["v"] 
+				%>
+				<%= link_to controller: 'speakers', action: 'show', id: speaker.id do %>
+					<img src=<%= get_thumbnail(video_url) %> alt="">
+				<% end %>
+				</td>
+				<td><%= full_name_of(speaker) %></td>
+				<td><%= age_range_of(speaker) %></td>
+				<td><%= speaker.gender ? 'Male' : 'Female' %></td>
+				<td><%= speaker.videos.count %></td>
+			</tr>
+			<% end %>
+		</table>
+
+<hr>
+
+		<!-- <table class="table">
 			<tr>
 				<th>Name</th>
 				<th># of Videos</th>
@@ -30,14 +89,16 @@
 				</td>
 				<% end %>
 			</tr>
-		</table>
-		<h3>Videos</h3>
+		</table> 
+-->
+
+		<h3>All Videos</h3>
 		<table class="table">
-			<tr>
+			<thead>
 				<th>Video</th>
 				<th>Topic</th>
 				<th>Speaker</th>
-			</tr>
+			</thead>
 			<% @language.videos.each do |video| %>
 				<% 
 				url_queries = Rack::Utils.parse_query URI(video.original_url).query

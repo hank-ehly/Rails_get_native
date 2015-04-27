@@ -1,164 +1,51 @@
-<script>
-
-	// load javascript YT API
-	var tag = document.createElement('script');
-  tag.src = "https://www.youtube.com/iframe_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-
-
-	var player;
-	function onYouTubeIframeAPIReady() {
-	  player = new YT.Player('player', {
-	    height: '390',
-	    width: '640',
-	    videoId: '<%= @video_url %>',
-	    playerVars: 
-	    {
-	      controls: 0,
-	      modestbranding: 1,
-	      showinfo: 0,
-	      autoplay: 1,
-	      loop: 1,
-	      playlist: '<%= @video_url %>'
-	      // enablejsapi: 1
-	    },
-	    events: {
-	      'onReady': onPlayerReady,
-	      'onStateChange': onPlayerStateChange
-	    }
-	  });
-	}
-
-
-  function onPlayerReady(event) {
-    // event.target.playVideo();
-  }
-
-  function onPlayerStateChange(event) {
-  	console.log(event.data);
-    if (event.data == YT.PlayerState.PLAYING) {
-      incrementTimeInterval = setInterval(incrementTime, 1000);
-    } else if (event.data == YT.PlayerState.PAUSED) {
-    	clearInterval(incrementTimeInterval);
-    }
-
-  }
-  function stopVideo() {
-    // player.stopVideo();
-  }
-
-    var time_minutes, time_seconds, time_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, studyTime;
-
-  // $('body > div > div > form').on("submit", function() {
-  //   originalTime = $('#foo_study_time').val();
-  //   console.log(originalTime);
-  // });
-
-
-$(document).ready(function() {
-
-  // var button = document.getElementById('playPause');
-  $('button.play_pause').on('click', function() {
-
-  	// ********* GET DURATION
-  	// console.log(player.getDuration()); <-- get video duration
-
-  	// ********* GET PLAYER STATE **********
-  	// console.log(player.getPlayerState());
-  	// console.log(YT.PlayerState.PLAYING);
-
-
-  	if (player.getPlayerState() == YT.PlayerState.PAUSED) {
-  		player.playVideo();
-  		$('#paused-overlay').hide();
-  		// incrementTimeInterval = setInterval(incrementTime, 1000);
-  	} else if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-  		player.pauseVideo();
-  		$('#paused-overlay').show();
-  		// clearInterval(incrementTimeInterval);
-  	}
-
-  })
-
-  $('button.btn.btn-default').on('click', function() {
-  	if (player.getPlayerState() == YT.PlayerState.PLAYING) {
-  		player.pauseVideo();
-  		$('#paused-overlay').show();
-  		// clearInterval(incrementTimeInterval);
-  	}
-  })
-
-  // event.data == YT.PlayerState.PLAYING
-  // event.data returns integer corresponding to YT.PlayerState.PLAYING/PAUSED/etc...
-  // to check player state, echo event.data
-
-
-  });
-
-</script>
-
-
+<%= render 'shared/studyPages/setVideoUrl' %>
 <div class="study_pages speaking main">
 	<div class="container">
-		<h1>Speaking</h1>
 
-		<%= params.inspect %>
+		<h1>Speaking</h1>
 
 		<button type="button" id="speakingPopover" class="btn btn-default ppover">Instructions <span class="caret"></span></button>
 
 		<div class="main_video_content">
 		
-		<div class="video_instance">
-			<div class="video-container">
-				<!-- <iframe width="480" height="270" src="https://www.youtube.com/embed/<%= @video_url %>" frameborder="0" allowfullscreen></iframe> -->
-				<div id="player"></div>
-				<div id="paused-overlay"></div>
-				<div id="options-overlay"></div>
-			</div>
-			<div class="video_info">
-				<div class="pull-left">
-					<span class="countdown"><%= session[:study_time] %></span>
-					<button class="play_pause btn btn-default btn-xs"><span class="glyphicon glyphicon-play"></span><span class="glyphicon glyphicon-pause"></span></button>
-					<!-- <span class="paused_alert">PAUSED</span> -->
+			<div class="video_instance">
+				<div class="video-container">
+					<div id="player"></div>
+					<%= render 'shared/studyPages/overlays' %>
 				</div>
-				<%= link_to "Continue", action: 'listening', id: @playlist_video.id %>
+				<%= render 'shared/studyPages/videoInfo' %>
 			</div>
-		</div>
 
-		<div class="scripts">
-			<ul class="nav nav-tabs script_tabs">
-			  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
-			  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
-			  <li role="presentation" id="na"><a href="#">N/A</a></li>
-			  <li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li>
-			</ul>
-			<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
-			<div class="script" id="english_script"><%= @video.english_script %></div>
-			<div class="script" id="empty_script_tab"></div>
-			<div class="script" id="collocations">
-
-				<%= link_to "Add Collocation", new_collocation_path, remote: true %>
-
-				<div id="collocation-form" style="display:none;">
-					<!-- form -->
-				</div>
-
-				<ul id="collocation_list">
-					<!-- render partial: "shared/collocations", locals: { playlist_video: @playlist_video } -->
-					<% @collocations.each do |collocation| %>
-						<li class="collocation_first"><%= collocation.collocation %></li>
-						<li class="well well-sm collocation_well"><%= collocation.context %></li>
-					<% end %>
+			<div class="scripts">
+				<ul class="nav nav-tabs script_tabs">
+				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+				  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+				  <li role="presentation" id="na"><a href="#">N/A</a></li>
+				  <li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li>
 				</ul>
-				  
-				
-			</div> <!-- collocation -->
+				<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
+				<div class="script" id="english_script"><%= @video.english_script %></div>
+				<div class="script" id="empty_script_tab"></div>
+				<div class="script" id="collocations">
 
-		</div> <!-- scripts -->
+					<%= link_to "Add Collocation", new_collocation_path, remote: true %>
+
+					<div id="collocation-form" style="display:none;">
+						<!-- form -->
+					</div>
+
+					<ul id="collocation_list">
+						<!-- render partial: "shared/collocations", locals: { playlist_video: @playlist_video } -->
+						<% @collocations.each do |collocation| %>
+							<li class="collocation_first"><%= collocation.collocation %></li>
+							<li class="well well-sm collocation_well"><%= collocation.context %></li>
+						<% end %>
+					</ul>
+					  
+				</div> <!-- collocation -->
+			</div> <!-- scripts -->
+
 
 		</div> <!-- main_video_content -->
-		
-	</div>
+	</div> <!-- container -->
 </div>

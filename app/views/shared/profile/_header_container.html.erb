@@ -7,23 +7,7 @@
 				(Admin)
 				<% end %>
 			</h1>
-			<% unless @layout_style == 'Admin' %>
-			<p>Currently studying: </p>
-			<div class="dropdown">
-			  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-			    <!-- current language text -->
-			    Japanese
-			    <span class="caret"></span>
-			  </button>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<% Language.order("languages.name ASC").each do |language| %>
-					<li role="presentation"><a role="menuitem" href="#"><%= language.name %></a></li>	<!-- can add class 'disabled' -->
-					<% end %>
-			    <li role="presentation" class="divider"></li>
-			    <li role="presentation"><a role="menuitem" href="#"><span class="glyphicon glyphicon-plus"></span> Add Language</a></li>
-			  </ul> <!-- .dropdown-menu -->
-			</div> <!-- .dropdown -->
-			<% end %>
+			<p>User Profile</p>
 		</div> <!-- .col-sm-12 -->
 	</div> <!-- .row -->
 </div> <!-- .header.container -->

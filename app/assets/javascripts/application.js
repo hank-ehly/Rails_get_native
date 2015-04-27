@@ -17,8 +17,10 @@
 //= require bootstrap-sprockets
 
 $(document).ready(function() {
+  'use strict';
 
-  $('.collapse').collapse()
+  $('.collapse').collapse()  
+
 
   // smooth scrolling
 
@@ -36,8 +38,9 @@ $(document).ready(function() {
   });
 
   // tooltip on videos.show
+  $('[data-toggle="tooltip"]').tooltip()  
 
-  $('[data-toggle="tooltip"]').tooltip()
+  
 
   // $('tr.study_video_instance td:first-child input[type=radio]').hide();
   $('tr.study_video_instance:nth-child(2) td:first-child input[type=radio]').prop("checked", true);
@@ -56,30 +59,34 @@ $(document).ready(function() {
   })
 
   // scripts
-  $('.scripts .script').hide();
-  $('.scripts #japanese_script').show();
+  $('.script').hide();
+  $('#japanese_script').show();
 
   // script tabs
   $('.script_tabs li').on('click', function(e) {
     e.preventDefault();
-    $('.scripts .script').hide();
+    $('.script').hide();
     $(this).addClass('active').siblings().removeClass('active');
     if (this.id == "japanese_script_tab") {
-      $('.scripts #japanese_script').show();
+      $('#japanese_script').show();
     } else if (this.id == "english_script_tab") {
-      $('.scripts #english_script').show();
+      $('#english_script').show();
     } else if (this.id == "na") {
-      $('.scripts #empty_script_tab').show();
+      $('#empty_script_tab').show();
     } else if (this.id == "collocations_tab") {
-      $('.scripts #collocations').show();
+      $('#collocations').show();
     }
   })
+
 
   var shadowingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var speakingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var listeningPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var writingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
+
+  
+  // if (typeof(popover) == 'function') {
 
   $('#shadowingPopover').popover({
     title: "Shadowing",
@@ -125,8 +132,6 @@ $(document).ready(function() {
     content: submitWritingPopoverContent
   })
 
-
-
   // on clicking of pause button
   $('button.play_pause').on('click', function() {
     // check to see if popover is visible
@@ -140,7 +145,6 @@ $(document).ready(function() {
   })
 
   // writing
-
   $('#charNum').text("0");
   $('#writingTextField').keyup(function() {
     var len = $(this).val().length;

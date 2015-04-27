@@ -1,0 +1,33 @@
+<div class="video_info">
+
+	<span id="countdown" class="countdown">
+    <%= session[:study_time] %>
+  </span>
+
+<% 
+case params[:action]
+when 'shadowing'
+	@nextFrame = 'speaking'
+when 'speaking'
+	@nextFrame = 'listening'
+when 'listening'
+	@nextFrame = 'writing'
+when 'writing'
+	@nextFrame = 'submit_writing'
+else
+	nil
+end 
+%>
+
+	<div class="links">
+		<% if @smallButton %>
+			<button id="playPause" class="play_pause btn btn-default btn-xs" disabled="disabled">
+				<span class="glyphicon glyphicon-play"></span>
+				<span class="glyphicon glyphicon-pause"></span>
+			</button>
+		<% end %>
+		<%= link_to "", action: 'index', class: 'indexLink' do %>Return to study<% end %>
+		<span class="pipeDivider">|</span>
+		<%= link_to action: "#{@nextFrame}", id: @playlist_video.id do %><strong>Skip </strong><span class="glyphicon glyphicon-forward"></span><% end %>
+	</div>
+</div>

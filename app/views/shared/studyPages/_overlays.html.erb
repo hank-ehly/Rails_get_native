@@ -1,0 +1,19 @@
+<% 
+case params[:action]
+when 'shadowing'
+	@nextFrame = 'speaking'
+when 'speaking'
+	@nextFrame = 'listening'
+when 'listening'
+	@nextFrame = 'writing'
+when 'writing'
+	@nextFrame = 'submit_writing'
+else
+	nil
+end 
+%>
+<div id="paused-overlay"></div>
+<div id="options-overlay">
+  <p class="link"><%= link_to action: "#{@nextFrame}", id: @playlist_video.id do %><span class="glyphicon glyphicon-step-forward"></span> Next<% end %></p>
+  <p class="link"><a href="javascript:history.go(0)"><span class="glyphicon glyphicon-repeat"></span> One more time</a></p>
+</div>

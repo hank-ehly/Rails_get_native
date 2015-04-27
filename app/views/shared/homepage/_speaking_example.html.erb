@@ -1,0 +1,41 @@
+<h4>View high-quality videos of native speakers with full transcription and translation for the BEST study experience</h4>
+
+<div class="speaking_box container">
+	<div class="row">
+		<div class="left-col col-sm-6">
+			<img style="width:448px;height:252px;background:grey;" src="http://placehold.it/448x252" alt="">
+			<button class="btn btn-primary btn-lg">Download</button>
+		</div>
+		<div class="right-col col-sm-6">
+
+			
+				<ul class="nav nav-tabs script_tabs">
+				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+				  <li role="presentation" id="english_script_tab"><a href="#">English</a></li>
+				  <li role="presentation" id="na"><a href="#">N/A</a></li>
+				  <li role="presentation" id="collocations_tab"><a href="#">Collocations</a></li>
+				</ul>
+				<div class="script" id="japanese_script">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et laudantium quod perspiciatis autem suscipit minus enim consequuntur rem incidunt, error sed iusto aut nam, qui assumenda totam sapiente eveniet velit numquam quo molestias. Et quisquam quaerat, laudantium cupiditate illo soluta quae, voluptatum accusantium! Sit doloremque quibusdam nesciunt, ipsa, quam qui.</div>
+				<div class="script" id="english_script">これは特に意味がないのだけれどただ書いて、見せるためのものでござる。変なおじさんが思わずに街を歩いてる姉さんのスカートを引っ張り上げてパンツを見せた。僕も見た。ピンク色だった。これは特に意味がないのだけれどただ書いて、見せるためのものでござる。変なおじさんが思わずに街を歩いてる姉さんのスカートを引っ張り上げてパンツを見せた。僕も見た。ピンク色だった。</div>
+				<div class="script" id="empty_script_tab"></div>
+				<div class="script" id="collocations">
+
+					<%= link_to "Add Collocation" %>
+
+					<div id="collocation-form" style="display:none;">
+						<!-- form -->
+					</div>
+
+					<ul id="collocation_list">
+						<!-- render partial: "shared/collocations", locals: { playlist_video: @playlist_video } -->
+						
+					</ul>
+					  
+					
+				</div> <!-- collocation -->
+
+			
+
+		</div>
+	</div>
+</div>

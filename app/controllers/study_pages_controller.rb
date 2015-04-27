@@ -9,6 +9,7 @@ class StudyPagesController < ApplicationController
   end
 
   def shadowing
+    @controls_bool = 0
     session[:study_time] = params[:foo][:study_time]
     @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
@@ -16,6 +17,9 @@ class StudyPagesController < ApplicationController
   end
 
   def speaking
+    @smallButton = true
+    @controls_bool = 0
+    @timerButton = true
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     @collocation = Collocation.new
@@ -24,14 +28,13 @@ class StudyPagesController < ApplicationController
   end
 
   def listening
-    
+    @controls_bool = 1
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url
   end
 
   def writing
-    
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
     get_video_url

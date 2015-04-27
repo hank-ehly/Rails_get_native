@@ -1,0 +1,80 @@
+<section class="header-section">
+	<h1>Just try it!</h1>
+	<h3>( It's free )</h3>
+</section>
+
+<div class="col-sm-6">
+
+	<h1>Quick Sign Up</h1>
+	
+	<%= form_for :user, :url => {:controller => 'users', :action => 'create'} do |f| %>
+
+		<%= error_messages_for(@user) %>
+	
+		<div class="form-group">
+			<%= f.label :first_name, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<%= f.label :last_name, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<%= f.label :email, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :email, placeholder: "Email", class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :email_confirmation, class: "control-label" %>
+			<div class="controls">
+				<%= f.text_field :email_confirmation, placeholder: "Email Confirmation", class: "form-control" %>
+			</div>
+		</div>
+	
+		<div class="form-group">
+			<%= f.label :password, class: "control-label" %>
+			<div class="controls">
+				<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<%= f.label :password_confirmation, class: "control-label" %>
+			<div class="controls">
+				<%= f.password_field :password_confirmation, placeholder: "Password Confirmation", class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="checkbox">
+	    <label>
+	      <input type="checkbox"> Remember me
+	    </label>
+	  </div>
+	
+		<div class="form-group">
+			<%= submit_tag "Let's Go", class: "btn btn-primary" %>
+		</div>
+
+		<p>Already have an account? <%= render 'shared/login_modal' %></p>
+		
+	<% end %>
+
+	</div> <!-- col-sm-6 -->
+
+	<div class="quote_column col-sm-6">
+
+		<h3>In case you're still deciding, here's what our members have to say!</h3>
+
+		<blockquote>Get_Native.com is dolor sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Jenny (23)</span></blockquote>
+		<blockquote>I used Get_Native.com to sit amet, consectetur adipisicing elit. Nulla veritatis, facilis quisquam labore doloremque laborum quia consequatur consequuntur officia veniam hic praesentium fuga numquam nemo repellat, quam dignissimos debitis a? <span clas="quote_authors">- Paul (19)</span></blockquote>
+		<p>Still not convinced we're legit? <%= link_to "Read more reviews" %></p>
+		
+</div> <!-- col-sm-6 -->

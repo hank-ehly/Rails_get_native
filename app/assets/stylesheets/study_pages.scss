@@ -66,24 +66,44 @@ div.study_pages.main {
   .video_info {
     // width: 640px;
     margin: 0 auto;
-    a {
-      float: right;
-    }
-  }
+  } // video_info
 }
 
 .main_video_content {
   padding-top: 20px;
 }
 
+.video_info {
+  span, button.forTimerOnly {
+    float: left;
+    margin-right: 5px;
+  }
+  span.isPausedOrNot {
+    display: none;
+  }
+}
+
+div.links {
+  float: right;
+  button {
+    float: left;
+    margin-right: 5px;
+  }
+  a {
+    float: left;
+    &.indexLink {
+      margin-right: 5px;
+    }
+  }
+  .pipeDivider {
+    float: left;
+    margin-right: 5px;
+  }
+} // links
 .study_pages.speaking,
 .videos.show {
   .video_info {
     // width: 480px;
-    @include clearfix;
-    a {
-      float: right;
-    }
   }
   div.scripts {
     @include box-sizing(border-box);
@@ -120,19 +140,19 @@ div.study_pages.main {
 
 .study_pages.speaking,
 .videos.show {
-  .main_video_content {
-    text-align: center;
-    .video_instance, .scripts {
-      vertical-align: top;
-      .script {
-        @media screen and (max-width: 768px) {
-          margin-top: 15px;
-        }
-        text-align: left;
-        line-height: 2.2em;
+  // .main_video_content {
+  //   text-align: center;
+  .video_instance, .scripts {
+    vertical-align: top;
+    .script {
+      @media screen and (max-width: 768px) {
+        margin-top: 15px;
       }
+      text-align: left;
+      line-height: 2.2em;
     }
   }
+  // }
 }
 
 #collocation_list {
@@ -276,6 +296,7 @@ form#new_collocation {
 
 span.countdown {
   float: left;
+  margin-right: 5px;
 }
 
 .video-container {
