@@ -1,11 +1,11 @@
 class LanguagesController < ApplicationController
 
-	before_action :confirm_logged_in
+  before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
 
   def index
-  	@languages = Language.order("languages.name ASC")
+    @languages = Language.order("languages.name ASC")
   end
 
   def new
@@ -25,15 +25,15 @@ class LanguagesController < ApplicationController
   end
 
   def show
-  	@language = Language.find(params[:id])
+    @language = Language.find(params[:id])
   end
 
   def edit
-  	@language = Language.find(params[:id])
+    @language = Language.find(params[:id])
   end
 
   def update
-  	@language = Language.find(params[:id])
+    @language = Language.find(params[:id])
     if @language.update_attributes(language_params)
       flash[:success] = "The language '#{@language.name}' has been successfully updated."
       redirect_to(action: 'show', id: @language.id)
@@ -55,5 +55,20 @@ class LanguagesController < ApplicationController
       render('delete')
     end
   end
-  
+
+  def topics
+    @language = Language.find(params[:id])
+    @topics = @language.topics.order("topics.name ASC")
+  end
+
+  def speakers
+    @language = Language.find(params[:id])
+    @speakers = @language.speakers.order("speakers.first_name ASC")
+  end
+
+  def videos
+    @language = Language.find(params[:id])
+    @videos = @language.videos.order("videos.created_at DESC")
+  end
+
 end

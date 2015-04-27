@@ -1,43 +1,15 @@
 <div class="topics show main">
 	<div class="container">
-		<ol class="breadcrumb row">
-		  <li><%= link_to "Topics", topics_path %></li>
-		  <li class="active"><%= @topic.name %></li>
-		</ol>
+
+		<h1><%= @topic.name %> (<%= link_to language_path(@language.id) do %><%= @language.name %><% end %>)</h1>
+
+
 		<table class="table">
-			<tr>
-				<th>Name</th>
-				<th># of Videos</th>
-				<% if @layout_style == 'Admin' %>
-				<th>ID</th>
-				<th>Created at</th>
-				<th>Updated at</th>
-				<th>Actions</th>
-				<% end %>
-			</tr>
-			<% if @topic %>
-			<tr>
-				<td><%= @topic.name %></td>
-				<td><%= @topic.videos.count %></td>
-				<% if @layout_style == 'Admin' %>
-				<td><%= @topic.id %></td>
-				<td><%= @topic.created_at %></td>
-				<td><%= @topic.updated_at %></td>
-				<td>
-					<%= link_to "Edit", controller: 'topics', action: 'edit', id: @topic.id %>
-					<%= link_to "Delete", controller: 'topics', action: 'delete', id: @topic.id %>
-				</td>
-				<% end %>
-			</tr>
-			<% end %>
-			</table>
-		<h3>Videos</h3>
-		<table class="table">
-			<tr>
+			<thead>
 				<th>Thumbnail</th>
 				<th>Speaker</th>
 				<th>Duration</th>
-			</tr>
+			</thead>
 			<% @videos.each do |video| %>
 				<% 
 				url_queries = Rack::Utils.parse_query URI(video.original_url).query
@@ -52,5 +24,7 @@
 				<% end %>
 			<% end %>
 		</table>
+
+
 	</div>
 </div>

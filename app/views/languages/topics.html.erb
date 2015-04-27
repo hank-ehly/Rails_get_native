@@ -1,13 +1,15 @@
-<div class="languages show main">
+<div class="languages topics main">
 	<div class="container">
 
-		<h1><%= @language.name %> Language</h1>
+		<h1><%= @language.name %> Topics</h1>
 
 		<h2>
-		<%= link_to "Topics", topics_language_path %> | 
+		Topics | 
 		<%= link_to "Speakers", speakers_language_path %> | 
 		<%= link_to "All Videos", videos_language_path %>
 		</h2>
+
+		<%= render 'shared/languages/showTopics', topics: @topics %>
 
 	</div>
 </div>

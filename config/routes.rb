@@ -7,11 +7,17 @@ Rails.application.routes.draw do
 
   root 'users#profile'
 
-  resources :admins, :users, :languages, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages, :collocations
+  resources :admins, :users, :playlists, :playlist_videos, :videos, :topics, :speakers, :study_pages, :collocations
 
   resources :static_pages do
     collection do
       get 'faqs', 'study_methods', 'contact_us'
+    end
+  end
+
+  resources :languages do
+    member do
+      get 'topics', 'speakers', 'videos'
     end
   end
 

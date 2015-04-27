@@ -12,8 +12,8 @@ class SpeakersController < ApplicationController
   end
 
   def show
-    # @speaker = Speaker.find(params[:id])
-    @videos = Video.all
+    @speaker = Speaker.find(params[:id])
+    @videos = Video.where(speaker_id: @speaker.id)
   end
 
   def new

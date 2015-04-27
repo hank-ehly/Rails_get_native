@@ -26,7 +26,9 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @videos = Video.all
+    @language = Language.find(params[:language_id])
+    @videos = Video.where(topic_id: params[:id], language_id: @language.id)
+    # @videos = Video.all
   end
 
   def edit
