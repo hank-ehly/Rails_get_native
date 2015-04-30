@@ -6,6 +6,7 @@ class VideosController < ApplicationController
   respond_to :js, :html
 
   def index
+    @language = Language.find(params[:language_id])
   end
 
   def show
@@ -13,6 +14,7 @@ class VideosController < ApplicationController
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
+    @language = Language.find(params[:language_id])
 
     if session[:user_id]
       @playlist = Playlist.find(User.find(session[:user_id]).playlists.first)

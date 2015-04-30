@@ -20,6 +20,11 @@ td > img {
   height: 45px;
 }
 
+td > a > img {
+  width: 60px;
+  height: 45px;
+}
+
 ul {
   padding: 0;
 }
@@ -29,13 +34,19 @@ input[type=radio] {
   cursor: pointer;
 }
 
+.item-nav {
+  h1, span {
+    display: inline-block;
+  }
+  span {
+    margin-left: 3px;
+    // font-style: italic;
+  }
+}
+
 .main .container {
   @include border-radius;
   background: #fff;
-}
-
-.breadcrumb {
-  background: transparent;
 }
 
 // disable responsiveness
@@ -47,7 +58,12 @@ textarea {
 }
 /* Headings */
 
-#{headings()} {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Roboto", sans-serif;
   font-weight: 300;
 }

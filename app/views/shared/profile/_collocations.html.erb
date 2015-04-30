@@ -9,9 +9,13 @@
 			<li class="collocation_first"><%= collocation.collocation %></li>
 			<li class="well well-sm collocation_well"><%= collocation.context %></li>
 			<li class="collocation_video_info">
-				<%= link_to video_path(Video.find(video.video_id)) do %>Video<% end %> |
-				<%= link_to topic_path(Topic.find(Video.find(video.video_id).topic_id)) do %><%= Topic.find(Video.find(video.video_id).topic_id).name %><% end %> |
-				<%= link_to speaker_path(Speaker.find(Video.find(video.video_id).speaker_id)) do %><%= full_name_of(Speaker.find(Video.find(video.video_id).speaker_id)) %><% end %>
+
+				<%= link_to language_video_path(Language.find(Video.find(video.video_id).language_id), Video.find(video.video_id)) do %>Video<% end %> |
+
+				<%= link_to language_topic_path(Language.find(Video.find(video.video_id).language_id), Topic.find(Video.find(video.video_id).topic_id)) do %><%= Topic.find(Video.find(video.video_id).topic_id).name %><% end %> |
+
+				<%= link_to language_speaker_path(Language.find(Video.find(video.video_id).language_id), Speaker.find(Video.find(video.video_id).speaker_id)) do %><%= full_name_of(Speaker.find(Video.find(video.video_id).speaker_id)) %><% end %>
+
 			</li>
 		</ul>
 	<% end %>

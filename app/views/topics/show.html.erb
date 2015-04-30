@@ -1,7 +1,19 @@
 <div class="topics show main">
 	<div class="container">
 
-		<h1><%= @topic.name %> <% if @language %>(<%= link_to language_path(@language.id) do %><%= @language.name %><% end %>)<% end %></h1>
+		<section class="item-nav">
+			<h1>
+				<%= link_to language_path(@language.id) do %>
+					<%= @language.name %>
+				<% end %>
+				<small>
+					<%= link_to language_topics_path(@language.id) do %>
+						topics
+					<% end %>
+				</small>
+			</h1>
+			<span><%= @topic.name %></span>
+		</section>
 
 
 		<table class="table">

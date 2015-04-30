@@ -1,57 +1,46 @@
 <div class="speakers show main">
 	<div class="container">
-		<ol class="breadcrumb row">
-			<li><%= link_to "Speakers", speakers_path %></li>
-			<li class="active"><%= full_name_of(@speaker) %></li>
-		</ol>
-		<table class="table">
-			<thead>
-				<th>Name</th>
-				<th>Native Language</th>
-				<th># of Videos</th>
-				<th>Gender</th>
-				<th>Age</th>
-				<% if @layout_style == 'Admin' %>
-				<th>ID</th>
-				<th>Created at</th>
-				<th>Updated at</th>
-				<th>Actions</th>
-				<% end %>
-			</thead>
-			<% if @speaker %>
-			<tr>
-				<td><%= full_name_of(@speaker) %></td>
-				<td>
-					<% Language.all.each do |language| %>
-						<% if @speaker.language_id == language.id %>
-							<%= link_to controller: 'languages', action: 'show', id: language.id do %>
-								<%= language.name %>
-							<% end %>
-						<% end %>
-					<% end %>
-				</td>
-				<td><%= @speaker.videos.count %></td>
-				<td><%= @speaker.gender ? 'Male' : 'Female' %></td>
-				<td><%= age_range_of(@speaker) %></td>
-				<% if @layout_style == 'Admin' %>
-				<td><%= @speaker.id %></td>
-				<td><%= @speaker.created_at %></td>
-				<td><%= @speaker.updated_at %></td>
-				<td>
-					<%= link_to "Edit", controller: 'speakers', action: 'edit', id: @speaker.id %>
-					<%= link_to "Delete", controller: 'speakers', action: 'delete', id: @speaker.id %>
-				</td>
-			</tr>
-			<% end %>
-			<% end %>
-		</table>
 		
+		<section class="item-nav">
+			<h1>
+				<%= link_to language_path(@language.id) do %>
+					<%= @language.name %>
+				<% end %>
+				<small>
+					<%= link_to language_speakers_path(@language.id) do %>
+						speakers
+					<% end %>
+				</small>
+			</h1>
+			<span><%= full_name_of(@speaker) %></span>
+		</section>
+
+
+
 		<h3>About</h3>
 		<div class="about_speaker row">	
 			<% video = @videos.first %><% url_queries = Rack::Utils.parse_query URI(video.original_url).query; video_url = url_queries["v"] %>
 			<%= image_tag get_thumbnail(video_url), class: 'col-sm-2' %>
 			<p class="col-sm-10" style="float:right;"><%= @speaker.about %></p>
 		</div>
+
+
+
+		<dl class="dl-horizontal">
+		  <dt>Name</dt>
+		  <dd><%= full_name_of(@speaker) %></dd>
+		  <dt>Language</dt>
+		  <dd><%= Language.find(@speaker.language_id).name %></dd>
+		  <dt>Videos</dt>
+		  <dd><%= @speaker.videos.count %></dd>
+		  <dt>Gender</dt>
+		  <dd><%= @speaker.gender ? 'Male' : 'Female' %></dd>
+		  <dt>Age</dt>
+		  <dd><%= age_range_of(@speaker) %></dd>
+		</dl>
+
+
+
 		<h3>Videos</h3>
 		<table class="table">
 			<thead>
@@ -66,8 +55,8 @@
     			%>
 					<% if video.speaker_id == @speaker.id %>
 						<tr>
-							<td><%= link_to video_path(video.id) do %><img src=<%= get_thumbnail(video_url) %> alt=""><% end %></td>
-							<td><%= link_to topic_path(video.topic.id, language_id: @speaker.language_id) do %><%= video.topic.name %><% end %></td>
+							<td><%= link_to language_video_path(@language.id, video.id) do %><img src=<%= get_thumbnail(video_url) %> alt=""><% end %></td>
+							<td><%= link_to language_topic_path(@language.id, video.topic.id) do %><%= video.topic.name %><% end %></td>
 							<td>duration...</td>
 						</tr>
 					<% end %>

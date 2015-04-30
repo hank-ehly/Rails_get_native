@@ -1,0 +1,44 @@
+<div class="languages videos main">
+	<div class="container">
+
+		<h1><%= link_to language_path(@language.id) do %><%= @language.name %><% end %> <small>videos</small></h1>
+
+		<%= render 'shared/language_index_options' %>
+
+		<hr>
+
+		<table class="table">
+			<thead>
+				<th>Video</th>
+				<th>Topic</th>
+				<th>Speaker</th>
+				<th>Added</th>
+			</thead>
+			<% @language.videos.order("videos.created_at DESC").each do |video| %>
+				<% 
+				url_queries = Rack::Utils.parse_query URI(video.original_url).query
+				video_url = url_queries["v"] 
+				%>
+				<tr>
+					<td>
+						<%= link_to controller: 'videos', action: 'show', id: video.id do %>
+							<img src=<%= get_thumbnail(video_url) %> alt="">
+						<% end %>
+					</td>
+					<td>
+						<%= link_to controller: 'topics', action: 'show', id: video.topic.id do %>
+							<%= video.topic.name %>
+						<% end %>
+					</td>
+					<td>
+						<%= link_to controller: 'speakers', action: 'show', id: video.speaker.id do %>
+							<%= full_name_of(video.speaker) %>
+						<% end %>
+					</td>
+					<td><%= video.created_at.strftime("%B/%d/%Y") %></td>
+				</tr>
+			<% end %>
+		</table>
+
+	</div>
+</div>

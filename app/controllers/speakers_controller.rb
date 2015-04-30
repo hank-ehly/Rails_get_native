@@ -8,10 +8,11 @@ class SpeakersController < ApplicationController
 
 
   def index
-    @speakers = Speaker.order("speakers.first_name ASC")
+    @language = Language.find(params[:language_id])
   end
 
   def show
+    @language = Language.find(params[:language_id])
     @speaker = Speaker.find(params[:id])
     @videos = Video.where(speaker_id: @speaker.id)
   end

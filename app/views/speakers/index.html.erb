@@ -1,95 +1,45 @@
-<div class="speakers index main">
-<div class="container">
-	
-	<h2>
-	<%= link_to "Topics", topics_path %>
-	|
-	<span>Speakers</span>
-	|
-	<%= link_to "Languages", languages_path %>
-</h2>
-	<h4><%= pluralize(@speakers.size, "speaker") %></h4>
+<div class="languages speakers main">
+	<div class="container">
 
-		<% if @layout_style == 'Admin' %>
-			<p><%= link_to "+ Add speaker", new_speaker_path %></p>
-		<% end %>
+		<h1><%= link_to language_path(@language.id) do %><%= @language.name %><% end %> <small>speakers</small></h1>
 
-		<!-- <div id="searcharea">
-	    <input type="search" name="search" id="search" class="form-control" placeholder="Speaker name...">
-	  </div>
-	  <div id="update"></div> -->
+		<%= render 'shared/language_index_options' %>
 
-	<div class="table-responsive">
-		<table class="table">
-			<tr>
-				<% @abc.each do |letter| %>
-					<th><a href="#<%= letter %>"><%= letter %></a></th>
-				<% end %>
-			</tr>
-		</table>
-	</div>
-
-
-	<table class="table table-hover">
-
-
-		<tr>
-			<th>First Name A~Z</th>
-			<th>Native Language</th>
-			<th># of Videos</th>
-			<% if @layout_style == 'Admin' %>
-			<th>Actions</th>
-			<% end %>
-		</tr>
+		<hr>
 		
-		<% @abc.each do |letter| %>
-
-		<tr>
-			<th><a href="#<%= letter %>" id="<%= letter %>"><strong><%= letter %></strong></a></th>
-			<th><a href="#">
-				
-			</a></th>
-			<th></th>
-			<% if @layout_style == 'Admin' %>
-			<th></th>
-			<% end %>
-		</tr>
-
-			<% @speakers.each do |speaker| %>
-				<tr>
-					<% if speaker.first_name[0] == letter %>
-					<td><%= link_to controller: 'speakers', action: 'show', id: speaker.id do %><%= full_name_of(speaker) %><% end %></td>
-					<td><a href="#">
-						<% Language.all.each do |language| %>
-							<% if speaker.language_id == language.id %>
-								<%= link_to "#{language.name}", controller: 'languages', action: 'show', id: language.id %>						
-							<% end %>
-						<% end %>
-					</a></td>
-					<td><%= speaker.videos.count %></td>
-					<% if @layout_style == 'Admin' %>
-					<td>
-						<%= link_to "Edit", controller: 'speakers', action: 'edit', id: speaker.id %>
-						<%= link_to "Delete", controller: 'speakers', action: 'delete', id: speaker.id %>
-					</td>
-					<% end %>
-					<% end %>
-				</tr>
-			<% end %>
-
-		<% end %>
-
-
-	</table>
-
-	<div class="table-responsive">
 		<table class="table">
+
+			<thead>
+				<th></th>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Gender</th>
+				<th>Video Count</th>
+			</thead>
+
+			<% @language.speakers.order("speakers.first_name ASC").each do |speaker| %>
 			<tr>
-				<% @abc.each do |letter| %>
-					<th><a href="#<%= letter %>"><%= letter %></a></th>
+				<td>
+				<% video = speaker.videos.first %>
+				<% 
+				url_queries = Rack::Utils.parse_query URI(video.original_url).query
+				video_url = url_queries["v"] 
+				%>
+				<%= link_to controller: 'speakers', action: 'show', id: speaker.id do %>
+					<img src=<%= get_thumbnail(video_url) %> alt="">
 				<% end %>
+				</td>
+				<td>
+					<%= link_to language_speaker_path(@language.id, speaker.id) do %>
+						<%= full_name_of(speaker) %>
+					<% end %>
+				</td>
+				<td><%= age_range_of(speaker) %></td>
+				<td><%= speaker.gender ? 'Male' : 'Female' %></td>
+				<td><%= speaker.videos.count %></td>
 			</tr>
+			<% end %>
 		</table>
+
 	</div>
-</div>
 </div>

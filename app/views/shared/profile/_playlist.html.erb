@@ -4,7 +4,6 @@
 
 	<% if @user_playlist.videos.count < 1 %>
 		<p>You haven't added any videos to your playlist yet!</p>
-		<%= link_to "Browse Videos!", topics_path %>
 	<% else %>
 
 	<table class="table table-hover">
@@ -12,7 +11,7 @@
 			<th>Video</th>
 			<th>Topic</th>
 			<th>Speaker</th>
-			<th>Actions</th>
+			<th></th>
 		</tr>
 
 		<% @user_playlist.videos.each do |video| %>
@@ -22,23 +21,23 @@
 			%>
 			<tr>
 				<td>
-					<%= link_to video_path(video.id) do %>
+					<%= link_to language_video_path(Language.find(video.language_id), video.id) do %>
 					<img src=<%= get_thumbnail(video_url) %> alt="<%= video.id %>">
 					<% end %>
 				</td>
 				<td>
-					<%= link_to topic_path(Video.find(video.id).topic_id) do %>
+					<%= link_to language_topic_path(Language.find(video.language_id), Video.find(video.id).topic_id) do %>
 					<%= Topic.find(Video.find(video.id).topic_id).name %>
 					<% end %>
 				</td>
 				<td>
-					<%= link_to speaker_path(Video.find(video.id).speaker_id) do %>
+					<%= link_to language_speaker_path(Language.find(video.language_id), Video.find(video.id).speaker_id) do %>
 					<%= full_name_of(Speaker.find(Video.find(video.id).speaker_id)) %>
 					<% end %>
 				</td>
 				<td>
 					<% playlist_video = PlaylistVideo.find_by(video_id: video.id) %>
-					<%= link_to "Remove", controller: 'playlist_videos', action: 'delete', id: playlist_video.id %>
+					<%= link_to controller: 'playlist_videos', action: 'delete', id: playlist_video.id do %><span class="glyphicon glyphicon-remove"></span><% end %>
 				</td>
 			</tr>
 		<% end %>

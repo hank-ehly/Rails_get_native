@@ -1,30 +1,32 @@
 <div class="videos show main">
 	<div class="container">
-		<h1>
 
-			<%= link_to speaker_path(@video.speaker.id) do %>
-				<%= full_name_of(@video.speaker) %>
-			<% end %>
-			: 
-			<%= link_to topic_path(@video.topic.id) do %>
-				<%= @video.topic.name %>
-			<% end %>
-
-
-
-			<% unless @layout_style == 'Admin' %>
-				<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
-					<% if @playlist_video %>
-						<div class="tooltip_added" data-toggle="tooltip" data-placement="top" title="This video is already in your playlist!">	
-							<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', disabled: "disabled", class: "btn btn-sm btn-default" %>
-						</div>	
-					<% else %>
-						<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: "btn btn-sm btn-default" %>
+		<section class="item-nav">
+			<h1>
+				<%= link_to language_path(@language.id) do %>
+					<%= @language.name %>
+				<% end %>
+				<small>
+					<%= link_to language_videos_path(@language.id) do %>
+						videos
 					<% end %>
+				</small>
+			</h1>
+			<span><%= full_name_of(@video.speaker) %> : <%= @video.topic.name %></span>
+		</section>
+
+
+		<% unless @layout_style == 'Admin' %>
+			<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
+				<% if @playlist_video %>
+					<div class="tooltip_added" data-toggle="tooltip" data-placement="right" title="This video is already in your playlist!">	
+						<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', disabled: "disabled", class: "btn btn-sm btn-default" %>
+					</div>	
+				<% else %>
+					<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: "btn btn-sm btn-default" %>
 				<% end %>
 			<% end %>
-
-		</h1>
+		<% end %>
 
 
 
@@ -126,6 +128,7 @@
 							<% end %>
 						</div> <!-- collocation-form -->
 
+
 						<ul id="collocation_list">
 							<% @user_playlist.playlist_videos.each do |pv| %>
 								<% pv.collocations.each do |collocation| %>
@@ -141,17 +144,10 @@
 			</div> <!-- scripts -->
 		</div> <!-- main_video_content -->
 
-		
-
-
-
 
 		<% if @layout_style == 'Admin' %>
 			<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
 		<% end %>
-
-
-
 
 	</div>
 </div>

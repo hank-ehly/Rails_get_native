@@ -1,84 +1,31 @@
-<div class="topics index main">
-<div class="container">
+<div class="languages topics main">
+	<div class="container">
 
-<h2>
-	<span>Topics</span>
-	|
-	<%= link_to "Speakers", speakers_path %>
-</h2>
+		<h1><%= link_to language_path(@language.id) do %><%= @language.name %><% end %> <small>topics</small></h1>
 
-<h4><%= pluralize(@topics.size, "topic") %></h4>
+		<%= render 'shared/language_index_options' %>
 
-	<% if @layout_style == 'Admin' %>
-		<p><%= link_to "+ Add topic", new_topic_path %></p>
-	<% end %>
+		<hr>
 
-	<!-- <div id="searcharea">
-    <input type="search" name="search" id="search" class="form-control" placeholder="Name or Company...">
-  </div>
-  <div id="update"></div> -->
+		<table class="table">
 
-<div class="table-responsive">
-	<table class="table">
-		<tr>
-			<% @abc.each do |letter| %>
-				<th><a href="#<%= letter %>"><%= letter %></a></th>
-			<% end %>
-		</tr>
-	</table>
-</div>
+			<thead>
+				<th>Topic</th>
+				<th># of videos in specified language</th>
+			</thead>
 
-
-<table class="table table-hover">
-
-
-	<tr>
-		<th>Title A~Z</th>
-		<th># of Videos</th>
-		<% if @layout_style == 'Admin' %>
-		<th>Actions</th>
-		<% end %>
-	</tr>
-	
-	<% @abc.each do |letter| %>
-
-	<tr>
-		<th><a href="#<%= letter %>" id="<%= letter %>"><strong><%= letter %></strong></a></th>
-		<th></th>
-		<% if @layout_style == 'Admin' %>
-		<th></th>
-		<% end %>
-	</tr>
-
-		<% @topics.each do |topic| %>
+			<% @language.topics.order("topics.name ASC").each do |topic| %>
 			<tr>
-				<% if topic.name[0] == letter %>
-				<td><%= link_to controller: 'topics', action: 'show', id: topic.id do %><%= topic.name %><% end %></td>
-				<td>( <%= topic.videos.count %> )</td>
-				<% if @layout_style == 'Admin' %>
 				<td>
-					<%= link_to "Edit", controller: 'topics', action: 'edit', id: topic.id %>
-					<%= link_to "Delete", controller: 'topics', action: 'delete', id: topic.id %>
+					<%= link_to language_topic_path(topic.id, language_id: @language.id) do %>
+					<%= topic.name %>
+					<% end %>
 				</td>
-				<% end %>
-				<% end %>
+				<td><%= Video.where(language_id: @language.id, topic_id: topic.id).count %></td>
 			</tr>
-		<% end %>
-
-	<% end %>
-
-
-</table>
-
-<div class="table-responsive">
-	<table class="table">
-		<tr>
-			<% @abc.each do |letter| %>
-				<th><a href="#<%= letter %>"><%= letter %></a></th>
 			<% end %>
-		</tr>
-	</table>
-</div>
 
-</div>
+		</table>
+
+	</div>
 </div>

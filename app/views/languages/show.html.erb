@@ -1,13 +1,25 @@
 <div class="languages show main">
 	<div class="container">
 
-		<h1><%= @language.name %> Language</h1>
+		<h1><%= @language.name %></h1>
 
-		<h3>
-		<%= link_to "Topics", topics_language_path %> | 
-		<%= link_to "Speakers", speakers_language_path %> | 
-		<%= link_to "All Videos", videos_language_path %>
-		</h3>
+		<%= render 'shared/language_index_options' %>
+
+		<hr>
+
+		<div class="row">
+			<%
+				video = @language.videos.first
+				url_queries = Rack::Utils.parse_query URI(video.original_url).query
+				video_url = url_queries["v"] 
+			%>
+			<div class="col-sm-2"><%= image_tag get_thumbnail(video_url) %></div>
+			<p class="col-sm-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, laboriosam molestias! Mollitia rerum, libero repudiandae voluptatem ipsa odit ex possimus maxime voluptates culpa sed. Cum, voluptatum rem non distinctio. Fugit culpa nisi odit libero assumenda repudiandae deleniti inventore? Asperiores enim nemo distinctio, placeat similique voluptate necessitatibus, vitae perspiciatis consequuntur doloremque nisi eveniet quibusdam accusamus nam exercitationem, possimus? Repellendus laborum omnis minus quidem, maxime, architecto voluptatem sed velit modi voluptates autem debitis eaque harum molestias vel, voluptas obcaecati. Fuga nobis, sapiente.</p>
+		</div>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim perspiciatis expedita nobis repellat, fugiat aspernatur omnis, perferendis nemo facilis, dignissimos, autem? Recusandae asperiores nemo, commodi ut incidunt sit blanditiis, perspiciatis expedita, quos illo quod eligendi laborum corporis quibusdam temporibus. Unde reiciendis at, ab placeat fuga voluptatum repellat error doloribus cumque.</p>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora earum non nulla aperiam optio in eligendi magni, nostrum, iure molestias tempore sed dolores deserunt rerum facere dignissimos voluptates aliquid.</p>
 
 	</div>
 </div>

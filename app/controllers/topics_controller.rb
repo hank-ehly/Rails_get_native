@@ -5,7 +5,7 @@ class TopicsController < ApplicationController
   before_action :initialize_params
 
   def index
-    @topics = Topic.order("topics.name ASC")
+    @language = Language.find(params[:language_id])
   end
 
   def new

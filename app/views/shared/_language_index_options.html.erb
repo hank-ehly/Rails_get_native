@@ -1,0 +1,28 @@
+<p>Search by:</p>
+<h4>
+
+
+<%
+
+linkHash = 
+{
+	topics: language_topics_path(@language.id),
+	speakers: language_speakers_path(@language.id),
+	videos: language_videos_path(@language.id)
+} 
+
+%>
+
+<% linkHash.each do |name, link| %>
+	<% name = name.to_s %>
+	<% active = name == params[:controller] ? true : false %>
+	<% if active %>
+		<%= name.titleize %> |
+	<% else %>
+	<%= link_to "#{name}".titleize, link %> |
+	<% end %>
+<% end %>
+
+
+
+</h4>

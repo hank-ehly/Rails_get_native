@@ -19,8 +19,6 @@
 $(document).ready(function() {
   'use strict';
 
-  $('.collapse').collapse()  
-
 
   // smooth scrolling
 
@@ -37,10 +35,6 @@ $(document).ready(function() {
     }
   });
 
-  // tooltip on videos.show
-  $('[data-toggle="tooltip"]').tooltip()  
-
-  
 
   // $('tr.study_video_instance td:first-child input[type=radio]').hide();
   $('tr.study_video_instance:first-child td:first-child input[type=radio]').prop("checked", true);
@@ -62,6 +56,7 @@ $(document).ready(function() {
   $('.script').hide();
   $('#japanese_script').show();
 
+
   // script tabs
   $('.script_tabs li').on('click', function(e) {
     e.preventDefault();
@@ -80,15 +75,12 @@ $(document).ready(function() {
     }
   })
 
-
   var shadowingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var speakingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var listeningPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var writingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
 
-  
-  // if (typeof(popover) == 'function') {
 
   $('#shadowingPopover').popover({
     title: "Shadowing",
@@ -133,6 +125,10 @@ $(document).ready(function() {
     placement: 'bottom',
     content: submitWritingPopoverContent
   })
+
+  // tooltip on videos.show
+  $('[data-toggle="tooltip"]').tooltip()
+  $('.collapse').collapse()
 
   // on clicking of pause button
   $('button.play_pause').on('click', function() {
