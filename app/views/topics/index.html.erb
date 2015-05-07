@@ -14,7 +14,7 @@
 				<th># of videos in specified language</th>
 			</thead>
 
-			<% @language.topics.order("topics.name ASC").each do |topic| %>
+			<% @topics.each do |topic| %>
 			<tr>
 				<td>
 					<%= link_to language_topic_path(topic.id, language_id: @language.id) do %>

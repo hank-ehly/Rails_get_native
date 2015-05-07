@@ -13,15 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.turbolinks
-//= require_tree .
 //= require bootstrap-sprockets
+//= require_tree .
+
 
 $(document).ready(function() {
   'use strict';
 
 
   // smooth scrolling
-
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
       var target = $(this.hash);

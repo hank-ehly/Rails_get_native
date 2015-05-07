@@ -1,3 +1,45 @@
+TODO
+
+// videos.index
+	- ABC ordering on table > th links
+		- click first time, state = true
+		- click second time, state = false
+			- if state = true, order ABC && append span.caret(down) to link
+			- else if state = false, order CBA && append span.caret(up) to link
+			(same for topic.name & created_at)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - Create a profile page
 
 - Create a user model

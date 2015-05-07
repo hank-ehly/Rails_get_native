@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427162354) do
+ActiveRecord::Schema.define(version: 20150507021443) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -70,7 +70,6 @@ ActiveRecord::Schema.define(version: 20150427162354) do
     t.integer  "age",         limit: 4
     t.text     "about",       limit: 65535
     t.integer  "language_id", limit: 4
-    t.string   "email",       limit: 255
   end
 
   add_index "speakers", ["language_id"], name: "index_speakers_on_language_id", using: :btree
@@ -83,10 +82,9 @@ ActiveRecord::Schema.define(version: 20150427162354) do
   add_index "speakers_topics", ["speaker_id", "topic_id"], name: "index_speakers_topics_on_speaker_id_and_topic_id", using: :btree
 
   create_table "topics", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "language_id", limit: 4
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "topics", ["name"], name: "index_topics_on_name", unique: true, using: :btree
@@ -103,7 +101,6 @@ ActiveRecord::Schema.define(version: 20150427162354) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.integer  "views_count",     limit: 4
     t.integer  "speaker_id",      limit: 4
     t.integer  "language_id",     limit: 4
     t.datetime "created_at",                    null: false

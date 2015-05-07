@@ -6,6 +6,7 @@ class TopicsController < ApplicationController
 
   def index
     @language = Language.find(params[:language_id])
+    @topics = @language.topics.order("topics.name ASC").uniq
   end
 
   def new

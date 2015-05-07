@@ -5,16 +5,18 @@
 
 		<%= render 'shared/language_index_options' %>
 
+		<%= params.inspect %>
+
 		<hr>
 
 		<table class="table">
 			<thead>
-				<th>Video</th>
-				<th>Topic</th>
-				<th>Speaker</th>
-				<th>Added</th>
+				<th>Video</th> 
+				<th><%= link_to "Topic", language_videos_path(@language, order: "topic") %></th>
+				<th><%= link_to "Speaker", language_videos_path(@language, order: "speaker") %></th>
+				<th><%= link_to "Added", language_videos_path(@language, order: "added") %></th>
 			</thead>
-			<% @language.videos.order("videos.created_at DESC").each do |video| %>
+			<% @videos.each do |video| %>
 				<% 
 				url_queries = Rack::Utils.parse_query URI(video.original_url).query
 				video_url = url_queries["v"] 

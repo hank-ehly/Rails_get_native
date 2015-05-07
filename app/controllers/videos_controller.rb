@@ -7,6 +7,18 @@ class VideosController < ApplicationController
 
   def index
     @language = Language.find(params[:language_id])
+    case params[:order]
+    when "added"
+      @videos = @language.videos.order("videos.created_at DESC")
+    when "speaker"
+      @videos = @language.videos.order("videos.speaker_id ASC")
+      # @videos = @language.videos.order(ABC by speaker name)
+    when "topic"
+      @videos = @language.videos.order("videos.topic_id ASC")
+      # @videos = @language.videos.order(ABC by topic name)
+    else
+      @videos = @language.videos.order("videos.created_at DESC")
+    end
   end
 
   def show
