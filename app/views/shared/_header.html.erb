@@ -22,7 +22,7 @@
 			          <ul class="dropdown-menu" role="menu">
 			            <% Language.all.each do |language| %>
 			            	<li>
-			            		<%= link_to language_path(language.id) do %>
+			            		<%= link_to language_videos_path(language.id) do %>
 				            		<%= language.name %>
 			            		<% end %>
 			            	</li>

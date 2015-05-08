@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507021443) do
+ActiveRecord::Schema.define(version: 20150508113653) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -101,15 +101,17 @@ ActiveRecord::Schema.define(version: 20150507021443) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   create_table "videos", force: :cascade do |t|
-    t.integer  "speaker_id",      limit: 4
-    t.integer  "language_id",     limit: 4
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "topic_id",        limit: 4
-    t.string   "original_url",    limit: 255
-    t.text     "japanese_script", limit: 65535
-    t.text     "english_script",  limit: 65535
-    t.text     "spanish_script",  limit: 65535
+    t.integer  "speaker_id",        limit: 4
+    t.integer  "language_id",       limit: 4
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "topic_id",          limit: 4
+    t.string   "original_url",      limit: 255
+    t.text     "japanese_script",   limit: 65535
+    t.text     "english_script",    limit: 65535
+    t.text     "spanish_script",    limit: 65535
+    t.string   "speaker_full_name", limit: 255
+    t.string   "topic_name",        limit: 255
   end
 
   add_index "videos", ["speaker_id"], name: "index_videos_on_speaker_id", using: :btree

@@ -2,7 +2,7 @@
 	<h2>Playlist</h2>
 	
 
-	<% if @user_playlist.videos.count < 1 %>
+	<% if @user_playlist.videos.count == 0 %>
 		<p>You haven't added any videos to your playlist yet!</p>
 	<% else %>
 

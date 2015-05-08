@@ -1,9 +1,9 @@
 <div class="languages videos main">
 	<div class="container">
 
-		<h1><%= link_to language_path(@language.id) do %><%= @language.name %><% end %> <small>videos</small></h1>
+		<h1><%= @language.name %></h1>
 
-		<%= render 'shared/language_index_options' %>
+		<!-- render 'shared/language_index_options' -->
 
 		<%= params.inspect %>
 
@@ -12,9 +12,9 @@
 		<table class="table">
 			<thead>
 				<th>Video</th> 
-				<th><%= link_to "Topic", language_videos_path(@language, order: "topic") %></th>
-				<th><%= link_to "Speaker", language_videos_path(@language, order: "speaker") %></th>
-				<th><%= link_to "Added", language_videos_path(@language, order: "added") %></th>
+				<th><%= link_to language_videos_path(@language, order: "topic") do %><strong>Topic</strong><% end %></th>
+				<th><%= link_to language_videos_path(@language, order: "speaker") do %><strong>Speaker</strong><% end %></th>
+				<th><%= link_to language_videos_path(@language, order: "added") do %><strong>Added</strong><% end %></th>
 			</thead>
 			<% @videos.each do |video| %>
 				<% 
