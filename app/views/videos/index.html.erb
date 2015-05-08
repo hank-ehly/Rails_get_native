@@ -11,20 +11,32 @@
 
 		<table class="table">
 			<thead>
-				<th>Video</th> 
+				<th></th> 
 				<th>
 					<%= link_to language_videos_path(@language, order: "topic") do %>
-						<strong>Topic <% if params[:order] == "topic" %><span class="caret"></span><% end %></strong>
+						<strong>Topic
+							<% if params[:order] == "topic" %>
+								<span class="caret"></span>
+							<% end %>
+						</strong>
 					<% end %>
 				</th>
 				<th>
 					<%= link_to language_videos_path(@language, order: "speaker") do %>
-						<strong>Speaker <% if params[:order] == "speaker" %><span class="caret"></span><% end %></strong>
+						<strong>Speaker
+							<% if params[:order] == "speaker" %>
+								<span class="caret"></span>
+							<% end %>
+						</strong>
 					<% end %>
 				</th>
 				<th>
 					<%= link_to language_videos_path(@language, order: "added") do %>
-						<strong>Added <% if params[:order] == "added" %><span class="caret"></span><% end %></strong>
+						<strong>Added
+							<% if params[:order] == "added" %>
+								<span class="caret"></span>
+							<% end %>
+						</strong>
 					<% end %>
 				</th>
 			</thead>

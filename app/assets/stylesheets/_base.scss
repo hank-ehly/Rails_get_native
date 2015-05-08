@@ -44,6 +44,10 @@ input[type=radio] {
   }
 }
 
+.caret.inverted {
+  @include rotateX(180deg);
+}
+
 .main .container {
   @include border-radius;
   background: #fff;

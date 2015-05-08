@@ -7,16 +7,16 @@ TODO
 			- if state = true, order ABC && append span.caret(down) to link
 			- else if state = false, order CBA && append span.caret(up) to link
 			(same for topic.name & created_at)
+			
+// change this:
+	http://localhost:3000/languages/1/videos
+	to this:
+	http://localhost:3000/languages/japanese/videos
 
 
 
-
-
-
-
-
-
-
+// caret
+	- don't add via ruby, add with javascript based on url param
 
 
 
