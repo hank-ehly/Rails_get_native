@@ -3,21 +3,18 @@ class VideosController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
-  respond_to :js, :html
 
   def index
     @language = Language.find(params[:language_id])
     case params[:order]
     when "added"
-      @videos = @language.videos.order("videos.created_at DESC")
+      @videos = @language.videos.newest
     when "speaker"
-      @videos = @language.videos.order("videos.speaker_id ASC")
-      # @videos = @language.videos.order(ABC by speaker name)
+      @videos = @language.videos.speaker_abc
     when "topic"
-      @videos = @language.videos.order("videos.topic_id ASC")
-      # @videos = @language.videos.order(ABC by topic name)
+      @videos = @language.videos.topic_abc
     else
-      @videos = @language.videos.order("videos.created_at DESC")
+      @videos = @language.videos.topic_abc
     end
   end
 
