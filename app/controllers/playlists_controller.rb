@@ -5,7 +5,7 @@ class PlaylistsController < ApplicationController
 		@video = Video.find(params[:video_id])
 		if @playlist.videos << @video
 			flash[:success] = "You added a video to your playlist."
-			redirect_to controller: 'users', action: 'profile', view: 'playlist'
+			redirect_to :back
 		else
 			flash[:danger] = "Failed to add a video."
 			redirect_to controller: 'videos', action: 'show', id: @video.id

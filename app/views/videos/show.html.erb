@@ -1,51 +1,24 @@
 <div class="videos show main">
 	<div class="container">
 
-		<h1><%= @language.name %></h1>
+		<h1>
+			<%= link_to language_videos_path(@language.id) do %>
+				<%= @language.name %>
+			<% end %>
+		</h1>
 		<h3><%= @video.topic.name %> | <%= full_name_of(@video.speaker) %></h3>
 
 		<% unless @layout_style == 'Admin' %>
-			<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
-				<% if @playlist_video %>
-					<div class="tooltip_added" data-toggle="tooltip" data-placement="right" title="This video is already in your playlist!">	
-						<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', disabled: "disabled", class: "btn btn-sm btn-default" %>
-					</div>	
-				<% else %>
+			<% if @playlist_video %>
+				<%= form_for @playlist_video, url: playlist_video_path(@playlist_video.id, video_id: @video.id), method: :delete do |f| %>
+				  <%= f.submit "- Remove from Playlist", :disable_with => 'Removing from Playlist...', class: 'btn btn-large btn-danger' %>
+				<% end %>
+			<% else %>
+				<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>
 					<%= f.submit "+ Add to Playlist", :disable_with => 'Adding to Playlist...', class: "btn btn-sm btn-default" %>
 				<% end %>
 			<% end %>
 		<% end %>
-
-
-
-
-	<% debug = false %>
-	<% if debug %>
-		<div class="debug">
-			<ul>
-				<li>params:
-					<ul>
-						<% params.each do |param| %>
-							<li>- <%= param %></li>
-						<% end %>
-					</ul>
-				</li>
-				<li>Playlist video: <%= @playlist_video.id if @playlist_video %></li>
-				<li>User id: <%= @user.id %>: <%= full_name_of(@user) %></li>
-				<li>User playlist id: <%= @user.playlists.first.id %></li>
-				<li># of playlist videos in user playlist: <%= @user.playlists.first.playlist_videos.count %></li>
-				<% if @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.count %>
-					<li># of collocations for THIS PAGE playlist video <%= @user.playlists.first.playlist_videos.where(:playlist_id => @user.playlists.first.id, :video_id => @video.id).first.collocations.count %>
-					</li>
-				<% end %>
-			</ul>
-		</div>
-	<% end %>
-
-
-
-
-
 
 		<% if @layout_style == 'Admin' %>
 
@@ -70,9 +43,6 @@
 			</table>
 
 		<% end %>
-
-
-
 
 
 

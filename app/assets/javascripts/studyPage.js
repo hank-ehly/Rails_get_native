@@ -9,12 +9,15 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('player', {
+function onYouTubeIframeAPIReady()
+{
+  player = new YT.Player('player',
+  {
     height: '390',
     width: '640',
     videoId: video_url,
-    playerVars: {
+    playerVars:
+    {
       controls: controls_bool,
       modestbranding: 1,
       showinfo: 0,
@@ -23,16 +26,20 @@ function onYouTubeIframeAPIReady() {
       playlist: video_url,
       enablejsapi: 1
     },
-    events: {
+    events:
+    {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
     }
   });
 }
 
-var blink = function(el) {
-  el.fadeTo(500, 0.3, function() {
-    el.fadeTo(500, 1, function() {
+var blink = function(el)
+{
+  el.fadeTo(500, 0.3, function()
+  {
+    el.fadeTo(500, 1, function()
+    {
       blink($('.countdown'));
     });
   });
@@ -40,7 +47,8 @@ var blink = function(el) {
 
 
 
-var timesUp = function() {
+var timesUp = function()
+{
   player.pauseVideo();
   $('button.play_pause').attr('disabled', 'disabled');
   $('.playPauseVideoOnly').attr('disabled', 'disabled');
@@ -52,27 +60,32 @@ var timesUp = function() {
 }
 
 // function to increment time
-incrementTime = function() {
+incrementTime = function()
+{
 
   minutes = Math.floor(time_seconds_by_4 / 60);
   seconds = time_seconds_by_4 - (minutes * 60);
-  if (minutes < 10) {
+  if (minutes < 10)
+  {
     minutes = "0" + minutes;
   }
-  if (seconds < 10) {
+  if (seconds < 10)
+  {
     seconds = "0" + seconds;
   }
   $('.countdown').html(minutes + ':' + seconds);
 
   time_seconds_by_4 -= 1
 
-  if (time_seconds_by_4 == 0) {
+  if (time_seconds_by_4 == 0)
+  {
     clearInterval(incrementTimeInterval);
     setTimeout(timesUp, 1000);
   };
 };
 
-function onPlayerReady(event) {
+function onPlayerReady(event)
+{
   $('button.play_pause').removeAttr('disabled');
   $('.playPauseVideoOnly').removeAttr('disabled');
   // event.target.playVideo();
@@ -80,18 +93,24 @@ function onPlayerReady(event) {
   incrementTimeInterval = setInterval(incrementTime, 1000);
 }
 
-function onPlayerStateChange(event) {
+function onPlayerStateChange(event)
+{
 
-  if (event.data == YT.PlayerState.PLAYING) {
+  if (event.data == YT.PlayerState.PLAYING)
+  {
     // clearInterval(incrementTimeInterval);
-  } else if (event.data == YT.PlayerState.PAUSED) {
+  }
+  else if (event.data == YT.PlayerState.PAUSED)
+  {
     // incrementTimeInterval = setInterval(incrementTime, 1000);
   }
 }
 
-$(document).ready(function() {
+$(document).on('page:change', function()
+{
 
-  $('button.play_pause').on('click', function() {
+  $('button.play_pause').on('click', function()
+    {
 
       // ********* GET DURATION
       // console.log(player.getDuration()); <-- get video duration
@@ -100,23 +119,32 @@ $(document).ready(function() {
       // console.log(player.getPlayerState());
       // console.log(YT.PlayerState.PLAYING);
 
-      if (player.getPlayerState() == YT.PlayerState.PAUSED) {
+      if (player.getPlayerState() == YT.PlayerState.PAUSED)
+      {
         player.playVideo();
         $('#paused-overlay').hide();
-      } else if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+      }
+      else if (player.getPlayerState() == YT.PlayerState.PLAYING)
+      {
         player.pauseVideo();
-        if ($('#options-overlay').css('display') == 'block') {
+        if ($('#options-overlay').css('display') == 'block')
+        {
           return false;
-        } else {
+        }
+        else
+        {
           $('#paused-overlay').show();
         }
       }
 
     }) // on BIG button click
 
-  $('button.btn.btn-default.ppover').on('click', function() {
-    if (player) {
-      if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+  $('button.btn.btn-default.ppover').on('click', function()
+  {
+    if (player)
+    {
+      if (player.getPlayerState() == YT.PlayerState.PLAYING)
+      {
         player.pauseVideo();
         $('#paused-overlay').show();
         // if (controls_bool == 0) {
@@ -143,10 +171,12 @@ $(document).ready(function() {
   minutes = Math.floor(time_seconds_by_4 / 60);
   seconds = time_seconds_by_4 - (minutes * 60);
 
-  if (minutes < 10) {
+  if (minutes < 10)
+  {
     minutes = "0" + minutes;
   };
-  if (seconds < 10) {
+  if (seconds < 10)
+  {
     seconds = "0" + seconds;
   };
 
@@ -163,14 +193,19 @@ $(document).ready(function() {
 
   state = true;
 
-  $('button.play_pause').on('click', function() {
-    if (!$(this).hasClass('onlyVideo')) {
-      if (state) {
+  $('button.play_pause').on('click', function()
+  {
+    if (!$(this).hasClass('onlyVideo'))
+    {
+      if (state)
+      {
         clearInterval(incrementTimeInterval);
         $('#writingTextField').attr('disabled', 'disabled');
         $('body > div > div > form > div > div > input').attr('disabled', 'disabled');
         state = false;
-      } else if (!state) {
+      }
+      else if (!state)
+      {
         incrementTimeInterval = setInterval(incrementTime, 1000);
         $('#writingTextField').removeAttr('disabled');
         $('body > div > div > form > div > div > input').removeAttr('disabled');
@@ -179,13 +214,18 @@ $(document).ready(function() {
     }
   });
 
-  $('button.forTimerOnly').on('click', function() {
-    if (!$(this).hasClass('onlyVideo')) {
-      if (state) {
+  $('button.forTimerOnly').on('click', function()
+  {
+    if (!$(this).hasClass('onlyVideo'))
+    {
+      if (state)
+      {
         clearInterval(incrementTimeInterval);
         $('span.isPausedOrNot').show();
         state = false;
-      } else if (!state) {
+      }
+      else if (!state)
+      {
         incrementTimeInterval = setInterval(incrementTime, 1000);
         $('span.isPausedOrNot').hide();
         state = true;
@@ -193,9 +233,11 @@ $(document).ready(function() {
     }
   })
 
-  $('.ppover').on('click', function() {
+  $('.ppover').on('click', function()
+  {
     $('.paused_alert').toggle()
-    if (state) {
+    if (state)
+    {
       clearInterval(incrementTimeInterval);
       state = false;
     }

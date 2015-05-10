@@ -12,22 +12,27 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.turbolinks
+//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
 
 
-$(document).ready(function() {
+$(document).on('page:change', function()
+{
   'use strict';
 
 
   // smooth scrolling
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+  $('a[href*=#]:not([href=#])').click(function()
+  {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname)
+    {
       var target = $(this.hash);
       target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-      if (target.length) {
-        $('html,body').animate({
+      if (target.length)
+      {
+        $('html,body').animate(
+        {
           scrollTop: target.offset().top
         }, 400);
         return false;
@@ -40,14 +45,17 @@ $(document).ready(function() {
   $('tr.study_video_instance:first-child td:first-child input[type=radio]').prop("checked", true);
   $('tr.study_video_instance:first-child').addClass('active');
 
-  $('tr.study_video_instance').on('click', function() {
+  $('tr.study_video_instance').on('click', function()
+  {
     $(this).addClass('active').siblings().removeClass('active');
     $(this).children('td:first-child').children('input[type=radio]').prop("checked", true);
   })
 
-  $('body > div > div > form').on('submit', function(e) {
+  $('body > div > div > form').on('submit', function(e)
+  {
     var study_time_val = $('#foo_study_time').val()
-    if (!isInt(study_time_val)) {
+    if (!isInt(study_time_val))
+    {
       console.log("not an int");
     }
   })
@@ -58,19 +66,29 @@ $(document).ready(function() {
 
 
   // script tabs
-  $('.script_tabs li').on('click', function(e) {
+  $('.script_tabs li').on('click', function(e)
+  {
     e.preventDefault();
     $('.script').hide();
     $(this).addClass('active').siblings().removeClass('active');
-    if (this.id == "japanese_script_tab") {
+    if (this.id == "japanese_script_tab")
+    {
       $('#japanese_script').show();
-    } else if (this.id == "english_script_tab") {
+    }
+    else if (this.id == "english_script_tab")
+    {
       $('#english_script').show();
-    } else if (this.id == "spanish_script_tab") {
+    }
+    else if (this.id == "spanish_script_tab")
+    {
       $('#spanish_script').show();
-    } else if (this.id == "na") {
+    }
+    else if (this.id == "na")
+    {
       $('#empty_script_tab').show();
-    } else if (this.id == "collocations_tab") {
+    }
+    else if (this.id == "collocations_tab")
+    {
       $('#collocations').show();
     }
   })
@@ -82,7 +100,8 @@ $(document).ready(function() {
   var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
 
 
-  $('#shadowingPopover').popover({
+  $('#shadowingPopover').popover(
+  {
     title: "Shadowing",
     html: true,
     container: 'body',
@@ -91,7 +110,8 @@ $(document).ready(function() {
     content: shadowingPopoverContent
   })
 
-  $('#speakingPopover').popover({
+  $('#speakingPopover').popover(
+  {
     title: "Speaking",
     html: true,
     container: 'body',
@@ -100,7 +120,8 @@ $(document).ready(function() {
     content: speakingPopoverContent
   })
 
-  $('#listeningPopover').popover({
+  $('#listeningPopover').popover(
+  {
     title: 'Listening',
     html: true,
     container: 'body',
@@ -109,7 +130,8 @@ $(document).ready(function() {
     content: listeningPopoverContent
   })
 
-  $('#writingPopover').popover({
+  $('#writingPopover').popover(
+  {
     title: 'Writing',
     html: true,
     container: 'body',
@@ -118,7 +140,8 @@ $(document).ready(function() {
     content: writingPopoverContent
   })
 
-  $('#submitWritingPopover').popover({
+  $('#submitWritingPopover').popover(
+  {
     html: true,
     container: 'body',
     toggle: 'popover',
@@ -131,20 +154,25 @@ $(document).ready(function() {
   $('.collapse').collapse()
 
   // on clicking of pause button
-  $('button.play_pause').on('click', function() {
+  $('button.play_pause').on('click', function()
+  {
     // check to see if popover is visible
     var isVisible = $('.ppover').data('bs.popover').tip().hasClass('in');
     // if it's visible, hide it
-    if (isVisible) {
+    if (isVisible)
+    {
       $('.ppover').popover('hide');
-    } else {
+    }
+    else
+    {
       return false;
     }
   })
 
   // writing
   $('#charNum').text("0");
-  $('#writingTextField').keyup(function() {
+  $('#writingTextField').keyup(function()
+  {
     var len = $(this).val().length;
     $('#charNum').text(len);
   });

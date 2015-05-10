@@ -2,8 +2,9 @@
 	<div class="container">
 		
 		<h1>
-			<%= link_to language_video %>
-			<%= @language.name %>
+			<%= link_to language_videos_path(@language.id) do %>
+				<%= @language.name %>
+			<% end %>
 		</h1>
 		<h3><%= full_name_of(@speaker) %></h3>
 

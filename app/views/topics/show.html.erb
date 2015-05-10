@@ -1,7 +1,11 @@
 <div class="topics show main">
 	<div class="container">
 	
-		<h1><%= @language.name %></h1>
+		<h1>
+			<%= link_to language_videos_path(@language.id) do %>
+				<%= @language.name %>
+			<% end %>
+		</h1>
 		<h3><%= @topic.name %></h3>
 
 		<table class="table">
