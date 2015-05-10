@@ -1,20 +1,8 @@
 <div class="videos show main">
 	<div class="container">
 
-		<section class="item-nav">
-			<h1>
-				<%= link_to language_path(@language.id) do %>
-					<%= @language.name %>
-				<% end %>
-				<small>
-					<%= link_to language_videos_path(@language.id) do %>
-						videos
-					<% end %>
-				</small>
-			</h1>
-			<span><%= full_name_of(@video.speaker) %> : <%= @video.topic.name %></span>
-		</section>
-
+		<h1><%= @language.name %></h1>
+		<h3><%= @video.topic.name %> | <%= full_name_of(@video.speaker) %></h3>
 
 		<% unless @layout_style == 'Admin' %>
 			<%= form_for @playlist, url: playlist_path(@playlist.id, video_id: @video.id), method: :put do |f| %>

@@ -3,19 +3,14 @@
 
 		<h1><%= @language.name %></h1>
 
-		<!-- render 'shared/language_index_options' -->
-
-		<%= params.inspect %>
-
-		<hr>
-
 		<table class="table">
 			<thead>
 				<th></th> 
 				<th>
 					<%= link_to language_videos_path(@language, order: "topic") do %>
-						<strong>Topic
-							<% if params[:order] == "topic" %>
+						<strong>
+							Topic
+							<% if @order == "topic" %>
 								<span class="caret"></span>
 							<% end %>
 						</strong>
@@ -23,8 +18,9 @@
 				</th>
 				<th>
 					<%= link_to language_videos_path(@language, order: "speaker") do %>
-						<strong>Speaker
-							<% if params[:order] == "speaker" %>
+						<strong>
+							Speaker
+							<% if @order == "speaker" %>
 								<span class="caret"></span>
 							<% end %>
 						</strong>
@@ -32,8 +28,9 @@
 				</th>
 				<th>
 					<%= link_to language_videos_path(@language, order: "added") do %>
-						<strong>Added
-							<% if params[:order] == "added" %>
+						<strong>
+							Added
+							<% if @order == "added" %>
 								<span class="caret"></span>
 							<% end %>
 						</strong>

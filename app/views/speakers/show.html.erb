@@ -1,21 +1,11 @@
 <div class="speakers show main">
 	<div class="container">
 		
-		<section class="item-nav">
-			<h1>
-				<%= link_to language_path(@language.id) do %>
-					<%= @language.name %>
-				<% end %>
-				<small>
-					<%= link_to language_speakers_path(@language.id) do %>
-						speakers
-					<% end %>
-				</small>
-			</h1>
-			<span><%= full_name_of(@speaker) %></span>
-		</section>
-
-
+		<h1>
+			<%= link_to language_video %>
+			<%= @language.name %>
+		</h1>
+		<h3><%= full_name_of(@speaker) %></h3>
 
 		<h3>About</h3>
 		<div class="about_speaker row">	

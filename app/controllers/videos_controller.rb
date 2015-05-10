@@ -6,7 +6,8 @@ class VideosController < ApplicationController
 
   def index
     @language = Language.find(params[:language_id])
-    case params[:order]
+    @order = params[:order]
+    case @order
     when "added"
       @videos = @language.videos.newest
     when "speaker"
@@ -18,8 +19,9 @@ class VideosController < ApplicationController
     end
   end
 
+
   def show
-    
+
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
