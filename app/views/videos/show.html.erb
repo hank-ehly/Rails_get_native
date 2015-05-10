@@ -89,8 +89,11 @@
 
 						<ul id="collocation_list">
 							<% @user.collocations.each do |collocation| %>
-	              <li class="collocation_first"><%= collocation.collocation %></li>
-	              <li class="well well-sm collocation_well"><%= collocation.context %></li>
+							<li id="collocation<%= collocation.id %>">
+	              <p class="collocation_first" style="margin:0;"><%= collocation.collocation %></p>
+	              <p class="well well-sm collocation_well" style="margin-bottom:0;"><%= collocation.context %></p>
+	              <p class="pull-right"><%= link_to "remove", collocation_path(collocation.id), remote: true, method: 'delete' %></p>
+              </li>
 	            <% end %>
 						</ul>
 						  

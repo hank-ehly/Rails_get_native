@@ -15,4 +15,15 @@ class CollocationsController < ApplicationController
     end
   end
 
+  def destroy
+    @collocation = Collocation.find(params[:id])
+    if @collocation.destroy
+      message = { success: 'Collocation has been destroyed.', collocation_id: @collocation.id }
+      render json: message
+    else
+      message = { error: @collocation.errors.full_messages }
+      render json: message
+    end
+  end
+
 end

@@ -62,6 +62,44 @@ $(document).on('page:change', function()
   /*-----  End of INQUIRY AJAX  ------*/
 
 
+  $("a[data-remote]").on('ajax:success', function(e, data, status, xhr)
+  {
+    output = "";
+
+    /**
+     *
+     * if ERROR
+     *
+     **/
+
+    if (data['error'])
+    {
+
+    }
+
+    /**
+     *
+     * if SUCCESS
+     *
+     **/
+
+    else if (data['success'])
+    {
+      output += "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">";
+      output += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+      output += "<span aria-hidden=\"true\">&times;</span>";
+      output += "</button>";
+      output += "<p>";
+      output += data['success'];
+      output += "</p>";
+      output += "</div>";
+      $('div.collocationsMessage').append(output); // just to check
+      var collocation_id = data['collocation_id'];
+      $('#collocation'+collocation_id)[0].remove();
+    }
+  })
+
+
 
 
 
