@@ -45,16 +45,16 @@ $(document).on('page:change', function()
 
     else if (data['success'])
     {
-      output += "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">";
-      output += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
-      output += "<span aria-hidden=\"true\">&times;</span>";
-      output += "</button>";
-      output += "<p>";
-      output += data['success'];
-      output += "</p>";
-      output += "</div>";
-      document.getElementById('collocation_collocation').value = "";
-      $('ul#collocation_list').append("<li class=\"collocation_first\">" + data['collocation'] + "</li><li class=\"well well-sm collocation_well\"></li>");
+      // output += "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">";
+      // output += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
+      // output += "<span aria-hidden=\"true\">&times;</span>";
+      // output += "</button>";
+      // output += "<p>";
+      // output += data['success'];
+      // output += "</p>";
+      // output += "</div>";
+      // document.getElementById('collocation_collocation').value = "";
+      // $('ul#collocation_list').append("<li class=\"collocation_first\">" + data['collocation'] + "</li><li class=\"well well-sm collocation_well\"></li>");
     }
 
   });
@@ -64,6 +64,7 @@ $(document).on('page:change', function()
 
   $("a[data-remote]").on('ajax:success', function(e, data, status, xhr)
   {
+    console.log('destroy success');
     output = "";
 
     /**
@@ -74,7 +75,7 @@ $(document).on('page:change', function()
 
     if (data['error'])
     {
-
+    	
     }
 
     /**
@@ -85,17 +86,7 @@ $(document).on('page:change', function()
 
     else if (data['success'])
     {
-      output += "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">";
-      output += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
-      output += "<span aria-hidden=\"true\">&times;</span>";
-      output += "</button>";
-      output += "<p>";
-      output += data['success'];
-      output += "</p>";
-      output += "</div>";
-      $('div.collocationsMessage').append(output); // just to check
-      var collocation_id = data['collocation_id'];
-      $('#collocation'+collocation_id)[0].remove();
+      $('#collocation' + data['collocation_id'])[0].remove();
     }
   })
 

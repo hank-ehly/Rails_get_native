@@ -6,23 +6,28 @@ class CollocationsController < ApplicationController
 
   def create
     @collocation = Collocation.new(collocation_params)
-    if @collocation.save
-      message = { success: 'Added collocation successfully.', collocation: @collocation.collocation }
-      render json: message
-    else
-      message = { error: @collocation.errors.full_messages }
-      render json: message
+    respond_to do |format|
+      if @collocation.save
+        message = { success: 'Added collocation successfully.', collocation: @collocation.collocation }
+        format.json { render json: message }
+        format.js {}
+      else
+        message = { error: @collocation.errors.full_messages }
+        format.json { render json: message }
+      end
     end
   end
 
   def destroy
     @collocation = Collocation.find(params[:id])
-    if @collocation.destroy
-      message = { success: 'Collocation has been destroyed.', collocation_id: @collocation.id }
-      render json: message
-    else
-      message = { error: @collocation.errors.full_messages }
-      render json: message
+    respond_to do |format|
+      if @collocation.destroy
+        message = { success: 'Collocation has been destroyed.', collocation_id: @collocation.id }
+        format.json { render json: message }
+      else
+        message = { error: @collocation.errors.full_messages }
+        format.json { render json: message }
+      end
     end
   end
 
