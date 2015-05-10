@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :playlists
   has_many :playlist_videos, :through => :playlists
+  has_many :collocations, :through => :playlist_videos
 
   before_save { self.email = email.downcase }
 

@@ -44,20 +44,6 @@ class VideosController < ApplicationController
     end
   end
 
-  def new_collocation
-    @collocation = Collocation.new
-  end
-
-  def create_collocation
-    @collocations = Collocation.order("collocations.created_at DESC")
-    @collocation = Collocation.new(collocation_params)
-    video_id = params[:id]
-    @playlist_video = PlaylistVideo.where(video_id: video_id).first
-    @collocation.playlist_video_id = @playlist_video.id
-    @collocation.save
-    redirect_to :back
-  end
-
   def new
     @topic = Topic.find(params[:topic_id]) if params[:topic_id]
     @video = Video.new

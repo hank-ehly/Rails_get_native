@@ -72,10 +72,8 @@
 					
 					<div class="script" id="collocations">
 
-						
-
 						<div id="collocation-form">
-							<%= form_for @collocation, url: { controller: 'videos', action: 'create_collocation', id: @video.id } do |f| %>
+							<%= form_for @collocation, remote: true do |f| %>
 									
 								<div class="form-group">
 									<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
@@ -86,13 +84,13 @@
 							<% end %>
 						</div> <!-- collocation-form -->
 
+						<div class="collocationsMessage"></div>
+
 
 						<ul id="collocation_list">
-							<% @user_playlist.playlist_videos.each do |pv| %>
-								<% pv.collocations.each do |collocation| %>
+							<% @user.collocations.each do |collocation| %>
 	              <li class="collocation_first"><%= collocation.collocation %></li>
 	              <li class="well well-sm collocation_well"><%= collocation.context %></li>
-	              <% end %>
 	            <% end %>
 						</ul>
 						  

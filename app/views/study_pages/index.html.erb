@@ -2,15 +2,6 @@
 	<div class="container">
 		<h1>Study Now</h1>
 
-		<%= form_tag action: 'shadowing' do %>
-
-			<div class="form-group select_time">
-				<h3>How long?</h3>
-				<%= select :foo, :study_time, 1..60,{}, class: 'study_time form-control' %> <span>minutes</span>
-			</div>
-
-			<!-- try to catch the click event with JavaScript and go on from there -->
-
 			<div class="form-group select_language">
 				<h3>What language?</h3>
 				<%
@@ -22,15 +13,27 @@
 				end
 				userLanguages = userLanguages.uniq
 				%>
-				<%= collection_select(:language, :id, userLanguages, :id, :name, {}, class: 'form-control') %>
+				<% if userLanguages.count > 0 %>
+					<%= collection_select(:language, :id, userLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
+				<% else %>
+					<p>You have no videos in your playlist!</p>	
+				<% end %>
+			</div>
+
+		<%= form_tag action: 'shadowing' do %>
+
+			<div class="form-group select_time">
+				<h3>How long?</h3>
+				<%= select :foo, :study_time, 1..60,{}, class: 'study_time form-control' %> <span>minutes</span>
 			</div>
 
 			<div class="form-group select_video">
 				<h3>Select Playlist Video</h3>
+
 				<table class="table">	
 					<thead>
 						<th style="display:none;">Selected</th>
-						<th>Video</th>
+						<th></th>
 						<th>Topic</th>
 						<th>Speaker</th>
 					</thead>
@@ -48,9 +51,10 @@
 					</tr>
 					<% end %>
 				</table>
+
 			</div>
 
-
+			<!-- get native button -->
 			<div class="form-group submit_button"><%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %></div>
 
 
