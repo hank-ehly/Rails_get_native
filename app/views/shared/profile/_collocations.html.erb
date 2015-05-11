@@ -4,7 +4,7 @@
 
 
 <% @playlist_videos.each do |video| %>
-	<% video.collocations.each do |collocation| %>
+	<% video.collocations.where(user_id: @user.id).each do |collocation| %> <!-- PROBLEM, YOU ONLY GET 1 -->
 		<ul class="collocation_instance">
 			<li class="collocation_first"><%= collocation.collocation %></li>
 			<li class="well well-sm collocation_well"><%= collocation.context %></li>

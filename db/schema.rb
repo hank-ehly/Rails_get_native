@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511003754) do
+ActiveRecord::Schema.define(version: 20150511005623) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "first_name",      limit: 255, null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20150511003754) do
     t.string   "collocation",       limit: 255
     t.text     "context",           limit: 65535
     t.integer  "video_id",          limit: 4
+    t.integer  "user_id",           limit: 4
   end
 
   add_index "collocations", ["playlist_video_id"], name: "index_collocations_on_playlist_video_id", using: :btree

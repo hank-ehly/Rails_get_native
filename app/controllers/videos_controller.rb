@@ -21,23 +21,19 @@ class VideosController < ApplicationController
 
 
   def show
-
     @video = Video.find(params[:id])
     url_queries = Rack::Utils.parse_query URI(@video.original_url).query
     @video_url = url_queries["v"]
     @language = Language.find(params[:language_id])
-
     if session[:user_id]
-      @playlist = Playlist.find(User.find(session[:user_id]).playlists.first)
       @user = User.find(session[:user_id])
+      @playlist = Playlist.find_by(user_id: @user.id)
       @user_playlist = Playlist.find_by(user_id: @user.id)
       @collocation = Collocation.new
-      # if user's playlist contains playlist video where video_id == @video.id
       @user_playlist.playlist_videos.each do |playlist_video|
         if playlist_video.video_id == @video.id
           @playlist_video = PlaylistVideo.where(video_id: @video.id).first
-          @pvid = @playlist_video.id
-          @collocations = @playlist_video.collocations.where(video_id: @video.id).order("collocations.created_at DESC")
+          @collocations = @playlist_video.collocations.where(video_id: @video.id).where(user_id: @user.id).order("collocations.created_at ASC")
         end
       end
       # show 'collocations form inside ul.scripts'
