@@ -77,6 +77,7 @@
 									
 								<div class="form-group">
 									<%= f.hidden_field :playlist_video_id, value: @playlist_video.id %>
+									<%= f.hidden_field :video_id, value: @video.id %>
 									<%= f.text_field :collocation, placeholder: 'Paste Collocation...', class: 'form-control' %>
 									<%= f.submit "Submit", :disable_with => 'Submiting...', class: 'btn btn-default' %>
 								</div>
@@ -88,7 +89,7 @@
 
 
 						<ul id="collocation_list">
-							<% @user.collocations.each do |collocation| %>
+							<% @collocations.each do |collocation| %>
 							<li id="collocation<%= collocation.id %>">
 	              <p class="collocation_first" style="margin:0;"><%= collocation.collocation %></p>
 	              <p class="well well-sm collocation_well" style="margin-bottom:0;"><%= collocation.context %></p>

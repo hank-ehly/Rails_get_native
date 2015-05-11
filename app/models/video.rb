@@ -5,6 +5,7 @@ class Video < ActiveRecord::Base
 	belongs_to :language
 	has_many :playlist_videos
 	has_many :playlists, :through => :playlist_videos
+	has_many :collocations
 
 	scope :speaker_abc, -> { order("videos.speaker_full_name ASC") }
 	scope :speaker_cba, -> { order("videos.speaker_full_name DESC") }

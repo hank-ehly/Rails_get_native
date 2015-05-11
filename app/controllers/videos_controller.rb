@@ -37,7 +37,7 @@ class VideosController < ApplicationController
         if playlist_video.video_id == @video.id
           @playlist_video = PlaylistVideo.where(video_id: @video.id).first
           @pvid = @playlist_video.id
-          @collocations = @playlist_video.collocations.order("collocations.created_at DESC")
+          @collocations = @playlist_video.collocations.where(video_id: @video.id).order("collocations.created_at DESC")
         end
       end
       # show 'collocations form inside ul.scripts'
