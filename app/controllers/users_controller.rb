@@ -34,6 +34,7 @@ class UsersController < ApplicationController
     unless @layout_style == 'Admin'
       @user_playlist = @user.playlists.first
       @playlist_videos = @user_playlist.playlist_videos
+      @collocations = Collocation.all.where(user_id: @user.id)
     end
   end
 
