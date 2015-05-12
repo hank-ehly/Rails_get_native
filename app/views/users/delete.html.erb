@@ -6,7 +6,7 @@
 
 			<h1>Delete Account</h1>
 			
-			<%= form_for :user, :url => {:controller => "users", :action => "destroy"} do |f| %>
+			<%= form_for @user, method: 'delete' do |f| %>
 
 				<%= error_messages_for(@user) %>
 

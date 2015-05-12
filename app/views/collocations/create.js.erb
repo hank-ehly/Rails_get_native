@@ -1,1 +1,6 @@
+/* append collocation block */
 $("<%= escape_javascript(render :partial => 'shared/collocationInstance', locals: {collocation: @collocation}) %>").appendTo("ul#collocation_list");
+/* reset input */
+document.getElementById('collocation_collocation').value = "";
+/* unfocus submit */
+$('#new_collocation > div > input.btn.btn-default').blur();

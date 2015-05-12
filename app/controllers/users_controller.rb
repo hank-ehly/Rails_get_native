@@ -57,7 +57,17 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(session[:user_id])
-    user.destroy
+    user.playlists.take.playlist_videos.all.each do |playlist_video|
+      if playlist_video.destroy
+        if user.playlists.take.destroy
+          user.destroy
+        else
+          render :delete
+        end
+      else
+        render :delete
+      end
+    end
     flash[:success] = "#{user.email}'s account has been successfully deleted."
     session[:user_id] = nil
     session[:email] = nil

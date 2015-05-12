@@ -24,9 +24,11 @@ class CollocationsController < ApplicationController
       if @collocation.destroy
         message = { success: 'Collocation has been destroyed.', collocation_id: @collocation.id }
         format.json { render json: message }
+        # format.js {}
       else
         message = { error: @collocation.errors.full_messages }
         format.json { render json: message }
+        # format.js {}
       end
     end
   end

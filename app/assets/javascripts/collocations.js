@@ -35,6 +35,7 @@ $(document).on('page:change', function()
       };
       output += "</div>";
       $('div.collocationsMessage').append(output);
+      console.log('error');
     }
 
     /**
@@ -45,16 +46,7 @@ $(document).on('page:change', function()
 
     else if (data['success'])
     {
-      // output += "<div class=\"alert alert-success alert-dismissable fade in\" role=\"alert\">";
-      // output += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">";
-      // output += "<span aria-hidden=\"true\">&times;</span>";
-      // output += "</button>";
-      // output += "<p>";
-      // output += data['success'];
-      // output += "</p>";
-      // output += "</div>";
-      // document.getElementById('collocation_collocation').value = "";
-      // $('ul#collocation_list').append("<li class=\"collocation_first\">" + data['collocation'] + "</li><li class=\"well well-sm collocation_well\"></li>");
+      // see views/collocations/create.js.erb
     }
 
   });
@@ -64,7 +56,7 @@ $(document).on('page:change', function()
 
   $("a[data-remote]").on('ajax:success', function(e, data, status, xhr)
   {
-    console.log('destroy success');
+    console.log('collocations.js > destroy success');
     output = "";
 
     /**
@@ -75,7 +67,7 @@ $(document).on('page:change', function()
 
     if (data['error'])
     {
-    	
+
     }
 
     /**
@@ -86,14 +78,25 @@ $(document).on('page:change', function()
 
     else if (data['success'])
     {
-      $('#collocation' + data['collocation_id'])[0].remove();
+      var collocation_id = data['collocation_id'];
+      var collocationBlock = document.getElementById('collocation' + collocation_id);
+
+      var profileCollocationBlock = $('div.info_column.col-md-6.col-sm-7 > ul#collocation' + collocation_id);
+
+      colBlocks = [collocationBlock, profileCollocationBlock]
+
+      colBlocks.forEach(function(element, index)
+      {
+        element.remove();
+      });
+
+      /* remove collocation block */
+      while (collocationBlock.firstChild)
+      {
+        collocationBlock.removeChild(collocationBlock.firstChild);
+      }
     }
   })
-
-
-
-
-
 
 
 });

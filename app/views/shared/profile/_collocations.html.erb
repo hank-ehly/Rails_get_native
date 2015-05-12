@@ -4,17 +4,21 @@
 
 
 <% @playlist_videos.each do |video| %>
-	<% video.collocations.where(user_id: @user.id).each do |collocation| %> <!-- PROBLEM, YOU ONLY GET 1 -->
-		<ul class="collocation_instance">
+	<% video.collocations.where(user_id: @user.id).each do |collocation| %>
+		<ul class="collocation_instance" id="collocation<%= collocation.id %>">
 			<li class="collocation_first"><%= collocation.collocation %></li>
 			<li class="well well-sm collocation_well"><%= collocation.context %></li>
 			<li class="collocation_video_info">
 
-				<%= link_to language_video_path(Language.find(Video.find(video.video_id).language_id), Video.find(video.video_id)) do %>Video<% end %> |
+				<%= link_to language_videos_path(Language.find(Video.find(video.video_id).language_id).id) do %><%= Language.find(Video.find(video.video_id).language_id).name %><% end %> |
 
-				<%= link_to language_topic_path(Language.find(Video.find(video.video_id).language_id), Topic.find(Video.find(video.video_id).topic_id)) do %><%= Topic.find(Video.find(video.video_id).topic_id).name %><% end %> |
+				<%= link_to language_video_path(Language.find(Video.find(video.video_id).language_id).id, Video.find(video.video_id).id) do %>Video<% end %> |
 
-				<%= link_to language_speaker_path(Language.find(Video.find(video.video_id).language_id), Speaker.find(Video.find(video.video_id).speaker_id)) do %><%= full_name_of(Speaker.find(Video.find(video.video_id).speaker_id)) %><% end %>
+				<%= link_to language_topic_path(Language.find(Video.find(video.video_id).language_id).id, Topic.find(Video.find(video.video_id).topic_id).id) do %><%= Topic.find(Video.find(video.video_id).topic_id).name %><% end %> |
+
+				<%= link_to language_speaker_path(Language.find(Video.find(video.video_id).language_id).id, Speaker.find(Video.find(video.video_id).speaker_id).id) do %><%= full_name_of(Speaker.find(Video.find(video.video_id).speaker_id)) %><% end %> |
+
+				<%= link_to "remove", collocation_path(collocation.id), remote: true, method: 'delete', onclick: "return confirm(\"Are you sure?\")" %>
 
 			</li>
 		</ul>
