@@ -44,8 +44,6 @@
 
 		<% end %>
 
-
-
 		<div class="main_video_content">
 
 			<div class="video_instance">
@@ -88,7 +86,6 @@
 
 						<div class="collocationsMessage"></div>
 
-
 						<ul id="collocation_list">
 							<% @collocations.each do |collocation| %>
 							<li id="collocation<%= collocation.id %>">
@@ -104,7 +101,6 @@
 				<% end %> <!-- unless @layout_style == 'Admin' -->
 			</div> <!-- scripts -->
 		</div> <!-- main_video_content -->
-
 
 		<% if @layout_style == 'Admin' %>
 			<%= link_to "Delete", controller: 'videos', action: 'delete', id: @video.id %>
