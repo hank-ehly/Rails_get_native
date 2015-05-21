@@ -11,5 +11,7 @@
 
 
 .embededCollocation {
-	font-weight: bold;
+	// font-weight: bold;
+	// text-decoration: underline;
+	border-bottom: 1px dotted lighten(black, 60);
 }

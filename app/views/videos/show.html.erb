@@ -88,7 +88,7 @@
 
 						<ul id="collocation_list">
 							<% @collocations.each do |collocation| %>
-							<li id="collocation<%= collocation.id %>">
+							<li id="collocation<%= collocation.id %>" class="collocation_instance">
 	              <p class="collocation_first" style="margin:0;"><%= collocation.collocation %></p>
 	              <p class="well well-sm collocation_well" style="margin-bottom:0;"><%= collocation.context %></p>
 	              <p class="pull-right"><%= link_to "remove", collocation_path(collocation.id), remote: true, method: 'delete', onclick: "return confirm(\"Are you sure?\")" %></p>
