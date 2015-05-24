@@ -6,36 +6,79 @@
 		<table class="table">
 			<thead>
 				<th></th> 
-				<th>
-					<%= link_to language_videos_path(@language, order: "topic") do %>
-						<strong>
-							Topic
-							<% if @order == "topic" %>
-								<span class="caret"></span>
+				
+					<% if params[:order_type] == 'cba' %>
+					
+						<th>
+							<%= link_to language_videos_path(@language, order: "topic", order_type: 'abc') do %>
+								<strong>
+									Topic
+									<% if @order == "topic" %>
+										<i class="fa fa-caret-up"></i>
+									<% end %>
+								</strong>
 							<% end %>
-						</strong>
-					<% end %>
-				</th>
-				<th>
-					<%= link_to language_videos_path(@language, order: "speaker") do %>
-						<strong>
-							Speaker
-							<% if @order == "speaker" %>
-								<span class="caret"></span>
+						</th>
+
+						<th>
+							<%= link_to language_videos_path(@language, order: "speaker", order_type: 'abc') do %>
+								<strong>
+									Speaker
+									<% if @order == "speaker" %>
+										<i class="fa fa-caret-up"></i>
+									<% end %>
+								</strong>
 							<% end %>
-						</strong>
-					<% end %>
-				</th>
-				<th>
-					<%= link_to language_videos_path(@language, order: "added") do %>
-						<strong>
-							Added
-							<% if @order == "added" %>
-								<span class="caret"></span>
+						</th>
+
+						<th>
+							<%= link_to language_videos_path(@language, order: "added", order_type: 'abc') do %>
+								<strong>
+									Added
+									<% if @order == "added" %>
+										<i class="fa fa-caret-up"></i>
+									<% end %>
+								</strong>
 							<% end %>
-						</strong>
+						</th>
+
+					<% else %>
+
+						<th>
+							<%= link_to language_videos_path(@language, order: "topic", order_type: 'cba') do %>
+								<strong>
+									Topic
+									<% if @order == "topic" %>
+										<i class="fa fa-caret-down"></i>
+									<% end %>
+								</strong>
+							<% end %>
+						</th>
+
+						<th>
+							<%= link_to language_videos_path(@language, order: "speaker", order_type: 'cba') do %>
+								<strong>
+									Speaker
+									<% if @order == "speaker" %>
+										<i class="fa fa-caret-down"></i>
+									<% end %>
+								</strong>
+							<% end %>
+						</th>
+
+						<th>
+							<%= link_to language_videos_path(@language, order: "added", order_type: 'cba') do %>
+								<strong>
+									Added
+									<% if @order == "added" %>
+										<i class="fa fa-caret-down"></i>
+									<% end %>
+								</strong>
+							<% end %>
+						</th>
+
 					<% end %>
-				</th>
+
 			</thead>
 			<% @videos.each do |video| %>
 				<% 

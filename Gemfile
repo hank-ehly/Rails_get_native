@@ -13,6 +13,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# icons
+gem 'font-awesome-sass'
+
+
 gem 'responders', '~> 2.0'
 # Use Bootstrap
 gem 'bootstrap-sass', '~> 3.3.4'

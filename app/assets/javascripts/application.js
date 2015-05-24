@@ -21,7 +21,6 @@ $(document).on('page:change', function()
 {
   'use strict';
 
-
   // smooth scrolling
   $('a[href*=#]:not([href=#])').click(function()
   {
@@ -98,7 +97,6 @@ $(document).on('page:change', function()
   var listeningPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var writingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
   var submitWritingPopoverContent = "<p>While listening, try to repeat — to \"shadow\" — what you hear as quickly as you hear it.</p><a href=\"#\">Learn more about shadowing</a><br><a href=\"#\">View example</a>";
-
 
   $('#shadowingPopover').popover(
   {
