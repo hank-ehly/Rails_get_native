@@ -1,5 +1,13 @@
 TODO
 
+
+
+
+// add A~Z / Z~A
+
+
+
+
 // videos.index
 	- ABC ordering on table > th links
 		- click first time, state = true
@@ -12,11 +20,6 @@ TODO
 	http://localhost:3000/languages/1/videos
 	to this:
 	http://localhost:3000/languages/japanese/videos
-
-
-
-// caret
-	- don't add via ruby, add with javascript based on url param
 
 
 
