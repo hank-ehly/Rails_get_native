@@ -6,6 +6,24 @@ class StudyPagesController < ApplicationController
 
   def index
     @user = User.find(session[:user_id]) if session[:user_id]
+    userPlaylist = @user.playlists.take
+    userPlaylistVideos = userPlaylist.playlist_videos
+    @languageSpecificPlaylistVideos = Array.new
+    @userPlaylistVideoLanguages = Array.new()
+    Language.all.each do |language|
+      userPlaylistVideos.each do |playlistVideo|
+        @userPlaylistVideoLanguages << Language.find(Video.find(playlistVideo.video_id).language_id)
+      end
+    end
+    @userPlaylistVideoLanguages = @userPlaylistVideoLanguages.uniq
+    if params[:lang]
+      @lang = Language.find_by(name: params[:lang])
+      @user.playlist_videos.each do |playlistVideo|
+        if @lang.name == Language.find(Video.find(PlaylistVideo.find(playlistVideo.id).video_id).language_id).name
+          @languageSpecificPlaylistVideos << playlistVideo
+        end
+      end
+    end
   end
 
   def shadowing

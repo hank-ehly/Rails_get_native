@@ -2,64 +2,79 @@
 	<div class="container">
 		<h1>Study Now</h1>
 
+
+
+			<!-- LANGUAGE -->
 			<div class="form-group select_language">
+
 				<h3>What language?</h3>
-				<%
-				userLanguages = Array.new()
-				Language.all.each do |l|
-					@user.playlist_videos.each do |pv|
-						userLanguages << Language.find(Video.find(pv.video_id).language_id)
-					end
-				end
-				userLanguages = userLanguages.uniq
-				%>
-				<% if userLanguages.count > 0 %>
-					<%= collection_select(:language, :id, userLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
+
+				<% if @userPlaylistVideoLanguages.count > 0 %>
+					<% if @lang %>
+						<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {selected: @lang.id}, class: 'form-control') %>
+					<% else %>
+						<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
+					<% end %>
 				<% else %>
 					<p>You have no videos in your playlist!</p>	
 				<% end %>
-			</div>
 
+			</div>
+			<!-- END LANGUAGE -->
+
+
+	
 		<%= form_tag action: 'shadowing' do %>
 
-			<div class="form-group select_time">
-				<h3>How long?</h3>
-				<%= select :foo, :study_time, 1..60,{}, class: 'study_time form-control' %> <span>minutes</span>
-			</div>
+			<!-- SELECT VIDEO -->
+			<% if @lang %>
 
-			<div class="form-group select_video">
-				<h3>Select Playlist Video</h3>
+				<div class="form-group select_video">
 
-				<table class="table">	
-					<thead>
-						<th style="display:none;">Selected</th>
-						<th></th>
-						<th>Topic</th>
-						<th>Speaker</th>
-					</thead>
-					<% @user.playlist_videos.each do |playlist_video| %>
-					<% 
-					video = Video.find(playlist_video.video_id)
-					url_queries = Rack::Utils.parse_query URI(video.original_url).query
-    			video_url = url_queries["v"] 
-    			%>
-					<tr class="study_video_instance">
-						<td style="display:none;"><%= radio_button_tag "playlist_video", "#{playlist_video.id}" %></td>
-						<td><img src=<%= get_thumbnail(video_url) %> alt=""></td>
-						<td><%= Topic.find(Video.find(playlist_video.video_id).topic_id).name %></td>
-						<td><%= full_name_of(Speaker.find(Video.find(playlist_video.video_id).speaker_id)) %></td>
-					</tr>
-					<% end %>
-				</table>
+					<h3>Select Playlist Video</h3>
 
-			</div>
+					<table class="table">	
 
-			<!-- get native button -->
-			<div class="form-group submit_button"><%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %></div>
+						<thead>
+							<th style="display:none;"></th>
+							<th></th>
+							<th>Topic</th>
+							<th>Speaker</th>
+						</thead>
+
+						<% @languageSpecificPlaylistVideos.each do |playlistVideo| %>
+
+							<tr class="study_video_instance">
+								<td style="display:none;"><%= radio_button_tag "playlistVideo", "#{playlistVideo.id}" %></td>
+								<td><img src=<%= get_thumbnail(findVideoUrlFromPlaylistVideo(playlistVideo)) %> alt=""></td>
+								<td><%= Topic.find(Video.find(playlistVideo.video_id).topic_id).name %></td>
+								<td><%= full_name_of(Speaker.find(Video.find(playlistVideo.video_id).speaker_id)) %></td>
+							</tr>
+
+						<% end %>
+
+					</table>
+
+				</div>
+
+			
 
 
-		<% end %>
+				<!-- HOW LONG -->
+				<div class="form-group select_time">
+					<h3>How long?</h3>
+					<%= select :foo, :study_time, 1..30, {selected: 15}, class: 'study_time form-control' %>
+					<span>minutes</span>
+				</div>
 
 
-	</div>
-</div>
+				<!-- get native button -->
+				<div class="form-group study submit_button">
+					<%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %>
+				</div>
+
+
+			<% end %> <!-- if @lang -->
+		<% end %> <!-- form_tag action: 'shadowing' -->
+	</div> <!-- div.container -->
+</div> <!-- div.study_pages.index -->

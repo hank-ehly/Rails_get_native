@@ -1,20 +1,6 @@
 TODO
 
 
-
-
-// add A~Z / Z~A
-
-
-
-
-// videos.index
-	- ABC ordering on table > th links
-		- click first time, state = true
-		- click second time, state = false
-			- if state = true, order ABC && append span.caret(down) to link
-			- else if state = false, order CBA && append span.caret(up) to link
-			(same for topic.name & created_at)
 			
 // change this:
 	http://localhost:3000/languages/1/videos

@@ -1,16 +1,15 @@
 $(document).on("page:change", function()
 {
 
-  $("select#language_id").change(function()
+  $( ".select_language #language_id" ).change(function() 
   {
 
-    var str = "";
+  	var selectedLanguageName;
 
-    $("select#language_id option:selected").each(function()
-    {
-      str += $(this).text();
-    });
+  	selectedLanguageName = $(".select_language #language_id option:selected").html();
 
-  });
+  	window.location.href = "study_pages?lang=" + selectedLanguageName;
+
+	});
 
 });
