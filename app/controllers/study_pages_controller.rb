@@ -5,16 +5,18 @@ class StudyPagesController < ApplicationController
   before_action :initialize_params
 
   def index
-    @user = User.find(session[:user_id]) if session[:user_id]
-    userPlaylist = @user.playlists.take
-    userPlaylistVideos = userPlaylist.playlist_videos
-    @languageSpecificPlaylistVideos = Array.new
-    @userPlaylistVideoLanguages = Array.new()
+
+    @user                           =   User.find(session[:user_id]) if session[:user_id]
+    userPlaylistVideos              =   @user.playlists.take.playlist_videos
+    @languageSpecificPlaylistVideos =   Array.new
+    @userPlaylistVideoLanguages     =   Array.new
+
     Language.all.each do |language|
       userPlaylistVideos.each do |playlistVideo|
         @userPlaylistVideoLanguages << Language.find(Video.find(playlistVideo.video_id).language_id)
       end
     end
+
     @userPlaylistVideoLanguages = @userPlaylistVideoLanguages.uniq
     if params[:lang]
       @lang = Language.find_by(name: params[:lang])
@@ -24,7 +26,8 @@ class StudyPagesController < ApplicationController
         end
       end
     end
-  end
+
+  end # def index
 
   def shadowing
     @controls_bool = 0

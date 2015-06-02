@@ -2,8 +2,6 @@
 	<div class="container">
 		<h1>Study Now</h1>
 
-
-
 			<!-- LANGUAGE -->
 			<div class="form-group select_language">
 
@@ -20,19 +18,15 @@
 				<% end %>
 
 			</div>
-			<!-- END LANGUAGE -->
 
-
-	
+		<!-- FORM -->
 		<%= form_tag action: 'shadowing' do %>
 
 			<!-- SELECT VIDEO -->
 			<% if @lang %>
 
 				<div class="form-group select_video">
-
 					<h3>Select Playlist Video</h3>
-
 					<table class="table">	
 
 						<thead>
@@ -43,21 +37,16 @@
 						</thead>
 
 						<% @languageSpecificPlaylistVideos.each do |playlistVideo| %>
-
 							<tr class="study_video_instance">
 								<td style="display:none;"><%= radio_button_tag "playlistVideo", "#{playlistVideo.id}" %></td>
 								<td><img src=<%= get_thumbnail(findVideoUrlFromPlaylistVideo(playlistVideo)) %> alt=""></td>
 								<td><%= Topic.find(Video.find(playlistVideo.video_id).topic_id).name %></td>
 								<td><%= full_name_of(Speaker.find(Video.find(playlistVideo.video_id).speaker_id)) %></td>
 							</tr>
-
-						<% end %>
+						<% end %> <!-- @languageSpecificPlaylistVideos.each do |playlistVideo| -->
 
 					</table>
-
-				</div>
-
-			
+				</div> <!-- div.select_video -->
 
 
 				<!-- HOW LONG -->
