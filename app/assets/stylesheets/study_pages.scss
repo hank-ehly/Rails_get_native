@@ -38,6 +38,10 @@ div.study_pages.index {
   }
 }
 
+div.form-group.select_video > table > tbody > tr > td:nth-child(1) {
+  display: none;
+}
+
 .video_instance {
   text-align: center;
 }

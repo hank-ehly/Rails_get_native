@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: admins
+#
+#  id              :integer          not null, primary key
+#  first_name      :string(255)      not null
+#  last_name       :string(255)      not null
+#  email           :string(255)      not null
+#  password_digest :string(255)      not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class Admin < ActiveRecord::Base
 	has_secure_password
 

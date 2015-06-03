@@ -16,6 +16,9 @@ gem 'uglifier', '>= 1.3.0'
 # icons
 gem 'font-awesome-sass'
 
+# annotations
+gem 'annotate', '~> 2.6.6'
+
 
 gem 'responders', '~> 2.0'
 # Use Bootstrap

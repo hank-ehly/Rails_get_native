@@ -24,6 +24,8 @@ class StudyPagesController < ApplicationController
 
     end # if params[:lang]
 
+    findTopicNameFromPlaylistVideo(playlistVideo)
+
   end # def index
 
   def shadowing
