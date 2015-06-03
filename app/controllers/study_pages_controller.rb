@@ -3,29 +3,26 @@ class StudyPagesController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
+  before_action :userSettings, only: [:index]
 
   def index
-
-    @user                           =   User.find(session[:user_id]) if session[:user_id]
-    userPlaylistVideos              =   @user.playlists.take.playlist_videos
-    @languageSpecificPlaylistVideos =   Array.new
-    @userPlaylistVideoLanguages     =   Array.new
-
-    Language.all.each do |language|
-      userPlaylistVideos.each do |playlistVideo|
-        @userPlaylistVideoLanguages << Language.find(Video.find(playlistVideo.video_id).language_id)
-      end
-    end
-
-    @userPlaylistVideoLanguages = @userPlaylistVideoLanguages.uniq
+    
     if params[:lang]
+
       @lang = Language.find_by(name: params[:lang])
-      @user.playlist_videos.each do |playlistVideo|
-        if @lang.name == Language.find(Video.find(PlaylistVideo.find(playlistVideo.id).video_id).language_id).name
+
+      @userPlaylistVideos.each do |playlistVideo|
+
+        video     = Video.find(playlistVideo.video_id);
+        language  = Language.find(video.language_id);
+
+        if @lang.name == language.name
           @languageSpecificPlaylistVideos << playlistVideo
         end
-      end
-    end
+
+      end # @user.playlist_videos.each do |playlistVideo|
+
+    end # if params[:lang]
 
   end # def index
 
@@ -73,9 +70,22 @@ class StudyPagesController < ApplicationController
     redirect_to root_path
   end
 
-  def get_video_url
-    url_queries = Rack::Utils.parse_query URI(@video.original_url).query
-    @video_url = url_queries["v"]
+  private
+
+  def userSettings
+
+    @user                           =   User.find(session[:user_id]) if session[:user_id]
+    @userPlaylistVideos             =   @user.playlists.take.playlist_videos
+    @languageSpecificPlaylistVideos =   Array.new
+    @userPlaylistVideoLanguages     =   Array.new
+
+    Language.all.each do |language|
+      @userPlaylistVideos.each do |playlistVideo|
+        @userPlaylistVideoLanguages << Language.find(Video.find(playlistVideo.video_id).language_id)
+      end
+    end
+    @userPlaylistVideoLanguages = @userPlaylistVideoLanguages.uniq
+
   end
 
 end
