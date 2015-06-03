@@ -7,8 +7,8 @@ module VideosHelper
 		return "%d:%d" % [mm, ss]
 	end
 
-	def get_thumbnail(video_url)
-		return "http://i1.ytimg.com/vi/" + video_url + "/default.jpg"
+	def getThumbnail(videoUrl)
+		return "http://i1.ytimg.com/vi/" + videoUrl + "/default.jpg"
 	end
 
 end

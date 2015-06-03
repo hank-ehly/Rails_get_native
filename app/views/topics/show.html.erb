@@ -21,7 +21,7 @@
   			%>
 				<% if video.topic_id == @topic.id %>
 					<tr>
-						<td><%= link_to controller: 'videos', action: 'show', id: video.id do %><img src=<%= get_thumbnail(video_url) %> alt=""><% end %></td>
+						<td><%= link_to controller: 'videos', action: 'show', id: video.id do %><img src=<%= getThumbnail(video_url) %> alt=""><% end %></td>
 						<td><%= link_to controller: 'speakers', action: 'show', id: video.speaker.id do %><%= full_name_of(video.speaker) %><% end %></td>
 						<td>duration...</td>
 					</tr>

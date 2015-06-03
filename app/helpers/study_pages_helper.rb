@@ -7,4 +7,10 @@ module StudyPagesHelper
 		return video_url
 	end
 
+
+
+	def findThumbnailFromPlaylistVideo(playlistVideo)
+		getThumbnail(findVideoUrlFromPlaylistVideo(playlistVideo))
+	end
+
 end

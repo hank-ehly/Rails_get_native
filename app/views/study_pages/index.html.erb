@@ -41,12 +41,12 @@
 
 								<td style="display:none;"><%= radio_button_tag "playlistVideo", "#{playlistVideo.id}" %></td>
 
-								<td><img src=<%= get_thumbnail(findVideoUrlFromPlaylistVideo(playlistVideo)) %> alt=""></td>
+								<td><img src=<%= findThumbnailFromPlaylistVideo(playlistVideo) %> alt=""></td>
 
 								<td><%= Topic.find(Video.find(playlistVideo.video_id).topic_id).name %></td>
 
 								<td><%= full_name_of(Speaker.find(Video.find(playlistVideo.video_id).speaker_id)) %></td>
-								
+
 							</tr>
 						<% end %> <!-- @languageSpecificPlaylistVideos.each do |playlistVideo| -->
 

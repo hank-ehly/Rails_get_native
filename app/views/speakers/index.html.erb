@@ -26,7 +26,7 @@
 				video_url = url_queries["v"] 
 				%>
 				<%= link_to controller: 'speakers', action: 'show', id: speaker.id do %>
-					<img src=<%= get_thumbnail(video_url) %> alt="">
+					<img src=<%= getThumbnail(video_url) %> alt="">
 				<% end %>
 				</td>
 				<td>

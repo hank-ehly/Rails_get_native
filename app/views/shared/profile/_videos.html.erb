@@ -16,7 +16,7 @@
 		<% @videos.each do |video| %>
 		<tr>
 		  <% url_queries = Rack::Utils.parse_query URI(video.original_url).query; video_url = url_queries["v"] %>
-			<td><%= image_tag get_thumbnail(video_url) %></td>
+			<td><%= image_tag getThumbnail(video_url) %></td>
 			<td><%= full_name_of(video.speaker) %></td>
 			<td><%= Language.find(video.speaker.language_id).name %></td>
 			<td>

@@ -17,7 +17,7 @@
 		<% @speakers.each do |speaker| %>
 		<tr>
 			<% url_queries = Rack::Utils.parse_query URI(speaker.videos.first.original_url).query; video_url = url_queries["v"] %>
-			<td><%= image_tag get_thumbnail(video_url) %></td>
+			<td><%= image_tag getThumbnail(video_url) %></td>
 			<td><%= full_name_of(speaker) %></td>
 			<td><%= speaker.videos.count %></td>
 			<td>

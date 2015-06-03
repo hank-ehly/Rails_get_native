@@ -22,7 +22,7 @@
 			<tr>
 				<td>
 					<%= link_to language_video_path(Language.find(video.language_id), video.id) do %>
-					<img src=<%= get_thumbnail(video_url) %> alt="<%= video.id %>">
+					<img src=<%= getThumbnail(video_url) %> alt="<%= video.id %>">
 					<% end %>
 				</td>
 				<td>

@@ -11,7 +11,7 @@
 		<h3>About</h3>
 		<div class="about_speaker row">	
 			<% video = @videos.first %><% url_queries = Rack::Utils.parse_query URI(video.original_url).query; video_url = url_queries["v"] %>
-			<%= image_tag get_thumbnail(video_url), class: 'col-sm-2' %>
+			<%= image_tag getThumbnail(video_url), class: 'col-sm-2' %>
 			<p class="col-sm-10" style="float:right;"><%= @speaker.about %></p>
 		</div>
 
@@ -46,7 +46,7 @@
     			%>
 					<% if video.speaker_id == @speaker.id %>
 						<tr>
-							<td><%= link_to language_video_path(@language.id, video.id) do %><img src=<%= get_thumbnail(video_url) %> alt=""><% end %></td>
+							<td><%= link_to language_video_path(@language.id, video.id) do %><img src=<%= getThumbnail(video_url) %> alt=""><% end %></td>
 							<td><%= link_to language_topic_path(@language.id, video.topic.id) do %><%= video.topic.name %><% end %></td>
 							<td>duration...</td>
 						</tr>
