@@ -49,4 +49,26 @@ class User < ActiveRecord::Base
 
   # be careful of uniqueness: true, as it throws a "LIMIT 1" error
 
+
+  def self.playlistVideoLanguages(user)
+
+    playlistVideoLanguages = []
+
+    Language.all.each do |language|
+      user.playlist_videos.each do |playlistVideo|
+
+        video = Video.find(playlistVideo.video_id)
+        playlistVideoLanguage = Language.find(video.language_id)
+
+        playlistVideoLanguages << playlistVideoLanguage
+
+      end
+    end
+
+    playlistVideoLanguages = playlistVideoLanguages.uniq
+
+    return playlistVideoLanguages
+
+  end # def self.playlistVideoLanguages(user)
+
 end

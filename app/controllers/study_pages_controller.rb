@@ -3,15 +3,18 @@ class StudyPagesController < ApplicationController
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
-  before_action :userSettings, only: [:index]
+  before_action :userSettings
 
   def index
     
     if params[:lang]
 
       @lang = Language.find_by(name: params[:lang])
+      @langId = @lang.id if @lang
 
-      @userPlaylistVideos.each do |playlistVideo|
+      @include_blank = false;
+
+      @user.playlist_videos.each do |playlistVideo|
 
         video     = Video.find(playlistVideo.video_id);
         language  = Language.find(video.language_id);
@@ -21,6 +24,10 @@ class StudyPagesController < ApplicationController
         end
 
       end # @user.playlist_videos.each do |playlistVideo|
+
+    else
+
+      @include_blank = true;
 
     end # if params[:lang]
 
@@ -32,7 +39,7 @@ class StudyPagesController < ApplicationController
     session[:study_time] = params[:foo][:study_time]
     @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
-    get_video_url
+    # Video.thumbnail(@video, false, true)
   end
 
   def speaking
@@ -75,16 +82,8 @@ class StudyPagesController < ApplicationController
   def userSettings
 
     @user                           =   User.find(session[:user_id]) if session[:user_id]
-    @userPlaylistVideos             =   PlaylistVideo.findUserPlaylistVideos(@user)
     @languageSpecificPlaylistVideos =   Array.new
-    @userPlaylistVideoLanguages     =   Array.new
-
-    Language.all.each do |language|
-      @userPlaylistVideos.each do |playlistVideo|
-        @userPlaylistVideoLanguages << Language.find(Video.find(playlistVideo.video_id).language_id)
-      end
-    end
-    @userPlaylistVideoLanguages = @userPlaylistVideoLanguages.uniq
+    @playlistVideoLanguages = User.playlistVideoLanguages(@user)
 
   end
 

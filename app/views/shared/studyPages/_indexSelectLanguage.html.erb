@@ -1,0 +1,15 @@
+<% if playlistVideoLanguagesCount > 0 %>
+
+	<%= collection_select(:language, 
+												:id, playlistVideoLanguages, 
+												:id, 
+												:name, {
+													include_blank: include_blank, 
+													selected: langId
+													}, class: 'form-control') %>
+
+<% else %>
+
+	<p>You have no playlist videos!</p>
+	
+<% end %>

@@ -1,5 +1,6 @@
 $(document).on("page:change", function()
 {
+	'use strict';
 
   $( ".select_language #language_id" ).change(function() 
   {

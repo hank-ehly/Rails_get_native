@@ -1,4 +1,7 @@
-$(document).on('page:change', function() {
+$(document).on('page:change', function() 
+{
+	'use strict';
+
 	if ($('.collocation_instance')) {
 		$.each($('.collocation_instance'), function(index, val) {
 

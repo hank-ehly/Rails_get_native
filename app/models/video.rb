@@ -39,10 +39,14 @@ class Video < ActiveRecord::Base
 	scope :newest, -> { order("videos.created_at DESC") }
 	scope :oldest, -> { order("videos.created_at ASC") }
 
-	def self.thumbnail(videoObject, playlistVideo=false)
-		if playlistVideo; video = Video.find(videoObject.video_id); end
+	def self.thumbnail(videoObject, playlistVideo=false, returnUrl=false)
+		if playlistVideo; video = Video.find(videoObject.video_id); else; video = videoObject; end
 		url_queries = Rack::Utils.parse_query URI(video.original_url).query; url = url_queries["v"]
-		return "http://i1.ytimg.com/vi/" + url + "/default.jpg"
+		if returnUrl
+			return url
+		else
+			return "http://i1.ytimg.com/vi/" + url + "/default.jpg"
+		end
 	end
 
 end

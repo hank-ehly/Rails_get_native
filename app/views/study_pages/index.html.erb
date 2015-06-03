@@ -15,16 +15,14 @@
 
 		<h3>What language?</h3>
 
-		<% if @userPlaylistVideoLanguages.count > 0 %>
-			<% if @lang %>
-				<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {selected: @lang.id}, class: 'form-control') %>
-			<% else %>
-				<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
-			<% end %>
-		<% else %>
-			<p>You have no videos in your playlist!</p>	
-		<% end %>
-
+		 <%= render partial: "shared/studyPages/indexSelectLanguage", 
+		 						locals: { 
+		 							playlistVideoLanguages: @playlistVideoLanguages,
+		 							playlistVideoLanguagesCount: @playlistVideoLanguages.count,
+		 							lang: @lang,
+		 							langId: @langId,
+		 							include_blank: @include_blank
+		 							} %>
 	</div>
 
 
@@ -116,7 +114,7 @@
 			</div>
 
 
-			
+
 		
 		<% end %> <!-- end form -->
 	<% end %> <!-- end if @lang -->

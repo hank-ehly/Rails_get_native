@@ -1,3 +1,5 @@
+'use strict';
+
 // declare vars
 var time_minutes, time_seconds, time_seconds_by_4, incrementTime, incrementTimeInterval, minutes, seconds, state, studyTime, video_url, controls_bool, autoplay_bool;
 
