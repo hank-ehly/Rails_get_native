@@ -33,6 +33,16 @@ class StudyPagesController < ApplicationController
 
   end # def index
 
+  def listening
+    @controls_bool = 0
+    @autoplay_bool = 1
+    @smallButton = true
+    session[:study_time] = params[:studyForm][:study_time]
+    @playlist_video = PlaylistVideo.find(params[:playlist_video])
+    @video = Video.find(@playlist_video.video_id)
+    @video_url = Video.thumbnail(@video, false, true)
+  end
+
   def shadowing
     @controls_bool = 0
     @autoplay_bool = 1
@@ -50,15 +60,6 @@ class StudyPagesController < ApplicationController
     @video = Video.find(@playlist_video.video_id)
     @collocation = Collocation.new
     @collocations = @playlist_video.collocations.order("collocations.created_at DESC")
-    @video_url = Video.thumbnail(@video, false, true)
-  end
-
-  def listening
-    @controls_bool = 0
-    @autoplay_bool = 1
-    session[:study_time] = params[:studyForm][:study_time]
-    @playlist_video = PlaylistVideo.find(params[:playlist_video])
-    @video = Video.find(@playlist_video.video_id)
     @video_url = Video.thumbnail(@video, false, true)
   end
 

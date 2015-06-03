@@ -1,18 +1,29 @@
-<% @controls_bool = 0 %>
-
 <%= render 'shared/studyPages/setVideoUrl' %>
-
-<div class="study_pages listening main">
-
+<div class="study_pages speaking main">
 	<div class="container">
-	
+
 		<h1>Listening</h1>
 
 		<button type="button" id="listeningPopover" class="btn btn-default ppover">Instructions <span class="caret"></span></button>
+
+		<div class="main_video_content">
 		
-		<%= render "shared/studyPages/videoInstance" %>
+			<div class="video_instance">
+				<div class="video-container">
+					<div id="player" style="pointer-events:none;"></div>
+					<%= render 'shared/studyPages/overlays' %>
+				</div>
+				<%= render 'shared/studyPages/videoInfo' %>
+			</div>
 
-		<%= render "shared/studyPages/playPauseButton" %>
+			<div class="scripts">
+				<ul class="nav nav-tabs script_tabs">
+				  <li role="presentation" id="japanese_script_tab" class="active"><a href="#">Japanese</a></li>
+				</ul>
+				<div class="script" id="japanese_script"><%= @video.japanese_script %></div>
+			</div> <!-- scripts -->
 
-	</div>
+
+		</div> <!-- main_video_content -->
+	</div> <!-- container -->
 </div>
