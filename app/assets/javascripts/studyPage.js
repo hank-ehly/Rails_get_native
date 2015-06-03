@@ -149,9 +149,6 @@ $(document).on('page:change', function()
       {
         player.pauseVideo();
         $('#paused-overlay').show();
-        // if (controls_bool == 0) {
-        //   
-        // }
       }
     }
 

@@ -1,20 +1,14 @@
 <%= render 'shared/studyPages/setVideoUrl' %>
-<div class="study_pages speaking main">
+<div class="study_pages listening main">
 	<div class="container">
 
 		<h1>Speaking</h1>
 
 		<button type="button" id="speakingPopover" class="btn btn-default ppover">Instructions <span class="caret"></span></button>
 
+		<%= render 'shared/studyPages/videoInfo' %>
+
 		<div class="main_video_content">
-		
-			<div class="video_instance">
-				<div class="video-container">
-					<div id="player" style="pointer-events:auto;"></div>
-					<%= render 'shared/studyPages/overlays' %>
-				</div>
-				<%= render 'shared/studyPages/videoInfo' %>
-			</div>
 
 			<div class="scripts">
 				<ul class="nav nav-tabs script_tabs">
@@ -31,7 +25,6 @@
 				<div class="script" id="collocations">
 
 					<ul id="collocation_list">
-						<!-- render partial: "shared/collocations", locals: { playlist_video: @playlist_video } -->
 						<% @collocations.each do |collocation| %>
 							<li class="collocation_first"><%= collocation.collocation %></li>
 							<li class="well well-sm collocation_well"><%= collocation.context %></li>
