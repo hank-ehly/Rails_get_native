@@ -36,9 +36,6 @@
 	
 	<% if @lang %>
 
-
-
-
 		<!--
 		/**
 		*
@@ -51,11 +48,7 @@
 		**/
 		-->
 
-		<%= form_tag action: 'shadowing' do %>
-
-
-
-
+		<%= form_tag action: 'listening' do %>
 
 
 			<!--
@@ -76,8 +69,6 @@
 			</div>
 
 
-
-
 			<!--
 			/**
 			*
@@ -90,7 +81,7 @@
 
 				<h3>How long?</h3>
 
-				<%= select 	:foo, 
+				<%= select 	:studyForm, 
 										:study_time, 
 										1..30, 
 										{selected: 15}, 

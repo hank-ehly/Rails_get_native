@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   def confirm_logged_in
     unless current_user_admin
       flash[:danger] = "Please login to view this page."
-      redirect_to(:controller => 'access', :action => 'login')
+      redirect_to(controller: 'access', action: 'login')
       return false # halts the before_action
       # stops everything from going
     else
@@ -27,8 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_params
-    @abc = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-    @age_ranges = ["0~19","20~29","30~39","40~49","50~64","65+"]
+    # @age_ranges = ["0~19","20~29","30~39","40~49","50~64","65+"]
     def admin_params
       params.require(:admin).permit(:first_name, :last_name, :email, :email_confirmation, :password, :password_confirmation)
     end
@@ -49,11 +48,6 @@ class ApplicationController < ActionController::Base
     end
     def video_params
       params.require(:video).permit(:original_url, :speaker_id, :language_id, :topic_id, :japanese_script, :english_script, :spanish_script, :speaker_full_name, :topic_name)
-    end
-    def full_name_of(speaker)
-      if speaker
-        speaker.first_name + " " + speaker.last_name
-      end
     end
   end
 

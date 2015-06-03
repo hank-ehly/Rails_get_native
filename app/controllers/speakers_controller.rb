@@ -1,11 +1,8 @@
 class SpeakersController < ApplicationController
-
   before_action :confirm_logged_in
   before_action :current_user_admin
   before_action :initialize_params
   before_action :sent_speaker, except: [:index, :new, :create]
-
-
 
   def index
     @language = Language.find(params[:language_id])

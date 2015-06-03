@@ -6,11 +6,11 @@
 
 <% 
 case params[:action]
+when 'listening'
+	@nextFrame = 'shadowing'
 when 'shadowing'
 	@nextFrame = 'speaking'
 when 'speaking'
-	@nextFrame = 'listening'
-when 'listening'
 	@nextFrame = 'writing'
 when 'writing'
 	@nextFrame = 'submit_writing'

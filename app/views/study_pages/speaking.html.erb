@@ -30,12 +30,6 @@
 				<div class="script" id="empty_script_tab"></div>
 				<div class="script" id="collocations">
 
-					<%= link_to "Add Collocation", new_collocation_path, remote: true %>
-
-					<div id="collocation-form" style="display:none;">
-						<!-- form -->
-					</div>
-
 					<ul id="collocation_list">
 						<!-- render partial: "shared/collocations", locals: { playlist_video: @playlist_video } -->
 						<% @collocations.each do |collocation| %>

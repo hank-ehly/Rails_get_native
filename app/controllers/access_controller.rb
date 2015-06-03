@@ -1,7 +1,6 @@
 class AccessController < ApplicationController
 
   def login
-    # login form
   end
 
   def attempt_login
@@ -31,10 +30,7 @@ class AccessController < ApplicationController
   end
 
   def logout
-    session[:user_id] = nil
-    session[:admin_id] = nil
-    session[:email] = nil
-    session[:study_time] = nil
+    reset_session
     flash[:success] = "You have been logged out."
     redirect_to(:action => 'login')
   end

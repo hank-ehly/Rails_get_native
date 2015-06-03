@@ -10,8 +10,6 @@ $(document).on('page:change', function()
 			col = val.children[0];
 			well = val.children[1];
 
-
-
 			var start, end, embededCollocation;
 			start = val.children[1].innerHTML.indexOf(val.children[0].innerHTML);
 			end = start + val.children[0].innerHTML.length;

@@ -9,7 +9,7 @@ class StudyPagesController < ApplicationController
     
     if params[:lang]
 
-      @lang = Language.find_by(name: params[:lang])
+      @lang   = Language.find_by(name: params[:lang])
       @langId = @lang.id if @lang
 
       @include_blank = false;
@@ -36,10 +36,9 @@ class StudyPagesController < ApplicationController
   def shadowing
     @controls_bool = 0
     @autoplay_bool = 1
-    session[:study_time] = params[:foo][:study_time]
-    @playlist_video = PlaylistVideo.find(params[:playlist_video])
+    @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
-    # Video.thumbnail(@video, false, true)
+    @video_url = Video.thumbnail(@video, false, true)
   end
 
   def speaking
@@ -51,21 +50,22 @@ class StudyPagesController < ApplicationController
     @video = Video.find(@playlist_video.video_id)
     @collocation = Collocation.new
     @collocations = @playlist_video.collocations.order("collocations.created_at DESC")
-    get_video_url
+    @video_url = Video.thumbnail(@video, false, true)
   end
 
   def listening
     @controls_bool = 0
     @autoplay_bool = 1
-    @playlist_video = PlaylistVideo.find(params[:id])
+    session[:study_time] = params[:studyForm][:study_time]
+    @playlist_video = PlaylistVideo.find(params[:playlist_video])
     @video = Video.find(@playlist_video.video_id)
-    get_video_url
+    @video_url = Video.thumbnail(@video, false, true)
   end
 
   def writing
     @playlist_video = PlaylistVideo.find(params[:id])
     @video = Video.find(@playlist_video.video_id)
-    get_video_url
+    @video_url = Video.thumbnail(@video, false, true)
   end
 
   def submit_writing
