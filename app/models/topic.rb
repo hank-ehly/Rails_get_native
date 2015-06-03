@@ -21,11 +21,11 @@ class Topic < ActiveRecord::Base
 	validates :name,
 		presence: true,
 		uniqueness: true
-	
-	def findTopicNameFromPlaylistVideo(playlistVideo)
+
+	def self.nameFromPlaylistVideo(playlistVideo)
 		video = Video.find(playlistVideo.video_id)
-		topic = Topic.find(video.topic_id)
-		return topic.name
+  	topic = Topic.find(video.topic_id)
+  	return topic.name
 	end
 
 end

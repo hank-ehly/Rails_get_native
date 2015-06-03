@@ -1,76 +1,123 @@
-<div class="study_pages index">
-	<div class="container">
-		<h1>Study Now</h1>
+<div class="study_pages index container">
 
-			<!-- LANGUAGE -->
-			<div class="form-group select_language">
+	<h1>Study Now</h1>
 
-				<h3>What language?</h3>
 
-				<% if @userPlaylistVideoLanguages.count > 0 %>
-					<% if @lang %>
-						<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {selected: @lang.id}, class: 'form-control') %>
-					<% else %>
-						<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
-					<% end %>
-				<% else %>
-					<p>You have no videos in your playlist!</p>	
-				<% end %>
+	<!--
+	/**
+	*
+	* User selects a language
+	*
+	**/
+	-->
+
+	<div class="form-group select_language">
+
+		<h3>What language?</h3>
+
+		<% if @userPlaylistVideoLanguages.count > 0 %>
+			<% if @lang %>
+				<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {selected: @lang.id}, class: 'form-control') %>
+			<% else %>
+				<%= collection_select(:language, :id, @userPlaylistVideoLanguages, :id, :name, {:include_blank => true}, class: 'form-control') %>
+			<% end %>
+		<% else %>
+			<p>You have no videos in your playlist!</p>	
+		<% end %>
+
+	</div>
+
+
+	<!--
+	/**
+	*
+	* Once user selects a language
+	*
+	**/
+	-->
+	
+	<% if @lang %>
+
+
+
+
+		<!--
+		/**
+		*
+		* Form:
+		*
+		*   - playlist video table
+		*   - select box for study time
+		*   - submit button
+		*
+		**/
+		-->
+
+		<%= form_tag action: 'shadowing' do %>
+
+
+
+
+
+
+			<!--
+			/**
+			*
+			* User selects a playlist video
+			*
+			**/
+			-->
+
+			<div class="form-group select_video">
+
+				<h3>Select Playlist Video</h3>
+
+				<%= render 	partial: "shared/studyPages/indexSelectVideoTable",
+										locals: { languageSpecificPlaylistVideos: @languageSpecificPlaylistVideos } %>
 
 			</div>
 
-		<!-- FORM -->
-		<%= form_tag action: 'shadowing' do %>
-
-			<!-- SELECT VIDEO -->
-			<% if @lang %>
-
-				<div class="form-group select_video">
-					<h3>Select Playlist Video</h3>
-					<table class="table">	
-
-						<thead>
-							<th style="display:none;"></th>
-							<th></th>
-							<th>Topic</th>
-							<th>Speaker</th>
-						</thead>
-
-						<% @languageSpecificPlaylistVideos.each do |playlistVideo| %>
-
-							<tr class="study_video_instance">
-
-								<td><%= radio_button_tag "playlistVideo", "#{playlistVideo.id}" %></td>
-
-								<td><img src=<%= findThumbnailFromPlaylistVideo(playlistVideo) %>></td>
-
-								<td><%=  %></td>
-
-								<td><%= full_name_of(Speaker.find(Video.find(playlistVideo.video_id).speaker_id)) %></td>
-
-							</tr>
-
-						<% end %> <!-- @languageSpecificPlaylistVideos.each do |playlistVideo| -->
-
-					</table>
-				</div> <!-- div.select_video -->
 
 
-				<!-- HOW LONG -->
-				<div class="form-group select_time">
-					<h3>How long?</h3>
-					<%= select :foo, :study_time, 1..30, {selected: 15}, class: 'study_time form-control' %>
-					<span>minutes</span>
-				</div>
+
+			<!--
+			/**
+			*
+			* User selects length of study
+			*
+			**/
+			-->
+
+			<div class="form-group select_time">
+
+				<h3>How long?</h3>
+
+				<%= select 	:foo, 
+										:study_time, 
+										1..30, 
+										{selected: 15}, 
+										class: 'study_time form-control' 
+										%> <span>minutes</span>
+
+			</div>
 
 
-				<!-- get native button -->
-				<div class="form-group study submit_button">
-					<%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %>
-				</div>
+
+			<!--
+			/**
+			*
+			* Submit button starts study
+			*
+			**/
+			-->
+
+			<div class="form-group study submit_button">
+				<%= submit_tag "Get_Native!", class: "btn btn-primary btn-lg btn-block" %>
+			</div>
 
 
-			<% end %> <!-- if @lang -->
-		<% end %> <!-- form_tag action: 'shadowing' -->
-	</div> <!-- div.container -->
-</div> <!-- div.study_pages.index -->
+			
+		
+		<% end %> <!-- end form -->
+	<% end %> <!-- end if @lang -->
+</div> <!-- div.container -->

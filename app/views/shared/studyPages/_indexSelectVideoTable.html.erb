@@ -1,0 +1,19 @@
+<table class="table">	
+
+	<thead>
+		<th></th>
+		<th></th>
+		<th>Topic</th>
+		<th>Speaker</th>
+	</thead>
+
+	<% languageSpecificPlaylistVideos.each do |playlistVideo| %>
+
+		<%= render 	partial: "shared/studyPages/indexStudyVideoInstance", 
+								locals: { 
+									playlistVideo: playlistVideo 
+									} %>
+
+	<% end %>
+
+</table>

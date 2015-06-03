@@ -23,4 +23,12 @@ class Speaker < ActiveRecord::Base
 	has_and_belongs_to_many :topics
 	belongs_to :language
 
+
+  def self.fullNameFromPlaylistVideo(playlistVideo)
+  	video 						= Video.find(playlistVideo.video_id)
+  	speaker 					= Speaker.find(video.speaker_id)
+  	speakerFullName 	= speaker.first_name + " " + speaker.last_name
+  	return speakerFullName
+  end
+
 end

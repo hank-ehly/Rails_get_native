@@ -1,8 +1,8 @@
 // Place all the styles related to the StudyPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-div.study_pages.index {
-  div.container {
+
+  div.study_pages.index.container {
     background: #fff;
     @include border-radius;
     h1 {
@@ -24,7 +24,7 @@ div.study_pages.index {
       margin-right: auto;
     }
   } // div.container
-} // div.study_pages.index.main
+
 #foo_study_time {
   width: auto;
   display: inline-block;
@@ -39,6 +39,10 @@ div.study_pages.index {
 }
 
 div.form-group.select_video > table > tbody > tr > td:nth-child(1) {
+  display: none;
+}
+
+div.form-group.select_video > table > thead > tr > th:nth-child(1) {
   display: none;
 }
 

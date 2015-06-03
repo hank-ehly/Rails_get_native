@@ -23,4 +23,18 @@ class PlaylistVideo < ActiveRecord::Base
   belongs_to :playlist
   belongs_to :video
   has_many :collocations
+
+
+
+
+  def self.findUserPlaylistVideos(user)
+  	return user.playlists.first.playlist_videos
+  end
+
+
+
+
+
+
+
 end

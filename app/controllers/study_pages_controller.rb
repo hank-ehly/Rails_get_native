@@ -24,8 +24,6 @@ class StudyPagesController < ApplicationController
 
     end # if params[:lang]
 
-    findTopicNameFromPlaylistVideo(playlistVideo)
-
   end # def index
 
   def shadowing
@@ -77,7 +75,7 @@ class StudyPagesController < ApplicationController
   def userSettings
 
     @user                           =   User.find(session[:user_id]) if session[:user_id]
-    @userPlaylistVideos             =   @user.playlists.take.playlist_videos
+    @userPlaylistVideos             =   PlaylistVideo.findUserPlaylistVideos(@user)
     @languageSpecificPlaylistVideos =   Array.new
     @userPlaylistVideoLanguages     =   Array.new
 
